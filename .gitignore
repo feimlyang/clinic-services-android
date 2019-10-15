@@ -1,3 +1,11 @@
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Mac
+.DS_Store
+
 # Built application files
 *.apk
 *.ap_
@@ -69,7 +77,6 @@ fastlane/readme.md
 .project
 .settings/
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
@@ -79,4 +86,6 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+*.launch
+
 
