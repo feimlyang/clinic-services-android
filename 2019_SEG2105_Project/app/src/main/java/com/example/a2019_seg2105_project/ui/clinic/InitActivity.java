@@ -1,15 +1,18 @@
 package com.example.a2019_seg2105_project.ui.clinic;
 
-/*
-        Created : 2019/10/16
-        Last Modified: 2019/10/16
-
-        InitActivity.java
-        - default activity page
-        - it is linked to init_interface.xml layout.
-        - it directs user to log in page or register page
-           when the user successfully logged in, it directs to MainActivity.java
-
+/**
+ *
+ *      InitActivity is the default activity class of the application.
+ *      It:
+ *      - Check if there is local user cache.
+ *          If no cache exists, display the default layout defined in init_interface.xml
+ *          If user has already logged-in, it jump directly to MainActivity.java
+ *      - When default layout is displayed, user can either jump to LOGIN or REGISTER activity
+ * @see LoginActivity
+ * @see RegisterActivity
+ * @author Wen Bin Pang
+ *  Created : 2019/10/16
+ *  Last Modified: 2019/10/16
  */
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +20,10 @@ import androidx.appcompat.app.AppCompatActivity;
 //  ************ Import class Intent
 import android.content.Intent;
 
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.a2019_seg2105_project.ui.clinic.login.LoginActivity;
 import com.example.a2019_seg2105_project.ui.clinic.register.RegisterActivity;
@@ -37,11 +42,14 @@ public class InitActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.init_interface);
+
+        // Check if the user has already logged in. If it is the case, jump to
+        // the welcome mssage and jump to MainActivity.
+
         loginButton = findViewById(R.id.init_login);
         registerButton = findViewById(R.id.init_register);
 
-        // Listenr for Login Button
-        // 1. Set Login butter using setOnClickListener
+        // 1. Set on click listener for Login button,
         loginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -52,7 +60,7 @@ public class InitActivity extends AppCompatActivity {
                 startActivityForResult(intent,PICK_LOGIN_RESULT);//wait for result
             }
         });
-        // 2. Set Login butter using setOnClickListener
+        // 2. Set on click listener for Register button,
         registerButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -64,10 +72,20 @@ public class InitActivity extends AppCompatActivity {
             }
         });
     }
-    // After receiving result of previous onClick operation
-    // indicate what to do next
-    // Note: requestCode specifies which button has been clicked
-    //       and resultCode has only 2 value:RESULT_OK or RESULT_CANCELED
+
+    /*
+       public boolean checkIfLoggedIn()
+       {
+       }
+     */
+    /**
+     *  Handle result returned from activity pages called by user click.
+     * @param requestCode   Specifies from which button the result is returned.
+     * @param resultCode    Specifies either the user cancelled the action or not.
+     *                      Cancelled action: RESULT_CANCELED
+     *                      Submitted form: RESULT_OK
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
@@ -79,7 +97,16 @@ public class InitActivity extends AppCompatActivity {
                 // Make welcome message dissapear gradually in meantime
 
 
-                //2. Display Weclome message, jump to MainActivity
+                //2. Display Weclome message, then jump to MainActivity.
+            }
+            else
+            {
+                //Display a message indicating user has cancelled log-in operation
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Log in has been cancelled",
+                        Toast.LENGTH_SHORT );
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
             }
         }
         if (requestCode == PICK_REGISTER_RESULT)
@@ -88,8 +115,17 @@ public class InitActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK){
                 //Display message indicating successful registration
             }
+            else
+            {
+                //Display a message indicating user has cancelled registration
+                Toast toast = Toast.makeText(getApplicationContext(),
+                                         "Registration has been cancelled",
+                                          Toast.LENGTH_SHORT );
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
         }
 
-
     } // end of onCreate()
+
 }// end of Class

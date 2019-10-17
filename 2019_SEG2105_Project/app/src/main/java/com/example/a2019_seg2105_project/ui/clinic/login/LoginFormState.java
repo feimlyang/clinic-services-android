@@ -3,7 +3,7 @@ package com.example.a2019_seg2105_project.ui.clinic.login;
 import androidx.annotation.Nullable;
 
 /**
- * Data validation state of the login form.
+ * LoginFormState stores data validation state of the login form.
  */
 class LoginFormState {
     @Nullable

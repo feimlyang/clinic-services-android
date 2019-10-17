@@ -75,113 +75,53 @@
 
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionDone"
         android:inputType="textVisiblePassword"
         android:singleLine="true"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailID" />
-    <!-- Specify User Age -->
-    <EditText
-        android:id="@+id/age"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:hint="Age"
-        android:imeOptions="actionDone"
-        android:inputType="number"
-        android:singleLine="true"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-    <!-- Select User Gender -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:text="Gender: "
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age" />
-
-    <RadioGroup
-        android:id="@+id/radioGender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age">
-
-        <RadioButton
-            android:id="@+id/btnMan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Male" />
-
-        <RadioButton
-            android:id="@+id/btnWoman"
-            android:layout_marginStart="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Female" />
-    </RadioGroup>
-
 
 
  <!--  Select Type of Account -->
     <TextView
+        android:id="@+id/accountSelectMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="24dp"
         android:text="@string/select_account"
         android:textSize="15sp"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGender" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <RadioGroup
         android:id="@+id/radioAccountType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
+
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/radioGender"
-        app:layout_constraintTop_toBottomOf="@+id/radioGender">
 
-        <RadioButton
-            android:id="@+id/btnAdmin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Admin" />
+        app:layout_constraintStart_toEndOf="@+id/accountSelectMsg"
+        app:layout_constraintTop_toBottomOf="@+id/password">
 
         <RadioButton
             android:id="@+id/btnUser"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="User" />
 
         <RadioButton
             android:id="@+id/btnEmployee"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Employee" />
@@ -193,7 +133,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
 
         android:hint="@string/enter_employeeNumber"

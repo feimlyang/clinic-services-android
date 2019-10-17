@@ -1,9 +1,10 @@
 package com.example.a2019_seg2105_project.ui.clinic.login;
 
 /**
- * Class exposing authenticated user details to the UI.
+ * LoggedInUserView is a Class that store authenticated user details.
+ * Facilitates exposure of data to UI..
  */
-class LoggedInUserView {
+ class LoggedInUserView {
     private String displayName;
     //... other data fields that may be accessible to the UI
 

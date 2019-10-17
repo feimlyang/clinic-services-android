@@ -1,20 +1,21 @@
 package com.example.a2019_seg2105_project.data.model;
 
 /**
- * Data class that captures user information for logged in users retrieved from LoginRepository
+ * Class LoggedInUser is a Data class that captures user information for logged in users.
+ * Information is retrieved from LoginRepository
  */
 public class LoggedInUser {
 
-    private String userId;
+    private String userEmailId;
     private String displayName;
 
     public LoggedInUser(String userId, String displayName) {
-        this.userId = userId;
+        this.userEmailId = userId;
         this.displayName = displayName;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserEmailId() {
+        return userEmailId;
     }
 
     public String getDisplayName() {

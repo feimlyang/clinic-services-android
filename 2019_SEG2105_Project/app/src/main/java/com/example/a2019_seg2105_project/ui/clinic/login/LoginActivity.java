@@ -27,16 +27,24 @@ import android.content.Intent;
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.ui.clinic.login.LoginFormState;
 
+/**
+ *
+ *
+ * @see LoginViewModel
+ */
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private EditText userEmail;
     private EditText userPassword;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // Initialize : load associated XML layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // Initialize: set
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
@@ -44,15 +52,17 @@ public class LoginActivity extends AppCompatActivity {
         userPassword = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final Button cancelButton = findViewById(R.id.cancelLogin);
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
+        // Observe changes made to text fields.
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
             public void onChanged(@Nullable LoginFormState loginFormState) {
                 if (loginFormState == null) {
                     return;
                 }
+                // Login button will be disabled until inputs from both fields are valid.
                 loginButton.setEnabled(loginFormState.isDataValid());
+
                 if (loginFormState.getUsernameError() != null) {
                     userEmail.setError(getString(loginFormState.getUsernameError()));
                 }
@@ -62,25 +72,26 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Obtain login result after attempt.
         loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
             @Override
             public void onChanged(@Nullable LoginResult loginResult) {
                 if (loginResult == null) {
                     return;
                 }
-                loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
+                // This will occur when pressed enter.
                 setResult(Activity.RESULT_OK);
-
                 //Complete and destroy login activity once successful
                 finish();
             }
         });
+
 
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
@@ -101,36 +112,36 @@ public class LoginActivity extends AppCompatActivity {
         };
         userEmail.addTextChangedListener(afterTextChangedListener);
         userPassword.addTextChangedListener(afterTextChangedListener);
-        userPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
+        /*userPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(userEmail.getText().toString(),
-                            userPassword.getText().toString());
+
                 }
                 return false;
             }
-        });
+        });*/
 
 /*
-        OnClick listener of CANCEL button
-        It redirect user to the InitActivity page
-        with a 'successfully registered' message
+        OnClick listener of LOG IN button.
+        If log in is SUCCESSFUL, it redirect user to the InitActivity page.
+        User will be greeted with a 'welcome' message.
+
+        If log in is UNSUCCESSFUL,it will remain at this page and ask user to try agian.
  */
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                // Extra information : the first name and last name of user
-
-                setResult(RESULT_OK, intent);// Set the result that will be returned to caller
-                finish();  // end current activity
+                // calling login() in loginViewModel
+                loginViewModel.login(userEmail.getText().toString(),
+                        userPassword.getText().toString());
+                // Will end activity automatically if login successful.
             }
         });
 /*
         OnClick listener of CANCEL button
-        It redirect user to the InitActivity page
+        It redirect user back to the InitActivity page without doing anything.
  */
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,13 +153,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }// end of OnCreate()
+
+    /**
+     *  Sucessful logged-in.
+     * @param model
+     */
     private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
+
         // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-    }
+    }//
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
-    }
+    }//
+
 } // end of LoginActivity
