@@ -1,0 +1,139 @@
+class User{
+	String firstName;
+	String lastName;
+	String userName;
+	String password;
+}
+
+class Administrator{
+    isA User;
+    1 -- * Employee;
+    1 -- * Patient;
+    1 -- * Service; 
+}
+
+class Employee{
+    isA User;
+    1 -- * Clinic;
+
+}
+
+class Patient{
+    isA User;
+    1 -- * Appointment;
+    1 -- * Rating;
+
+}
+
+class Clinic{
+    * -- * Service;
+    * -- 1 WorkingHours;
+    * -- 1 Address;
+    1 -- * Appointment;
+    1 -- * Rating;
+
+}
+
+class Service{
+    String type;
+    Integer price;
+	
+}
+
+class Address{
+	String streetName;
+	String postCode;
+}
+
+class WorkingHours{
+    Time startTime;
+    Time endTime;
+	
+}
+
+class Appointment{
+    Date date;
+    Time time;
+    Service service;
+    Address address;
+}
+
+class Rating{
+    Integer score;
+	
+}
+
+
+//$?[End_of_model]$?
+
+namespace -;
+
+
+class Patient
+{
+  position 538 170 113 41;
+  position.association Doctor__Patient 0,0 110,44;
+    position.association Appointment__Patient 12,41 125,0;
+  position.association Patient__Rating 35,41 70,0;
+}
+
+
+class Employee
+{
+  position 294 222 124 41;
+  position.association Employee__Shift 0,9 149,57;
+  position.association Employee__Privilege 0,65 30,0;
+  position.association Account__Employee 30,58 0,6;
+}
+
+class Administrator
+{
+  position.association Account__Administrator 138,3 0,10;
+  position.association Administrator__Employee 109,41 0,0;
+    position.association Administrator__Service 95,41 4,0;
+position 39 170 109 41;
+}
+
+class Administrator
+{
+  position 39 170 109 41;
+}
+
+class Service
+{
+  position 130 410 116 75;
+}
+
+class Appointment
+{
+  position 425 452 140 109;
+}
+
+class Rating
+{
+  position 413 278 119 58;
+}
+
+class User
+{
+  position 288 5 143 109;
+}
+
+class Clinic
+{
+  position.association Clinic__Service 0,32 116,20;
+    position.association Address__Clinic 87,41 7,0;
+  position.association Appointment__Clinic 109,38 0,1;
+  position.association Clinic__Rating 102,0 0,21;
+position 294 358 109 41;
+}
+
+class Address
+{
+  position 374 605 153 75;
+}
+
+class WorkingHours
+{
+  position 713 358 131 75;
+}
