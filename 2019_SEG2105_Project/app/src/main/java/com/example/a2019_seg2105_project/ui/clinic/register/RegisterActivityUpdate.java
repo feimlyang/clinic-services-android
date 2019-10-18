@@ -1,25 +1,37 @@
 package com.example.a2019_seg2105_project.ui.clinic.register;
 
 
-        import android.os.Bundle;
 
-        import androidx.annotation.NonNull;
-        import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.RadioGroup;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-        import android.text.Editable;
-        import android.text.TextWatcher;
-        import android.widget.EditText;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioGroup;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 //  ************ Import class Intent
-        import android.content.Intent;
-        import com.example.a2019_seg2105_project.R;
+import android.content.Intent;
+import android.widget.Toast;
 
-public class RegisterActivity extends AppCompatActivity {
+import com.example.a2019_seg2105_project.R;
+
+import java.util.List;
+
+public class RegisterActivityUpdate extends AppCompatActivity {
     //                          Fields
     //Set all user information to be private for data protection.
     private EditText user_firstName;
@@ -27,6 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText user_email;
     private EditText user_password;
     private RadioGroup user_accountType;
+    DatabaseReference mDatabase;
+    List<User> users;
 
 
 
@@ -43,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
         user_lastName = findViewById(R.id.lName);
         user_email = findViewById(R.id.emailID);
         user_password = findViewById(R.id.password);
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
         // Get buttons on XML layout
         final Button registerButton = findViewById(R.id.register);
@@ -70,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                     final EditText employeeNumber = findViewById(R.id.employeeNumber);
                     employeeNumber.setVisibility(View.VISIBLE);
 
-                   /*employeeNumber.addTextChangedListener(afterTextChangedListener);*/
+                    /*employeeNumber.addTextChangedListener(afterTextChangedListener);*/
                 }
                 else
                 {
@@ -186,8 +201,62 @@ public class RegisterActivity extends AppCompatActivity {
 */
     } // end of onCreate()
 
+    private void writeNewUser(String email, String firstName, boolean isLoggedin, String lastName, String password, String role) {
+        User user = new User(email, firstName, isLoggedin, lastName, password, role);
+
+        mDatabase.child("users").setValue(user);
+    }
+
+    protected void onStart() {
+        super.onStart();
+        mDatabase.addValueEventListener(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot){
+                users.clear();
+
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    User user = postSnapshot.getValue(User.class);
+                    users.add(user);
+                }
+//                UserList usersAdapter = new UserList( RegisterActivityUpdate.this, users);
+//                listViewUsers.setAdapter(usersAdapter);
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError){
+
+            }
+        }
+        );
+    }
+    private void addUser() {
+        String email = user_email.getText().toString().trim();
+        String firstName = user_firstName.getText().toString().trim();
+        String lastName = user_lastName.getText().toString().trim();
+        String password = user_password.getText().toString().trim();
+        String role = Integer.toString(user_accountType.getId());
 
 
 
+        if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName)
+        && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(role)){
+            String id = mDatabase.push().getKey();
+           //User user = new User(id, email, isLoggedin, firstName, lastName, password, role);
+            //mDatabase.child(id).setValue(user);
+
+            user_firstName.setText("");
+            user_lastName.setText("");
+            user_email.setText("");
+            user_password.setText("");
+
+
+            Toast.makeText(this,"User added", Toast.LENGTH_LONG).show();
+
+        }else{
+            Toast.makeText(this, "Please enter all the information", Toast.LENGTH_LONG).show();
+        }
+
+
+    }
 
 }// end of RegisterActivity
