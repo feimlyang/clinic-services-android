@@ -243,8 +243,8 @@ public class RegisterActivityUpdate extends AppCompatActivity {
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName)
         && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(role)){
             String id = mDatabase.push().getKey();
-           //User user = new User(id, email, isLoggedin, firstName, lastName, password, role);
-            //mDatabase.child(id).setValue(user);
+            User user = new User(id, email, firstName, isLoggedin, lastName, password, role);
+            mDatabase.child(id).setValue(user);
 
             user_firstName.setText("");
             user_lastName.setText("");
