@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 // Observer and ViewModel
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -85,11 +86,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
+                    setResult(Activity.RESULT_OK, getIntent());
+                    finish();
                 }
-                // This will occur when pressed enter.
-                setResult(Activity.RESULT_OK);
-                //Complete and destroy login activity once successful
-                finish();
             }
         });
 
@@ -137,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent();
                 setResult(RESULT_CANCELED, intent); // Set the result that will be returned to caller
                 finish(); // end current activity
@@ -150,12 +148,11 @@ public class LoginActivity extends AppCompatActivity {
      * @param model
      */
     private void updateUiWithUser(LoggedInUserView model) {
-
-        // TODO : initiate successful logged in experience
-    }//
+        // pass loginUser back to Init Activity
+        getIntent().putExtra(getString(R.string.loggedInUser), model);
+    }
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
-    }//
-
-} // end of LoginActivity
+    }
+}

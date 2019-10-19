@@ -1,7 +1,9 @@
 package com.example.a2019_seg2105_project.ui.clinic.login;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.example.a2019_seg2105_project.data.LoginRepository;
@@ -22,7 +24,9 @@ import com.example.a2019_seg2105_project.R;
 public class LoginViewModel extends ViewModel {
     // Fields
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
-    private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
+    // loginResultLiveData observed by Activity
+    private MediatorLiveData<LoginResult> loginResultLiveData = new MediatorLiveData<LoginResult>();
+    // loginRepository responsible for sending queries to firebase
     private LoginRepository loginRepository;
 
     // Constructors
@@ -34,7 +38,7 @@ public class LoginViewModel extends ViewModel {
         return loginFormState;
     }
     LiveData<LoginResult> getLoginResult() {
-        return loginResult;
+        return loginResultLiveData;
     }
     /**
      * Pass user information to login authentication,store user name if login is successful.
@@ -43,19 +47,29 @@ public class LoginViewModel extends ViewModel {
      * @param password  current password
      */
     public void login(String username, String password) {
-        //TODO:
-        // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
-
-        if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            //Pass current logged-in user name, stored in LoggedInUser, to LoggedInUserView
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
-        } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
-        }
+        final LiveData<Result> resultLiveData = loginRepository.login(username, password);
+        loginResultLiveData.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                loginResultLiveData.removeSource(resultLiveData);
+                if(result != null) {
+                    if(result instanceof Result.Error)
+                    {
+                        loginResultLiveData.setValue(new LoginResult(R.string.login_failed));
+                    }
+                    else
+                    {
+                        LoggedInUser loggedInUser = ((Result.Success<LoggedInUser>)result).getData();
+                        loginResultLiveData.setValue(new LoginResult(new LoggedInUserView(loggedInUser.firstName, loggedInUser.role)));
+                    }
+                }
+                else
+                {
+                    loginResultLiveData.setValue(new LoginResult(R.string.login_failed));
+                }
+            }
+        });
     }
-
     /**
      * Insepct data change in username/password text fields.
      * @param username  current entered username.
@@ -70,7 +84,6 @@ public class LoginViewModel extends ViewModel {
             loginFormState.setValue(new LoginFormState(true));
         }
     }
-
     /**
      *  Check if current entered username has valid length.
      *  Note: username must be 1) Not null 2) Bigegr than 5 characters
@@ -78,9 +91,8 @@ public class LoginViewModel extends ViewModel {
      */
     private boolean isUsernameLengthValid(String username)
     {
-        return (username.equals("") && username.length()<= 10) ?true:false;
+        return (!username.contains(" ") && username.length()<= R.integer.usernameLength) ? true : false;
     }
-
     /**
      *  Check if current entered password  meet length requirement.
      *  @param password current content of password field.(on UI)

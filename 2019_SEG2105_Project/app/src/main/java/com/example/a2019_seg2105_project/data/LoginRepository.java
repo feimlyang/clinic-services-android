@@ -1,28 +1,34 @@
 package com.example.a2019_seg2105_project.data;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.example.a2019_seg2105_project.data.model.LoggedInUser;
 
+import java.io.IOException;
+
 /**
- * LoginRepository  requests authentication and user information from remote data source.
+ * LoginRepository  requests authentication and user information from firebase
  * It maintains an in-memory cache of login status and user credentials information.
- * @see LoginDataSource
  * @see LoggedInUser
  */
 public class LoginRepository {
 
     private static volatile LoginRepository instance;
 
-    private LoginDataSource dataSource; // Used to authenticate 'login' operation
     private LoggedInUser user = null;   // Store current logged in user
-
+    // liveDataLoggedInUser propagated from LoginRepository to ViewModel
     // private constructor : singleton access
-    private LoginRepository(LoginDataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    private LoginRepository() {}
 
-    public static LoginRepository getInstance(LoginDataSource dataSource) {
+    public static LoginRepository getInstance() {
         if (instance == null) {
-            instance = new LoginRepository(dataSource);
+            instance = new LoginRepository();
         }
         return instance;
     }
@@ -35,7 +41,6 @@ public class LoginRepository {
     //@see LoginDataSource
     public void logout() {
         user = null;
-        dataSource.logout();
     }
 
     // Set user info when successfully logged - in.
@@ -46,23 +51,54 @@ public class LoginRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-
     /**
-     * Handling log-in by calling login() in LoginDataSource class.
-     * @see LoginDataSource
+     * Handling log-in by sending login-request to firebase realtime database.
      * If successful, store cashed user information in 'dataSource'.
      * @param username  username attempting log-in
      * @param password  password associated with username
      * @return Result<LoggedInUser><
      */
-    public Result<LoggedInUser> login(String username, String password) {
-        //Cbeck if Login has been successful.
-        Result<LoggedInUser> result = dataSource.login(username, password);
-        // If Successful: call setLoggedInUser and set current 'logged in user'
-        if (result instanceof Result.Success) {
-            setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
+    public LiveData<Result> login(final String username, final String password)
+    {
+        final DatabaseReference databaseUsers;
+        // each request sends back a liveData for callback
+        final MutableLiveData<Result> liveDataLoggedInUser = new MutableLiveData<>();
+        try {
+            databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+            databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.hasChild(username))
+                    {
+                        logout();
+                        liveDataLoggedInUser.setValue(new Result.Error(new IOException("Failed to find the user.")));
+                    }
+                    else
+                    {
+                        LoggedInUser user = dataSnapshot.child(username).getValue(LoggedInUser.class);
+                        if (password.equals(user.password))
+                        {
+                            setLoggedInUser(user);
+                            databaseUsers.child(username).child("isLoggedin").setValue(true);
+                            liveDataLoggedInUser.setValue(new Result.Success(user));
+                        }
+                        else
+                        {
+                            logout();
+                            liveDataLoggedInUser.setValue(new Result.Error(new IOException("Failed to authenticate.")));
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    liveDataLoggedInUser.setValue(new Result.Error(new IOException("Failed to log in.")));
+                }
+            });
         }
-        //else
-        return result;
+        catch(Exception e)
+        {
+            liveDataLoggedInUser.setValue(new Result.Error(new IOException("Failed to log in.")));
+        }
+        return liveDataLoggedInUser;
     }
 }

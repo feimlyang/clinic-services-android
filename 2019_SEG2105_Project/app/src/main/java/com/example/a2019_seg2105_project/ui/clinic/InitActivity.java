@@ -16,21 +16,18 @@ package com.example.a2019_seg2105_project.ui.clinic;
  */
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-
 //  ************ Import class Intent
 import android.content.Intent;
-
+import java.io.Serializable;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
-
+import com.example.a2019_seg2105_project.ui.clinic.login.LoggedInUserView;
 import com.example.a2019_seg2105_project.ui.clinic.login.LoginActivity;
 import com.example.a2019_seg2105_project.ui.clinic.register.RegisterActivity;
 import com.example.a2019_seg2105_project.R;
-
-import org.w3c.dom.Text;
 
 
 public class InitActivity extends AppCompatActivity {
@@ -105,9 +102,17 @@ public class InitActivity extends AppCompatActivity {
                 registerButton.setVisibility(View.GONE);
                 welcomeMessage.setVisibility(View.INVISIBLE);
                 //2. Display Weclome message, then jump to MainActivity.
-                String userName = " "; // TODO: Get User Name
-                String accountType = "DEFAULT"; // TODO: get Account type
-                welcomeMessage.setText("Welcome, " + userName + " ! You are logged in as "+ accountType +" .");
+                String userName = " "; //
+                String accountType = ""; //
+                // Show the logged-in user's information
+                Serializable userSerialization = data.getSerializableExtra(getString(R.string.loggedInUser));
+                if(null != userSerialization)
+                {
+                    LoggedInUserView user = (LoggedInUserView)userSerialization;
+                    userName = user.getDisplayName();
+                    accountType = user.getRole();
+                }
+                welcomeMessage.setText("Welcome " + userName + " ! You are logged in as "+ accountType +" .");
                 welcomeMessage.setVisibility(View.VISIBLE);
             }
             else
@@ -142,7 +147,5 @@ public class InitActivity extends AppCompatActivity {
                 toast.show();
             }
         }
-
-    } // end of onCreate()
-
-}// end of Class
+    }
+}

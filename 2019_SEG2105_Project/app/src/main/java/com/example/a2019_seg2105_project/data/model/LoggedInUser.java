@@ -6,19 +6,10 @@ package com.example.a2019_seg2105_project.data.model;
  */
 public class LoggedInUser {
 
-    private String userEmailId;
-    private String displayName;
-
-    public LoggedInUser(String userId, String displayName) {
-        this.userEmailId = userId;
-        this.displayName = displayName;
-    }
-
-    public String getUserEmailId() {
-        return userEmailId;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
+    public  String firstName;
+    public  String lastName;
+    public  String password;
+    public  String role;
+    public  boolean isLoggedin;
+    public  String email;
 }

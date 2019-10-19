@@ -31,6 +31,7 @@
     <string name="register_failed">"Registration failed."</string>
     <string name="register_error_existingAccount">"Username already exists.Please try another one."</string>
     <string name="error_unknown">"Unknown error occurred."</string>
+    <string name="loggedInUser">"loggedInUser"</string>
 
     <!-- Special case: Employee Validation -->
     <!-- Note: access number = 12070499 -->
