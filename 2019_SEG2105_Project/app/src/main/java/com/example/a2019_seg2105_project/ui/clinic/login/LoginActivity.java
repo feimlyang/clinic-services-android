@@ -1,30 +1,30 @@
 package com.example.a2019_seg2105_project.ui.clinic.login;
 
-import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
+// UI.
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//  ************ Import class Intent
+// Observer and ViewModel
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
+//  Activity
 import android.content.Intent;
+import android.app.Activity;
+
+// Basics
 import com.example.a2019_seg2105_project.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import com.example.a2019_seg2105_project.ui.clinic.login.LoginFormState;
 
 /**
@@ -34,8 +34,9 @@ import com.example.a2019_seg2105_project.ui.clinic.login.LoginFormState;
  */
 
 public class LoginActivity extends AppCompatActivity {
-
+    // Inspect UI
     private LoginViewModel loginViewModel;
+    // UI fields
     private EditText userEmail;
     private EditText userPassword;
 
@@ -44,10 +45,10 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize : load associated XML layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Initialize: set
+        // Initialize: set loginViewModel
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
-
+        // Initialize: associte UI
         userEmail = findViewById(R.id.username);
         userPassword = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
@@ -112,16 +113,6 @@ public class LoginActivity extends AppCompatActivity {
         };
         userEmail.addTextChangedListener(afterTextChangedListener);
         userPassword.addTextChangedListener(afterTextChangedListener);
-
-        /*userPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-
-                }
-                return false;
-            }
-        });*/
 
 /*
         OnClick listener of LOG IN button.

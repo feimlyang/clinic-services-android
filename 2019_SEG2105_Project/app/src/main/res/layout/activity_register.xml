@@ -12,15 +12,33 @@
     android:visibility="visible"
     tools:context="com.example.a2019_seg2105_project.ui.clinic.register.RegisterActivity"> <!-- Not available yet-->
     <!--
-                    Last Modified: 2019/10/16
+                    Last Modified: 2019/10/17
     -->
     <!-- Set User Name -->
+    <EditText
+        android:id="@+id/register_userName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="24dp"
+        android:imeOptions="actionNext"
+
+        android:hint="Username"
+        android:inputType="text"
+        android:singleLine="true"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <EditText
         android:id="@+id/fName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:imeOptions="actionNext"
 
@@ -30,7 +48,8 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/register_userName" />
+       />
 
     <EditText
         android:id="@+id/lName"
@@ -57,7 +76,7 @@
         android:layout_marginEnd="24dp"
         android:imeOptions="actionNext"
 
-        android:hint="@string/prompt_email"
+        android:hint="Enter Email Address"
         android:inputType="textEmailAddress"
         android:singleLine="true"
         android:selectAllOnFocus="true"
@@ -66,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lName" />
     <!-- Set User Password -->
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/register_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -74,8 +93,7 @@
         android:layout_marginEnd="24dp"
 
         android:hint="@string/prompt_password"
-        android:imeActionLabel="@string/action_sign_in_short"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionNext"
         android:inputType="textVisiblePassword"
         android:singleLine="true"
         android:selectAllOnFocus="true"
@@ -83,7 +101,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailID" />
 
+    <EditText
+        android:id="@+id/register_validatePassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
 
+        android:hint="@string/validate_password"
+        android:enabled="false"
+        android:imeOptions="actionDone"
+        android:inputType="textVisiblePassword"
+        android:singleLine="true"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
  <!--  Select Type of Account -->
     <TextView
         android:id="@+id/accountSelectMsg"
@@ -96,7 +130,7 @@
         android:textSize="15sp"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/register_validatePassword" />
 
     <RadioGroup
         android:id="@+id/radioAccountType"
@@ -110,18 +144,18 @@
         app:layout_constraintHorizontal_bias="0.0"
 
         app:layout_constraintStart_toEndOf="@+id/accountSelectMsg"
-        app:layout_constraintTop_toBottomOf="@+id/password">
+        app:layout_constraintTop_toBottomOf="@+id/register_validatePassword">
 
         <RadioButton
-            android:id="@+id/btnUser"
+            android:id="@+id/btnPatient"
             android:layout_marginStart="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User" />
+            android:text="Patient" />
 
         <RadioButton
             android:id="@+id/btnEmployee"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Employee" />
@@ -129,14 +163,14 @@
 
     <!-- When selected 'Employee', should enter Employee Number -->
     <EditText
-        android:id="@+id/employeeNumber"
+        android:id="@+id/employeeValidation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
 
-        android:hint="@string/enter_employeeNumber"
+        android:hint="@string/enter_employeeValidation"
         android:inputType="number"
         android:singleLine="true"
         android:visibility="invisible"
@@ -154,13 +188,13 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="32dp"
-        android:enabled="true"
+        android:enabled="false"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employeeNumber"
+        app:layout_constraintTop_toBottomOf="@+id/employeeValidation"
         app:layout_constraintVertical_bias="0.123" />
 
     <Button
@@ -181,6 +215,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employeeNumber"
+        app:layout_constraintTop_toBottomOf="@+id/employeeValidation"
         app:layout_constraintVertical_bias="0.123" />
 </androidx.constraintlayout.widget.ConstraintLayout>

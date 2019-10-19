@@ -1,31 +1,58 @@
 package com.example.a2019_seg2105_project.ui.clinic.register;
 
 
-        import android.os.Bundle;
 
-        import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.RadioGroup;
+// UI.
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioGroup;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+import android.widget.Toast;
 
-        import android.text.Editable;
-        import android.text.TextWatcher;
-        import android.widget.EditText;
+// Observer
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
-//  ************ Import class Intent
-        import android.content.Intent;
-        import com.example.a2019_seg2105_project.R;
+//  Intent
+import android.content.Intent;
 
+//  Basics
+import com.example.a2019_seg2105_project.R;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.a2019_seg2105_project.ui.clinic.register.RegisterFormState;
+import com.example.a2019_seg2105_project.ui.clinic.register.RegisterViewModel;
+import com.example.a2019_seg2105_project.ui.clinic.register.RegisterViewModelFactory;
+/**
+ *
+ *
+ *
+ *
+ * @see RegisterViewModel
+ */
 public class RegisterActivity extends AppCompatActivity {
     //                          Fields
-    //Set all user information to be private for data protection.
+    // Inspect UI
+    private RegisterViewModel registerViewModel;
+
+    // UI fields
     private EditText user_firstName;
     private EditText user_lastName;
     private EditText user_email;
     private EditText user_password;
+    private EditText user_password_verify;
+    private EditText unregistered_username;
+    // This field will only appear if user select 'Employee' radio button
+    private EditText user_employeeAccessCode;
     private RadioGroup user_accountType;
-
+    // Indicate if the user can regisetr as an employee
+    private boolean user_hasEmployeeAccess; // true = user selected employee type and
+                                            // entered right access code
     @Override
 
     public void onCreate(Bundle savedInstanceState) {
@@ -34,52 +61,114 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Initialize: set loginViewModel
+        registerViewModel = ViewModelProviders.of(this, new RegisterViewModelFactory())
+                .get(RegisterViewModel.class);
+
         // Link fields to corresponding XML layout
         user_firstName = findViewById(R.id.fName);
         user_lastName = findViewById(R.id.lName);
-        user_email = findViewById(R.id.emailID);
-        user_password = findViewById(R.id.password);
+        unregistered_username = findViewById(R.id.register_userName);
+        user_email = findViewById(R.id.emailID );
+        user_password = findViewById(R.id.register_password);
+        user_password_verify = findViewById(R.id.register_validatePassword);
+        user_employeeAccessCode = findViewById(R.id.employeeValidation );
+        user_hasEmployeeAccess = false;    // By default,user has NO access to register as employee
 
         // Get buttons on XML layout
         final Button registerButton = findViewById(R.id.register);
         final Button cancelButton = findViewById(R.id.cancelRegister);
+
         // Inspect if radio button 'employee' has been selected.
         // Prompt text area for user to enter employee number if selected.
         user_accountType  = findViewById(R.id.radioAccountType);
 
     /*  ================================================================================
-        1. Inspect RadioGroup activity: if 'Employee' is selected, display a text area
-            for user to enter Employee ID.
-            Otherwise, make the Employee ID area invisible.
-        <Note>   Employee ID should :
-                 - Start with 777
-                - End with 9
-                - Has an exact length of '8'
-                The design of Employee ID is aimed to inhibit User from registering as Employee.
-                By setting a length of 8, there will be 10^4 possible combination of Employee ID.
-
+        1. Inspect changes made to text fields. Get error message if not validated.
      ================================================================================ */
-        user_accountType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        registerViewModel.getRegisterFormState().observe(this, new Observer <RegisterFormState>() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.btnEmployee){
-                    final EditText employeeNumber = findViewById(R.id.employeeNumber);
-                    employeeNumber.setVisibility(View.VISIBLE);
+            public void onChanged(@Nullable RegisterFormState registerFormState) {
+                if (registerFormState == null) {
+                    return;
+                }
 
-                   /*employeeNumber.addTextChangedListener(afterTextChangedListener);*/
+                //1. If password field is not empty, enable password verification.
+                if( !user_password.getText().toString().equals("")) {
+                    if(!user_password_verify.isEnabled())
+                        user_password_verify.setEnabled(true);
                 }
-                else
-                {
-                    final EditText employeeNumber = findViewById(R.id.employeeNumber);
-                    employeeNumber.setVisibility(View.INVISIBLE);
+                else {
+                    if (user_password_verify.isEnabled())
+                        user_password_verify.setEnabled(false);
                 }
+
+                // 2. If all input has valid format, display register button.
+                //     a)Check if all UI inputs are valid.
+                if (registerFormState.isDataValid()) {
+                    // b) If user did not select employee type , simply enable.
+                    if (! user_employeeAccessCode.isShown()) {
+                        registerButton.setEnabled(true);
+                    }
+                    // c) If employee access code field is shown, check if access code is correct.
+                    else{
+                        // Enable if access code is correct.
+                        if(user_hasEmployeeAccess)
+                            registerButton.setEnabled(true);
+                    }
+                }
+
+                //3.    Display error/validated messages otherwise
+                // a) Empty input error message
+                if(unregistered_username.getText().toString().equals(""))
+                    unregistered_username.setError(getString(R.string.empty_username));
+                if(user_firstName.getText().toString().equals(""))
+                    user_firstName.setError(getString(R.string.empty_firstName));
+                if(user_lastName.getText().toString().equals(""))
+                    user_lastName.setError(getString(R.string.empty_lastName));
+                if(user_email.getText().toString().equals(""))
+                   user_email.setError(getString(R.string.empty_email));
+                if(user_password.getText().toString().equals(""))
+                    user_password.setError(getString(R.string.empty_password));
+                // When access code field is displayed ,require access code
+                if(user_employeeAccessCode.isShown()){
+                    if(user_employeeAccessCode.getText().toString().equals(""))
+                        user_employeeAccessCode.setError(getString(R.string.empty_employee_access_code));
+                }
+
+                // b) Standard error message
+                if (registerFormState.getUsernameError() != null) {
+                    unregistered_username.setError(getString(registerFormState.getUsernameError()));
+                }
+                if (registerFormState.getFirstNameError() != null) {
+                    user_firstName.setError(getString(registerFormState.getFirstNameError()));
+                }
+                if (registerFormState.getLastNameError() != null) {
+                    user_lastName.setError(getString(registerFormState.getLastNameError()));
+                }
+                if (registerFormState.getEmailError() != null) {
+                    user_email.setError(getString(registerFormState.getEmailError()));
+                }
+                if (registerFormState.getPasswordError() != null) {
+                    user_password.setError(getString(registerFormState.getPasswordError()));
+                }
+                if (registerFormState.getPasswordVerificationError() != null) {
+                    user_password_verify.setError(getString(registerFormState.getPasswordVerificationError()));
+                }
+                // If employee access code is valid, display error message
+               if(!user_hasEmployeeAccess){
+                    user_employeeAccessCode.setError("Access Code is Invalid.");
+               }
+               else
+               {
+
+               }
             }
         });
       /*  ================================================================================
         2. Set EditText listeners
-
      ================================================================================ */
-      /*  TextWatcher afterTextChangedListener = new TextWatcher() {
+        TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // ignore
@@ -92,44 +181,114 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                // 1. Inspect user general information fields.
+                registerViewModel.registerDataChanged(
+                        unregistered_username.getText().toString(),
+                        user_password.getText().toString(),
+                        user_firstName.getText().toString(), user_lastName.getText().toString(),
+                        user_email.getText().toString(), user_password_verify.getText().toString());
+
+                // 2. Check the access code field if text field is displayed.
+                if (user_employeeAccessCode.isShown()) {
+                    //Check if user has right access code,
+                    String userEnteredCode = user_employeeAccessCode.getText().toString();
+                    if( userEnteredCode.equals("1207049") )
+                    {
+                        user_hasEmployeeAccess =true;
+                    }
+                    else
+                    {
+                        user_hasEmployeeAccess = false;
+                    }
+                }
+
             }
         };
-        usernameEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+    /*  ================================================================================
+        3. Inspect RadioGroup activity: if 'Employee' is selected, display a text area
+            for user to enter Employee ID.
+            Otherwise, make the Employee ID area invisible.
+        <Note>   To simplify the task / the maintenance of database, we use the number
+                    "1207049" as a validation key for employee registration.
+                    Any user attempting to register as Employee should enter this number,
+                    otherwise registration will be rejected.
 
+     ================================================================================ */
+        user_accountType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.btnEmployee){
+                    user_employeeAccessCode.setVisibility(View.VISIBLE);
+                    //add listener
                 }
-                return false;
+                else
+                {
+                    user_employeeAccessCode.setVisibility(View.INVISIBLE);
+                }
             }
         });
-*/
 
+       unregistered_username.addTextChangedListener(afterTextChangedListener);
+       user_password.addTextChangedListener(afterTextChangedListener);
+       user_firstName.addTextChangedListener(afterTextChangedListener);
+       user_lastName.addTextChangedListener(afterTextChangedListener);
+       user_email.addTextChangedListener(afterTextChangedListener);
+       user_password_verify.addTextChangedListener(afterTextChangedListener);
+       // Add listener to employee access code field, but will only start listen
+       // when field is shown.
+       user_employeeAccessCode.addTextChangedListener(afterTextChangedListener);
 
     /* ================================================================================
-        OnClick listener of REGISTER button
-        It redirect user to the InitActivity page
-        with a 'successfully registered' message
+        4. OnClick listener of REGISTER button
+        It 1)Call register method in RegisterViewModel to register info to database
+           2) Redirect user to the InitActivity page if registration was successful.
+           3) Notify user if registration has failed.
     ================================================================================ */
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                // Extra information that will be provided
+                // On clicking the register button, call register method
+                // Note: if user has employee access, he/she is employee
+                // since this program disable register button if access code is incorrect.
+                int successful = registerViewModel.register(
+                                        unregistered_username.getText().toString(),
+                                        user_password.getText().toString(),
+                                        user_firstName.getText().toString(),
+                                        user_lastName.getText().toString(),
+                                        user_email.getText().toString(),
+                                        user_hasEmployeeAccess);
 
-                setResult(RESULT_OK,intent);// Set the result that will be returned to caller
-                finish();  // end current activity
+
+                // If successfully registered, go back to previous activity
+                if(successful == 1)
+                {
+                    Intent intent = new Intent();
+                    setResult(RESULT_OK,intent);// Set the result that will be returned to caller
+                    finish();  // end current activity
+                }
+                // Other wise
+                else if(successful == 0) // Notify user username is duplicated
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Registration failed: Username already exist! Please try a new one.",
+                            Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.BOTTOM, 0, 0);
+                    toast.show();
+                }
+                else // Unknown Error
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Registration failed ! Unkown Error.",
+                            Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.BOTTOM, 0, 0);
+                    toast.show();
+                }
+
             }
         });
     /* ================================================================================
             OnClick listener of CANCEL button
-            It redirect user to the InitActivity page
+            Redirects user to the InitActivity page
      ================================================================================ */
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,45 +299,9 @@ public class RegisterActivity extends AppCompatActivity {
                 finish(); // end current activity
             }
         });
-   /* public static class RegisterViewModel extends ViewModel {
 
-        private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
-        private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
-        private LoginRepository loginRepository;
-
-        LoginViewModel(LoginRepository loginRepository) {
-            this.loginRepository = loginRepository;
-        }
-
-        LiveData<LoginFormState> getLoginFormState() {
-            return loginFormState;
-        }
-
-        LiveData<LoginResult> getLoginResult() {
-            return loginResult;
-        }
-
-        public void login(String username, String password) {
-            // can be launched in a separate asynchronous job
-            Result<LoggedInUser> result = loginRepository.login(username, password);
-
-            if (result instanceof Result.Success) {
-                LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-                loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
-            } else {
-                loginResult.setValue(new LoginResult(R.string.login_failed));
-            }
-        }
-
-        public void loginDataChanged(String username, String password) {
-            if (!isUserNameValid(username)) {
-                loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
-            } else if (!isPasswordValid(password)) {
-                loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
-            } else {
-                loginFormState.setValue(new LoginFormState(true));
-            }
-        }
-*/
     } // end of onCreate()
+
+
+
 }// end of RegisterActivity

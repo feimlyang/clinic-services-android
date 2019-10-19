@@ -4,18 +4,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
 import com.example.a2019_seg2105_project.data.LoginRepository;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.data.model.LoggedInUser;
 import com.example.a2019_seg2105_project.R;
 /**
- * LoginViewModel is a class that
- * More specifically, it:
- * 1) Store 'live' data in UI text field, using MutableLiveData
- * @see LiveData
- * 2) Check if user's login input has valid FORMAT.
+ * LoginViewModel is a class that observes user input change on UI (registration)
+ * and check if input are legal.
+ *
  * Note:
  * The class Contains a login() that will call login() of LoginRepository.
  * LoginActivity will call this method while LOGIN button is clicked.
@@ -62,12 +58,12 @@ public class LoginViewModel extends ViewModel {
 
     /**
      * Insepct data change in username/password text fields.
-     * @param username  current entered username
-     * @param password  current entered password
+     * @param username  current entered username.
+     * @param password  current entered password.
      */
-    public void loginDataChanged(String username, String password) {
-        if (!isUserNameValid(username)) {
-            loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
+    protected  void loginDataChanged(String username, String password) {
+        if (! isUsernameLengthValid(username)) {
+            loginFormState.setValue(new LoginFormState(R.string.invalid_usernameLength, null));
         } else if (!isPasswordWithinRange(password)) {
             loginFormState.setValue(new LoginFormState(null, R.string.invalid_passwordLength));
         } else {
@@ -76,36 +72,22 @@ public class LoginViewModel extends ViewModel {
     }
 
     /**
-     *  Check if current entered username is valid.
-     *  @param username  current entered username
+     *  Check if current entered username has valid length.
+     *  Note: username must be 1) Not null 2) Bigegr than 5 characters
+     *  @param username  current entered username (on UI)
      */
-    private boolean isUserNameValid(String username) {
-        //TODO: Check if username entered is valid.
-        //Note: username should be an email address
-        if (username == null) {
-            return false;
-        }
-        if (username.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(username).matches();
-        } else {
-            return !username.trim().isEmpty();
-        }
+    private boolean isUsernameLengthValid(String username)
+    {
+        return (username.equals("") && username.length()<= 10) ?true:false;
     }
 
     /**
      *  Check if current entered password  meet length requirement.
-     *  @param password current content of password field.
+     *  @param password current content of password field.(on UI)
      */
-    private boolean isPasswordWithinRange(String password) {
+    private boolean isPasswordWithinRange(String password){
         // Return false if password < 5 character or >16
-        boolean validPW = false;
-        if(password != null
-                && password.trim().length() > 5
-                && password.trim().length() < 16)
-        {
-            validPW = true;
-        }
-        return validPW;
+        return (password != null && password.trim().length() >= 5 && password.trim().length() <= 16);
     }
 
 

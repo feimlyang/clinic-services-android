@@ -24,14 +24,18 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.a2019_seg2105_project.ui.clinic.login.LoginActivity;
 import com.example.a2019_seg2105_project.ui.clinic.register.RegisterActivity;
 import com.example.a2019_seg2105_project.R;
 
+import org.w3c.dom.Text;
+
 
 public class InitActivity extends AppCompatActivity {
     //Fields
+    private TextView welcomeMessage; //Store initial welcoming message.
     private  Button loginButton;
     private  Button registerButton;
     static final int PICK_LOGIN_RESULT = 1;
@@ -41,13 +45,21 @@ public class InitActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.init_interface);
 
         // Check if the user has already logged in. If it is the case, jump to
         // the welcome mssage and jump to MainActivity.
+        if(false)    //TODO: check local cache to know if the user has already logged in.
+        {
+            //Jump to MainActivity, and use the latter one as Starting page
+            Intent intent = new Intent(InitActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
 
+        // If user has not logged in, display default initpage.
+        setContentView(R.layout.init_interface);
         loginButton = findViewById(R.id.init_login);
         registerButton = findViewById(R.id.init_register);
+        welcomeMessage = findViewById(R.id.init_welcomeMessage);
 
         // 1. Set on click listener for Login button,
         loginButton.setOnClickListener(new View.OnClickListener()
@@ -73,11 +85,6 @@ public class InitActivity extends AppCompatActivity {
         });
     }
 
-    /*
-       public boolean checkIfLoggedIn()
-       {
-       }
-     */
     /**
      *  Handle result returned from activity pages called by user click.
      * @param requestCode   Specifies from which button the result is returned.
@@ -88,16 +95,20 @@ public class InitActivity extends AppCompatActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Check which request we're responding to
+        // 1. Result from Login Activity
         if (requestCode == PICK_LOGIN_RESULT)
         {
             // Make sure the request was successful
             if (resultCode == RESULT_OK){
-                //1. Make LOGIN button and REGISTER button dissapear gradually
-                // Make welcome message dissapear gradually in meantime
-
-
+                //1. Make original interface dissapear gradually
+                loginButton.setVisibility(View.GONE); //set Gone to free-up space
+                registerButton.setVisibility(View.GONE);
+                welcomeMessage.setVisibility(View.INVISIBLE);
                 //2. Display Weclome message, then jump to MainActivity.
+                String userName = " "; // TODO: Get User Name
+                String accountType = "DEFAULT"; // TODO: get Account type
+                welcomeMessage.setText("Welcome, " + userName + " ! You are logged in as "+ accountType +" .");
+                welcomeMessage.setVisibility(View.VISIBLE);
             }
             else
             {
@@ -109,11 +120,17 @@ public class InitActivity extends AppCompatActivity {
                 toast.show();
             }
         }
+        //2. Result from Register Activity
         if (requestCode == PICK_REGISTER_RESULT)
         {
             // Make sure the request was successful
             if (resultCode == RESULT_OK){
                 //Display message indicating successful registration
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Registration was successful ! Please log in.",
+                        Toast.LENGTH_SHORT );
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
             }
             else
             {
