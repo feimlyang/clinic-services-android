@@ -1,9 +1,11 @@
 class User{
 	String firstName;
 	String lastName;
-	String userName;
+	String username;
+	String email;
 	String password;
 	String role;
+	Boolean isLoggedin;
 }
 
 class Administrator{

@@ -1,8 +1,9 @@
 package com.example.a2019_seg2105_project.ui.clinic.register;
 
 
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 // UI.
 import android.view.Gravity;
@@ -53,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
     // Indicate if the user can regisetr as an employee
     private boolean user_hasEmployeeAccess; // true = user selected employee type and
                                             // entered right access code
+
     @Override
 
     public void onCreate(Bundle savedInstanceState) {
@@ -301,6 +303,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     } // end of onCreate()
+
 
 
 
