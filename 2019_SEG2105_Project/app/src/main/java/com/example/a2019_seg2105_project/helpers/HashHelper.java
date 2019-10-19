@@ -19,7 +19,6 @@ public class HashHelper {
         return resultInHexFormat.toString();
 
     }
-
     public static String hash(String origin)
     {
         String result;
@@ -31,9 +30,5 @@ public class HashHelper {
             result = null;
         }
         return result;
-
     }
-
-
-
 }

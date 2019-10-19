@@ -5,15 +5,12 @@ import android.os.Bundle;
 // UI.
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 // Observer and ViewModel
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -124,8 +121,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String hashedPassword = HashHelper.hash(userPassword.getText().toString());
-                if(null == hashedPassword) hashedPassword = userPassword.getText().toString();
-                loginViewModel.login(userEmail.getText().toString(),hashedPassword);
+                if(null == hashedPassword)
+                    hashedPassword = userPassword.getText().toString();
+                loginViewModel.login(userEmail.getText().toString(), hashedPassword);
             }
         });
 /*
@@ -147,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param model
      */
     private void updateUiWithUser(LoggedInUserView model) {
-        // pass loginUser back to Init Activity
+        // pass loginUser back to Init Activity by Intent
         getIntent().putExtra(getString(R.string.loggedInUser), model);
     }
 
