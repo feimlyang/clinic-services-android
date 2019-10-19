@@ -1,0 +1,110 @@
+class User{
+	String firstName;
+	String lastName;
+	String userName;
+	String email;
+	String password;
+	 role;
+	Boolean isLoggedin;
+}
+
+class Administrator{
+    isA User;
+    1 -- * Employee;
+    1 -- * Patient;
+    }
+
+class Employee{
+    isA User;
+    Integer employeeID;
+    Integer accessCode;
+    boolean hasAccess;
+  
+}
+
+class Patient{
+    isA User;
+    }
+
+namespace -;
+
+
+class Login
+{
+  userName;
+  password;
+  1 l -<@> 1 Account a;
+  }
+
+class Account
+{
+  1 -- 1 User;
+}
+
+class Register
+{
+  String firstName;
+  String lastName;
+  String username;
+  String email;
+  String password;
+  String role;
+  boolean isValid;
+1 r -<@> 1 Account a;
+}
+
+class Patient
+{
+  position 568 411 113 41;
+  position.association Doctor__Patient 0,0 110,44;
+    }
+
+
+class Employee
+{
+  position 301 448 227 92;
+  position.association Employee__Shift 0,9 149,57;
+  position.association Employee__Privilege 0,65 30,0;
+  position.association Account__Employee 30,58 0,6;
+}
+
+class Administrator
+{
+  position.association Account__Administrator 138,3 0,10;
+  position.association Administrator__Employee 109,34 0,38;
+      position.association Administrator__Patient 109,10 0,14;
+position 14 414 109 41;
+}
+
+class Administrator
+{
+  position 14 414 109 41;
+}
+
+class User
+{
+  position 303 185 159 160;
+}
+
+
+
+namespace -;
+
+
+class Login
+{
+  position 30 25 167 75;
+    position.association Account:a__Login:l 167,12 0,10;
+}
+
+class Account
+{
+  position 303 35 152 58;
+  position.association Account__User 77,58 77,0;
+}
+
+class Register
+{
+  position 31 151 197 160;
+  position.association Account:a__Register:r 158,0 15,41;
+}
