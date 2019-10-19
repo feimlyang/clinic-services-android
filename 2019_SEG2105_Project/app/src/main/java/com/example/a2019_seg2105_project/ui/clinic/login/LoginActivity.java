@@ -26,8 +26,7 @@ import com.example.a2019_seg2105_project.R;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import com.example.a2019_seg2105_project.ui.clinic.login.LoginFormState;
-
+import com.example.a2019_seg2105_project.helpers.HashHelper;
 /**
  *
  *
@@ -87,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                     setResult(Activity.RESULT_OK, getIntent());
+                    // back to Init Activity
                     finish();
                 }
             }
@@ -123,10 +123,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // calling login() in loginViewModel
-                loginViewModel.login(userEmail.getText().toString(),
-                        userPassword.getText().toString());
-                // Will end activity automatically if login successful.
+                String hashedPassword = HashHelper.hash(userPassword.getText().toString());
+                if(null == hashedPassword) hashedPassword = userPassword.getText().toString();
+                loginViewModel.login(userEmail.getText().toString(),hashedPassword);
             }
         });
 /*
