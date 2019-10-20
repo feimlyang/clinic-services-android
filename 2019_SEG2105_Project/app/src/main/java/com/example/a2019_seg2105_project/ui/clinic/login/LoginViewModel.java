@@ -67,6 +67,8 @@ public class LoginViewModel extends ViewModel {
                 {
                     loginResultLiveData.setValue(new LoginResult(R.string.login_failed));
                 }
+                // remove the value after dispatching to all of its observers.
+                loginResultLiveData.setValue(null);
             }
         });
     }

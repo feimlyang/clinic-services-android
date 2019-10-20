@@ -5,13 +5,16 @@ import android.widget.Toast;
 
 // Data observer and storage.
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 // Basics.
 import com.example.a2019_seg2105_project.R;
-import com.example.a2019_seg2105_project.ui.clinic.register.RegisterFormState;
-
+import com.example.a2019_seg2105_project.data.LoginRepository;
+import com.example.a2019_seg2105_project.data.RegisterRepository;
+import com.example.a2019_seg2105_project.data.Result;
 
 /**
  * RegisterViewModel is a class that observes user input changes on UI (registration)
@@ -24,14 +27,20 @@ public class RegisterViewModel extends ViewModel
 {
     // Use register form to record current UI form status.
     private MutableLiveData<RegisterFormState> registerFormState = new MutableLiveData<RegisterFormState>();
+    private RegisterRepository registerRepository;
+    private MediatorLiveData<RegisterResult> registerResultMediatorLiveData = new MediatorLiveData<>();
 
-    // Getter
-    LiveData<RegisterFormState> getRegisterFormState() {
+    public RegisterViewModel(RegisterRepository registerRepository){
+        this.registerRepository = registerRepository;
+    }
+    // Getters
+    public LiveData<RegisterFormState> getRegisterFormState() {
         return registerFormState;
     }
-
-
-
+    public LiveData<RegisterResult> getRegisterResultLiveData()
+    {
+        return this.registerResultMediatorLiveData;
+    }
     /**
      *  Insepct data change in username/password text fields.
      *
@@ -194,32 +203,40 @@ public class RegisterViewModel extends ViewModel
      * @param emailAddress
      * @param isEmployee
      */
-    protected int register(String username, String password,
+    public void register(String username, String password,
                          String firstName, String lastName,
                          String emailAddress, boolean isEmployee)
     {
-        //TODO: register the information provided to the Database
-
-
-        return 1;
-    }// end of register()
-
-    /**
-     *  Check if username has already been registered.
-     *  If it exist, prompt register failure message.
-     * @param username
-     * @return boolean
-     */
-    private boolean checkUsernameExist(String username)
-    {
-        //TODO: communicate with database
-
-        //If registration failed
-        if(false )//Todo: set condition
-        {
-
-        }
-        return true;
+        final LiveData<Result> resultLiveData = registerRepository.register(
+                username,
+                password,
+                firstName,
+                lastName,
+                emailAddress,
+                isEmployee
+        );
+        this.registerResultMediatorLiveData.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                registerResultMediatorLiveData.removeSource(resultLiveData);
+                if(result != null)
+                {
+                    if(result instanceof Result.Success)
+                    {
+                        registerResultMediatorLiveData.setValue(new RegisterResult(R.string.register_succeeds));
+                    }
+                    else if(result instanceof Result.Failure)
+                    {
+                        registerResultMediatorLiveData.setValue(
+                                new RegisterResult((Integer) ((Result.Failure) result).getData()));
+                    }
+                    else if(result instanceof Result.Error)
+                    {
+                        registerResultMediatorLiveData.setValue(new RegisterResult(R.string.register_failed));
+                    }
+                }
+                registerResultMediatorLiveData.setValue(null);
+            }
+        });
     }
-
 }//End of RegisterViewModel

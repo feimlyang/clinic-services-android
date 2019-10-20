@@ -105,7 +105,7 @@ public class InitActivity extends AppCompatActivity {
                 String userName = " "; //
                 String accountType = ""; //
                 // Show the logged-in user's information
-                Serializable userSerialization = data.getSerializableExtra(getString(R.string.loggedInUser));
+                Serializable userSerialization = data.getSerializableExtra(getString(R.string.logged_in_user));
                 if(null != userSerialization)
                 {
                     LoggedInUserView user = (LoggedInUserView)userSerialization;

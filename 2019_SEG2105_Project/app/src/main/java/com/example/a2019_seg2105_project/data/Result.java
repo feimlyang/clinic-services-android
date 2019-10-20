@@ -32,6 +32,14 @@ public class Result<T> {
             return this.data;
         }
     }
+    // For failures of operations but not internal errors
+    public final static class Failure<T> extends Result{
+        public T data;
+
+        public Failure(T data) { this.data = data; }
+
+        public T getData() { return this.data; }
+    }
 
     // Error sub-class
     public final static class Error extends Result {

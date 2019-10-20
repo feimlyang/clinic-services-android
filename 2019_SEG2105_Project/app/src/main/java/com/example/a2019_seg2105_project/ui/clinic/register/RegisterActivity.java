@@ -25,10 +25,7 @@ import android.content.Intent;
 //  Basics
 import com.example.a2019_seg2105_project.R;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.a2019_seg2105_project.ui.clinic.register.RegisterFormState;
-import com.example.a2019_seg2105_project.ui.clinic.register.RegisterViewModel;
-import com.example.a2019_seg2105_project.ui.clinic.register.RegisterViewModelFactory;
+import com.example.a2019_seg2105_project.data.LoginRepository;
 /**
  *
  *
@@ -62,11 +59,9 @@ public class RegisterActivity extends AppCompatActivity {
         // Initialize : load associated XML layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         // Initialize: set loginViewModel
         registerViewModel = ViewModelProviders.of(this, new RegisterViewModelFactory())
                 .get(RegisterViewModel.class);
-
         // Link fields to corresponding XML layout
         user_firstName = findViewById(R.id.fName);
         user_lastName = findViewById(R.id.lName);
@@ -76,7 +71,6 @@ public class RegisterActivity extends AppCompatActivity {
         user_password_verify = findViewById(R.id.register_validatePassword);
         user_employeeAccessCode = findViewById(R.id.employeeValidation );
         user_hasEmployeeAccess = false;    // By default,user has NO access to register as employee
-
         // Get buttons on XML layout
         final Button registerButton = findViewById(R.id.register);
         final Button cancelButton = findViewById(R.id.cancelRegister);
@@ -84,7 +78,6 @@ public class RegisterActivity extends AppCompatActivity {
         // Inspect if radio button 'employee' has been selected.
         // Prompt text area for user to enter employee number if selected.
         user_accountType  = findViewById(R.id.radioAccountType);
-
     /*  ================================================================================
         1. Inspect changes made to text fields. Get error message if not validated.
      ================================================================================ */
@@ -163,10 +156,10 @@ public class RegisterActivity extends AppCompatActivity {
                }
                else
                {
-
                }
             }
         });
+
       /*  ================================================================================
         2. Set EditText listeners
      ================================================================================ */
@@ -240,6 +233,27 @@ public class RegisterActivity extends AppCompatActivity {
        // when field is shown.
        user_employeeAccessCode.addTextChangedListener(afterTextChangedListener);
 
+       // Process the login result in callback onChanged.
+       registerViewModel.getRegisterResultLiveData().observe(this, new Observer<RegisterResult>() {
+           @Override
+           public void onChanged(RegisterResult registerR
+                                 esult) {
+               // set null usually for cleaning up status
+               if(null == registerResult)
+                   return;
+               // successful registration
+               if(registerResult.getReturnCode().equals(R.string.register_succeeds))
+               {
+                   Intent intent = new Intent();
+                   setResult(RESULT_OK,intent);// Set the result that will be returned to caller
+                   finish();  // end current activity
+               }
+               else
+               {
+                   showRegisterFailed(registerResult);
+               }
+           }
+       });
     /* ================================================================================
         4. OnClick listener of REGISTER button
         It 1)Call register method in RegisterViewModel to register info to database
@@ -249,42 +263,18 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // always log out any logged-in account when registering a new one
+                LoginRepository.getInstance().logout();
                 // On clicking the register button, call register method
                 // Note: if user has employee access, he/she is employee
                 // since this program disable register button if access code is incorrect.
-                int successful = registerViewModel.register(
-                                        unregistered_username.getText().toString(),
-                                        user_password.getText().toString(),
-                                        user_firstName.getText().toString(),
-                                        user_lastName.getText().toString(),
-                                        user_email.getText().toString(),
-                                        user_hasEmployeeAccess);
-
-
-                // If successfully registered, go back to previous activity
-                if(successful == 1)
-                {
-                    Intent intent = new Intent();
-                    setResult(RESULT_OK,intent);// Set the result that will be returned to caller
-                    finish();  // end current activity
-                }
-                // Other wise
-                else if(successful == 0) // Notify user username is duplicated
-                {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "Registration failed: Username already exist! Please try a new one.",
-                            Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.BOTTOM, 0, 0);
-                    toast.show();
-                }
-                else // Unknown Error
-                {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "Registration failed ! Unkown Error.",
-                            Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.BOTTOM, 0, 0);
-                    toast.show();
-                }
+                registerViewModel.register(
+                                           unregistered_username.getText().toString(),
+                                           user_password.getText().toString(),
+                                           user_firstName.getText().toString(),
+                                           user_lastName.getText().toString(),
+                                           user_email.getText().toString(),
+                                           user_hasEmployeeAccess);
 
             }
         });
@@ -304,7 +294,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     } // end of onCreate()
 
-
-
-
+    private void showRegisterFailed(RegisterResult result) {
+        String message = getString(result.getReturnCode());
+        if(result.getReturnCode().equals(R.string.register_error_existingAccount))
+        {
+            message = "Registration failed: Username already exists! Please try a new one.";
+        }
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
+        toast.show();
+    }
 }// end of RegisterActivity

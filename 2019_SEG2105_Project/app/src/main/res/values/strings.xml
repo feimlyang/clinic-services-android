@@ -26,13 +26,15 @@
     <string name="empty_email">"Email address is required !"</string>
     <string name="empty_password">"Password is required !"</string>
     <string name="empty_employee_access_code">"Please enter employee access code."</string>
+
     <!-- Login/Register failed -->
     <string name="login_failed">"Login failed."</string>
     <string name="register_failed">"Registration failed."</string>
     <string name="register_error_existingAccount">"Username already exists.Please try another one."</string>
     <string name="error_unknown">"Unknown error occurred."</string>
-    <string name="loggedInUser">"loggedInUser"</string>
-
+    <!-- Login/Register Succeeds -->
+    <string name="logged_in_user">"loggedInUser"</string>
+    <string name="register_succeeds">"Registration succeeds"</string>
     <!-- Special case: Employee Validation -->
     <!-- Note: access number = 12070499 -->
     <string name="enter_employeeValidation">"Enter Access Number:</string>

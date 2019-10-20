@@ -22,6 +22,8 @@ public class LoginRepository {
     private static volatile LoginRepository instance;
 
     private LoggedInUser user = null;   // Store current logged in user
+    // bad design as LoggedInUser has no field for username...
+    private String CurrentLoggedInUserName = null;
     // liveDataLoggedInUser propagated from LoginRepository to ViewModel
     // private constructor : singleton access
     private LoginRepository() {}
@@ -40,7 +42,31 @@ public class LoginRepository {
     // Log the user out.
     //@see LoginDataSource
     public void logout() {
-        user = null;
+        if(isLoggedIn() && CurrentLoggedInUserName != null)
+        {
+            final DatabaseReference databaseUsers;
+            // each request sends back a liveData for callback
+            final MutableLiveData<Result> liveDataLoggedInUser = new MutableLiveData<>();
+            try {
+                databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+                databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild(CurrentLoggedInUserName)) {
+                            databaseUsers.child(CurrentLoggedInUserName).child("isLoggedin").setValue(false);
+                        }
+                        user = null;
+                        CurrentLoggedInUserName = null;
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+            }
+            catch(Exception e)
+            {
+            }
+        }
     }
 
     // Set user info when successfully logged - in.
@@ -79,6 +105,7 @@ public class LoginRepository {
                         if (password.equals(user.password))
                         {
                             setLoggedInUser(user);
+                            CurrentLoggedInUserName = username;
                             databaseUsers.child(username).child("isLoggedin").setValue(true);
                             liveDataLoggedInUser.setValue(new Result.Success(user));
                         }

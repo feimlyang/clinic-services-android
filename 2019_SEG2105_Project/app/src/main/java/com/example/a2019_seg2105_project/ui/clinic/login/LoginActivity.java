@@ -146,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void updateUiWithUser(LoggedInUserView model) {
         // pass loginUser back to Init Activity by Intent
-        getIntent().putExtra(getString(R.string.loggedInUser), model);
+        getIntent().putExtra(getString(R.string.logged_in_user), model);
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
