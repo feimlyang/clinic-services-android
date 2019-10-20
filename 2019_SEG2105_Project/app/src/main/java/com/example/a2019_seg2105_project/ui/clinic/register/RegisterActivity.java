@@ -176,29 +176,28 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // 1. Inspect user general information fields.
-                registerViewModel.registerDataChanged(
-                        unregistered_username.getText().toString(),
-                        user_password.getText().toString(),
-                        user_firstName.getText().toString(), user_lastName.getText().toString(),
-                        user_email.getText().toString(), user_password_verify.getText().toString());
-
-                // 2. Check the access code field if text field is displayed.
+                // 1. Check the access code field if text field is displayed.
                 if (user_employeeAccessCode.isShown()) {
                     //Check if user has right access code,
                     String userEnteredCode = user_employeeAccessCode.getText().toString();
-                    if( userEnteredCode.equals("1207049") )
+                    if(userEnteredCode.equals("1207049"))
                     {
-                        user_hasEmployeeAccess =true;
+                        user_hasEmployeeAccess = true;
                     }
                     else
                     {
                         user_hasEmployeeAccess = false;
                     }
                 }
-
+                // 2. Inspect user general information fields.
+                registerViewModel.registerDataChanged(
+                        unregistered_username.getText().toString(),
+                        user_password.getText().toString(),
+                        user_firstName.getText().toString(), user_lastName.getText().toString(),
+                        user_email.getText().toString(), user_password_verify.getText().toString());
             }
         };
+        user_employeeAccessCode.addTextChangedListener(afterTextChangedListener);
     /*  ================================================================================
         3. Inspect RadioGroup activity: if 'Employee' is selected, display a text area
             for user to enter Employee ID.

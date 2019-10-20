@@ -16,6 +16,8 @@ import com.example.a2019_seg2105_project.data.LoginRepository;
 import com.example.a2019_seg2105_project.data.RegisterRepository;
 import com.example.a2019_seg2105_project.data.Result;
 
+import java.util.regex.Pattern;
+
 /**
  * RegisterViewModel is a class that observes user input changes on UI (registration)
  * and check if inputs are legal.
@@ -29,6 +31,8 @@ public class RegisterViewModel extends ViewModel
     private MutableLiveData<RegisterFormState> registerFormState = new MutableLiveData<RegisterFormState>();
     private RegisterRepository registerRepository;
     private MediatorLiveData<RegisterResult> registerResultMediatorLiveData = new MediatorLiveData<>();
+    private final String emailAddressPattern = "^(\\d|\\w).*@(\\d|\\w).*\\..+$";
+    private final String userNamePattern = "^(\\d|\\w){3,}$";
 
     public RegisterViewModel(RegisterRepository registerRepository){
         this.registerRepository = registerRepository;
@@ -66,16 +70,16 @@ public class RegisterViewModel extends ViewModel
             registerFormState.setValue (new RegisterFormState(R.string.invalid_usernameFormat,null,null,null,null,null) );
         }
         // Check if both name field is valid
-        else if(!isNameValid((firstName))) // check first name
+        else if(!isNameValid(firstName)) // check first name
         {
             registerFormState.setValue (new RegisterFormState(null,null,R.string.invalid_name,null,null,null));
         }
-        else if(!isNameValid((lastName))) // check last name
+        else if(!isNameValid(lastName)) // check last name
         {
             registerFormState.setValue (new RegisterFormState(null,null,null,R.string.invalid_name,null,null));
         }
         // Check if email address is valid
-        else if(!isEmailValid((emailAddress)) ) {
+        else if(!isEmailValid(emailAddress)) {
             registerFormState.setValue(new RegisterFormState(null, null, null, null, R.string.invalid_email, null));
         }
         // Check if password input is valid
@@ -108,8 +112,7 @@ public class RegisterViewModel extends ViewModel
      *  @param username  current entered username (on UI)
      */
     private boolean isUsernameFormatValid(String username) {
-        //TODO: validation: username does not contain 'symbols'
-        return true;
+        return Pattern.matches(this.userNamePattern, username);
     }
     /**
      *  Check if current entered username has valid length.
@@ -117,7 +120,7 @@ public class RegisterViewModel extends ViewModel
      *  @param username  current entered username (on UI)
      */
     private boolean isUsernameLengthValid(String username) {
-        return (username.length()<= 10) ?true:false;
+        return (username.length() <= 10);
     }
     //Name
     /**
@@ -137,7 +140,6 @@ public class RegisterViewModel extends ViewModel
             }
             //TODO: further validation (if includes non english symbol
         }
-
         return true;
     }
     //Password
@@ -147,7 +149,7 @@ public class RegisterViewModel extends ViewModel
      */
     private boolean isPasswordWithinRange(String password){
         // Return false if password < 5 character or >16
-        return ( password.trim().length() >= 5 && password.trim().length() <= 16);
+        return ( !password.contains(" ") && password.length() >= 5 && password.length() <= 16);
     }
 
     //Re-enter password
@@ -157,23 +159,14 @@ public class RegisterViewModel extends ViewModel
      * @param current_pw    Value of current password field.
      * @return              If both password are the same.
      */
-    private boolean isPasswordTheSame(String origin_pw,String current_pw){
-        if( origin_pw .equals("")|| current_pw.equals(""))
+    private boolean isPasswordTheSame(String origin_pw, String current_pw){
+        if( origin_pw .equals("") || current_pw.equals("")) {
             return false;
-        else if(origin_pw.length() != current_pw.length())
-            return false;
+        }
         else
         {
-            for(int i =0; i < origin_pw.length();i++)
-            {
-                if(origin_pw.charAt(i) != current_pw.charAt(i))
-                {
-                    return false;
-                }
-            }
+            return origin_pw.equals(current_pw);
         }
-        // Otherwise
-        return true;
     }
     // Email address
 
@@ -184,8 +177,7 @@ public class RegisterViewModel extends ViewModel
      */
     private boolean isEmailValid(String email)
     {
-        //TODO: verify if email address entered is valid
-        return true;
+        return Pattern.matches(this.emailAddressPattern, email);
     }
     //----------------------------- Register to Database -----------------------------
 
