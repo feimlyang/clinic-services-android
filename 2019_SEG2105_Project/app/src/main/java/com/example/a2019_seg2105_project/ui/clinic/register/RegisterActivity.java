@@ -27,10 +27,9 @@ import com.example.a2019_seg2105_project.R;
 import androidx.annotation.Nullable;
 import com.example.a2019_seg2105_project.data.LoginRepository;
 /**
- * RegisterActivity is the class that inspects and responds to change on UI of register page.
- * To inspect changes on UI, it
- *
- *
+ * RegisterActivity is the class that inspects and responds to change on UI on registration page.
+ * To inspect changes on UI, it passes UI change to RegisterViewModel class, whereas the latter
+ * one inform if the information provided is valid.
  *
  * @see RegisterViewModel
  */

@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 
 /**
  * RegisterFormState stores data validation state of the registration form.
- * It display error message if the data appears on UI is invalid.
  */
 class RegisterFormState {
     @Nullable

@@ -25,7 +25,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import com.example.a2019_seg2105_project.helpers.HashHelper;
 /**
- *
+ * LoginActivity is the class that inspects and responds to change on UI on login page.
+ * To inspect changes on UI, it passes UI change to LoginViewModel class, whereas the latter
+ * one inform if the information provided is valid.
  *
  * @see LoginViewModel
  */

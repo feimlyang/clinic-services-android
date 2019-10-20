@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * and check if inputs are legal.
  *
  * Created : 2019/10/16 , by Android Sample Project
- * Last Modified: 2019/10/17
+ * Last Modified: 2019/10/20
  */
 public class RegisterViewModel extends ViewModel
 {
@@ -84,7 +84,7 @@ public class RegisterViewModel extends ViewModel
         }
         // Check if password input is valid
         // Case 1: Invalid Length
-        // Case 2: Invalid password verficiation
+        // Case 2: Invalid password verification
         else if (!isPasswordWithinRange(password)) {
             registerFormState.setValue (new RegisterFormState(null, R.string.invalid_passwordLength,null,null,null,null));
         }
