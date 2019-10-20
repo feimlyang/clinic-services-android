@@ -27,7 +27,8 @@ import com.example.a2019_seg2105_project.R;
 import androidx.annotation.Nullable;
 import com.example.a2019_seg2105_project.data.LoginRepository;
 /**
- *
+ * RegisterActivity is the class that inspects and responds to change on UI of register page.
+ * To inspect changes on UI, it
  *
  *
  *
@@ -110,7 +111,13 @@ public class RegisterActivity extends AppCompatActivity {
                         // Enable if access code is correct.
                         if(user_hasEmployeeAccess)
                             registerButton.setEnabled(true);
+                        else
+                            registerButton.setEnabled(false);
                     }
+                }
+                else
+                {
+                            registerButton.setEnabled(false);
                 }
 
                 //3.    Display error/validated messages otherwise
@@ -150,12 +157,15 @@ public class RegisterActivity extends AppCompatActivity {
                 if (registerFormState.getPasswordVerificationError() != null) {
                     user_password_verify.setError(getString(registerFormState.getPasswordVerificationError()));
                 }
-                // If employee access code is valid, display error message
+                // If employee access code is invalid, display error message
                if(!user_hasEmployeeAccess){
+
                     user_employeeAccessCode.setError("Access Code is Invalid.");
+                    registerButton.setEnabled(false);
                }
                else
                {
+                   user_hasEmployeeAccess = true;
                }
             }
         });
@@ -179,8 +189,7 @@ public class RegisterActivity extends AppCompatActivity {
                 // 1. Check the access code field if text field is displayed.
                 if (user_employeeAccessCode.isShown()) {
                     //Check if user has right access code,
-                    String userEnteredCode = user_employeeAccessCode.getText().toString();
-                    if(userEnteredCode.equals("1207049"))
+                    if(user_employeeAccessCode.getText().toString().equals("1207049"))
                     {
                         user_hasEmployeeAccess = true;
                     }

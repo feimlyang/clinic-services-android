@@ -9,7 +9,7 @@
     <string name="prompt_password">"Enter Password"</string>
     <string name="validate_password">"Enter Password Again"</string>
     <string name="action_sign_in_short">"Sign in"</string>
-    <string name="select_account">"Account Type: "</string>
+    <string name="select_account">"Account Type "</string>
 
     <!-- Strings related to error messages in login / registration -->
     <string name="invalid_usernameFormat">"Username should only contain NUMBERS and CHARACTERS."</string>

@@ -15,15 +15,29 @@
                     Last Modified: 2019/10/17
     -->
     <!-- Set User Name -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="24dp"
+        android:text="Username "
+        android:textColor="#00574B"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
     <EditText
         android:id="@+id/register_userName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="24dp"
         android:imeOptions="actionNext"
 
+        android:textSize="17sp"
         android:hint="Username"
         android:inputType="text"
         android:singleLine="true"
@@ -33,15 +47,29 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="First Name"
+        android:textColor="#00574B"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_userName" />
+
     <EditText
         android:id="@+id/fName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="24dp"
         android:imeOptions="actionNext"
 
+        android:textSize="17sp"
         android:hint="@string/enter_fName"
         android:inputType="text"
         android:singleLine="true"
@@ -50,32 +78,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_userName" />
        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Last Name "
+        android:textColor="#00574B"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fName" />
 
     <EditText
         android:id="@+id/lName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="24dp"
         android:imeOptions="actionNext"
 
+        android:textSize="17sp"
         android:hint="@string/enter_lName"
         android:inputType="text"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fName" />
+
     <!-- Set User Email -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Email "
+        android:textColor="#00574B"
+        android:textSize="13sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lName" />
+
     <EditText
         android:id="@+id/emailID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="24dp"
         android:imeOptions="actionNext"
 
+        android:textSize="17sp"
         android:hint="Enter Email Address"
         android:inputType="textEmailAddress"
         android:singleLine="true"
@@ -83,15 +139,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lName" />
+
     <!-- Set User Password -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Password"
+        android:textColor="#00574B"
+        android:textSize="13sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailID" />
+
     <EditText
         android:id="@+id/register_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="24dp"
 
+        android:textSize="17sp"
         android:hint="@string/prompt_password"
         android:imeOptions="actionNext"
         android:inputType="textVisiblePassword"
@@ -101,14 +172,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailID" />
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Verify Password"
+        android:textColor="#00574B"
+        android:textSize="13sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
+
     <EditText
         android:id="@+id/register_validatePassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="24dp"
 
+        android:textSize="17sp"
         android:hint="@string/validate_password"
         android:enabled="false"
         android:imeOptions="actionDone"
@@ -118,6 +203,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_password" />
+
  <!--  Select Type of Account -->
     <TextView
         android:id="@+id/accountSelectMsg"
@@ -127,7 +213,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="24dp"
         android:text="@string/select_account"
-        android:textSize="15sp"
+        android:textSize="13sp"
+        android:textColor="#00574B"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_validatePassword" />
@@ -162,6 +249,19 @@
     </RadioGroup>
 
     <!-- When selected 'Employee', should enter Employee Number -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Registration Code"
+        android:textColor="#00574B"
+        android:textSize="13sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioAccountType" />
+
     <EditText
         android:id="@+id/employeeValidation"
         android:layout_width="0dp"
@@ -170,6 +270,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
 
+        android:textSize="17sp"
         android:hint="@string/enter_employeeValidation"
         android:inputType="number"
         android:singleLine="true"

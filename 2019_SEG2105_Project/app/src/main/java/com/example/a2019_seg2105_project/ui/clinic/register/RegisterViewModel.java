@@ -84,8 +84,7 @@ public class RegisterViewModel extends ViewModel
         }
         // Check if password input is valid
         // Case 1: Invalid Length
-        // ( Case 2: Invalid format )
-        // Case 3: Invalid password verficiation
+        // Case 2: Invalid password verficiation
         else if (!isPasswordWithinRange(password)) {
             registerFormState.setValue (new RegisterFormState(null, R.string.invalid_passwordLength,null,null,null,null));
         }
@@ -138,7 +137,6 @@ public class RegisterViewModel extends ViewModel
             {
                 return false;
             }
-            //TODO: further validation (if includes non english symbol
         }
         return true;
     }
