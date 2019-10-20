@@ -2,7 +2,8 @@
 
 ### Group10 Members:
 > * Manlin Guo 6602848
-> * 
+> * Tong Zhao 300037013
+> *
 
 [Our Repository](https://github.com/SEG2105-uottawa/seg2x05-project-f19-10.git)
 
