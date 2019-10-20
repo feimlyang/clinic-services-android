@@ -236,8 +236,7 @@ public class RegisterActivity extends AppCompatActivity {
        // Process the login result in callback onChanged.
        registerViewModel.getRegisterResultLiveData().observe(this, new Observer<RegisterResult>() {
            @Override
-           public void onChanged(RegisterResult registerR
-                                 esult) {
+           public void onChanged(RegisterResult registerResult) {
                // set null usually for cleaning up status
                if(null == registerResult)
                    return;
