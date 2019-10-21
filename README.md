@@ -8,6 +8,9 @@
 
 [Our Repository](https://github.com/SEG2105-uottawa/seg2x05-project-f19-10.git)
 
+##### Administrator Login Information
+> username: admin | password: 5T5ptQ 
+
 ## DELIVERABLE 1
 #### Features:
 * Can register employee account or patient account with choice.
@@ -19,6 +22,7 @@
 
 
 #### Important Notes on UI:
+
 * **Registration Access Code (Employee)**
 
 For *security* reasons, we requires user to enter an access code if he/she attempts to be registered as *Employee*. Currently, to simplify testing, the access code is set as **1207049**. Please note that incorrect code will inhibit user from registering as *Employee*.
@@ -28,7 +32,7 @@ Our criteria of 'valid informaiton' are the following:
 
 | Informaiton 		| Constraints | 
 | :-------------:	| :------------------------------------| 
-| Username  		|  Should be <= 10 characters. Should not contain symbols. |
+| Username  		|  Should be <= 10 characters. Should not contain symbols. Case insensitive. |
 | Names(first and last) |  Should be letters only. |  
 | Password      	|  Should be between 5~16 characters. | 
 | Password Verification |  Should match password initially entered. |
