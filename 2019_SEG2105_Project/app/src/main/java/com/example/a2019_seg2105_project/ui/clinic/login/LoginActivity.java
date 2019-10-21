@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                 String hashedPassword = HashHelper.hash(userPassword.getText().toString());
                 if(null == hashedPassword)
                     hashedPassword = userPassword.getText().toString();
-                loginViewModel.login(userEmail.getText().toString(), hashedPassword);
+                loginViewModel.login(userEmail.getText().toString().toLowerCase(), hashedPassword);
             }
         });
 /*

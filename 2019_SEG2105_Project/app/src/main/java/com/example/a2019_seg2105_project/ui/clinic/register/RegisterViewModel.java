@@ -59,47 +59,39 @@ public class RegisterViewModel extends ViewModel
      * @see RegisterFormState
      */
     protected void registerDataChanged(String username, String password,
-                                    String firstName, String lastName,
-                                    String emailAddress,String passwordVerification) {
+                                       String firstName, String lastName,
+                                       String emailAddress, String passwordVerification,
+                                       RegisterFormState.AccountType accountType,
+                                       String employAccessCode) {
+
+        RegisterFormState  registerFormStateValue = new RegisterFormState(true);
         // Check if user name input is valid
-        if ( !isUsernameLengthValid(username)) {
-            registerFormState.setValue (new RegisterFormState(R.string.invalid_usernameLength,null,null,null,null,null) );
-        }
+        if ( !isUsernameLengthValid(username))
+            registerFormStateValue.setUsernameError(R.string.invalid_usernameLength);
         if( !isUsernameFormatValid(username))
-        {
-            registerFormState.setValue (new RegisterFormState(R.string.invalid_usernameFormat,null,null,null,null,null) );
-        }
+            registerFormStateValue.setUsernameError(R.string.invalid_usernameFormat);
         // Check if both name field is valid
-        else if(!isNameValid(firstName)) // check first name
-        {
-            registerFormState.setValue (new RegisterFormState(null,null,R.string.invalid_name,null,null,null));
-        }
-        else if(!isNameValid(lastName)) // check last name
-        {
-            registerFormState.setValue (new RegisterFormState(null,null,null,R.string.invalid_name,null,null));
-        }
+        if(!isNameValid(firstName)) // check first name
+            registerFormStateValue.setFirstNameError(R.string.invalid_name);
+        if(!isNameValid(lastName)) // check last name
+            registerFormStateValue.setLastNameError(R.string.invalid_name);
         // Check if email address is valid
-        else if(!isEmailValid(emailAddress)) {
-            registerFormState.setValue(new RegisterFormState(null, null, null, null, R.string.invalid_email, null));
+        if(!isEmailValid(emailAddress)) {
+            registerFormStateValue.setEmailError(R.string.invalid_email);
         }
         // Check if password input is valid
         // Case 1: Invalid Length
         // Case 2: Invalid password verification
-        else if (!isPasswordWithinRange(password)) {
-            registerFormState.setValue (new RegisterFormState(null, R.string.invalid_passwordLength,null,null,null,null));
-        }
-        else if(!isPasswordTheSame(password,passwordVerification)) // error type: invalid_password_unmatch
+        if (!isPasswordWithinRange(password))
+            registerFormStateValue.setPasswordError(R.string.invalid_passwordLength);
+        if(!isPasswordTheSame(password, passwordVerification))
+            registerFormStateValue.setPasswordVerificationError(R.string.register_password_unmatch);
+        if(accountType == RegisterFormState.AccountType.INVALID || (accountType == RegisterFormState.AccountType.EMPLOYEE && !employAccessCode.equals("1207049")))
         {
-            registerFormState.setValue (new RegisterFormState(null, null,null,null,null,R.string.register_password_unmatch));
+            registerFormStateValue.setAccountTypeError(new Integer(1));
+            registerFormStateValue.setEmployAccessCodeError(R.string.invalid_access_code);
         }
-
-        // No error: set form state as 'valid'.
-        else
-         {
-            registerFormState.setValue (new RegisterFormState(true));
-        }
-
-
+        registerFormState.setValue(registerFormStateValue);
     }//end of registerDataChanged()
 
 
@@ -119,7 +111,7 @@ public class RegisterViewModel extends ViewModel
      *  @param username  current entered username (on UI)
      */
     private boolean isUsernameLengthValid(String username) {
-        return (username.length() <= 10);
+        return ((username.length() <= 10) && (username.length() > 0));
     }
     //Name
     /**
@@ -131,6 +123,8 @@ public class RegisterViewModel extends ViewModel
     private boolean isNameValid(String name) {
         char[] nameInArray = name.toCharArray(); // user char array to avoid
                                                 // calling String.charAt[i]
+        if(nameInArray.length == 0)
+            return false;
         for (int i = 0; i <nameInArray.length; i++) {
             // Note: this will also disable non-english inputs
             if ( !Character.isLetter(nameInArray[i]))
@@ -158,12 +152,13 @@ public class RegisterViewModel extends ViewModel
      * @return              If both password are the same.
      */
     private boolean isPasswordTheSame(String origin_pw, String current_pw){
-        if( origin_pw .equals("") || current_pw.equals("")) {
-            return false;
+        // ignore when origin password is not set yet.
+        if(0 == origin_pw.length()) {
+            return true;
         }
         else
         {
-            return origin_pw.equals(current_pw);
+            return ( current_pw.length() > 0 && origin_pw.equals(current_pw));
         }
     }
     // Email address
