@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Walk-in Clinic Services</string>
+    <!-- Greeting messages -->
+    <string name="welcome">"Welcome to the Walk-in Clinic Services App!"</string>
+    <!-- Strings related to login/register -->
+    <string name="enter_lName">"Last Name"</string>
+    <string name="enter_fName">"First Name"</string>
+    <string name="prompt_username">"Enter Username"</string>
+    <string name="prompt_password">"Enter Password"</string>
+    <string name="validate_password">"Enter Password Again"</string>
+    <string name="action_sign_in_short">"Sign in"</string>
+    <string name="select_account">"Account Type "</string>
+
+    <!-- Strings related to error messages in login / registration -->
+    <string name="invalid_usernameFormat">"Username should only contain NUMBERS and CHARACTERS."</string>
+    <string name="invalid_usernameLength">"Username should not exceed 10 characters!"</string>
+    <string name="invalid_name">"Name should not contain digit and symbols!"</string>
+    <string name="invalid_email">"Please enter a valid email address!"</string>
+    <string name="invalid_passwordLength">"Password length must be between 5~16 characters."</string>
+    <string name="invalid_passwordFormat">"Password must include at least 1 digit and 1 alphabet."</string>
+    <string name="register_password_unmatch">"Current password doesn't match the previous one!"</string>
+    <!-- Empty Field Error Message -->
+    <string name="empty_username">"Username is required !"</string>
+    <string name="empty_firstName">"First name is required !"</string>
+    <string name="empty_lastName">"Last name is required !"</string>
+    <string name="empty_email">"Email address is required !"</string>
+    <string name="empty_password">"Password is required !"</string>
+    <string name="empty_employee_access_code">"Please enter employee access code."</string>
+
+    <!-- Login/Register failed -->
+    <string name="login_failed">"Login failed."</string>
+    <string name="register_failed">"Registration failed."</string>
+    <string name="register_error_existingAccount">"Username already exists.Please try another one."</string>
+    <string name="error_unknown">"Unknown error occurred."</string>
+    <!-- Login/Register Succeeds -->
+    <string name="logged_in_user">"loggedInUser"</string>
+    <string name="register_succeeds">"Registration succeeds"</string>
+    <!-- Special case: Employee Validation -->
+    <!-- Note: access number = 12070499 -->
+    <string name="enter_employeeValidation">"Enter Access Number:</string>
+    <string name="invalid_access_code">"The access code is invalid."</string>
+</resources>
