@@ -50,7 +50,24 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 
 
 ## DELIVERABLE 2
+#### Features:(for admin user)
+* Can delete Employee and Patient Accounts (cannot create account.
+* Can add, remove and edit Services.
+* Service is stored by key of ServiceCode, and has three values: category, subcategory, rolePerformed.
+Use of ServiceCode: (category(subcategory) + rolePerformed)
 
+| 100 Family Medicine | 200 Examination | 300 Chiropractor | 400 Vaccination |  500 Skin Care |
+| ---------	| ------------| -------------| ------------| -------------| -----------| 
+|101 Internal Medicina| 201 Ultrasound | 301 Magnetic Treatment| 401 Flu Shot| 501 Acne| 
+|102 Surgery| 202 Xray | 302 Acupuncture | 402 Hep B | 502 Skin Allergy|
+|103 Pediatrics | 203 Blood Test | 303 Rehabilitation | 403 Measles |     |
+|104 General |  |  |  |  |
+
+01 Doctor
+02 Nurse
+03 Staff
+eg. Examination - Xray - Staff: 20203
+    Family Medicine - General - Doctor: 10401
 
 
 
