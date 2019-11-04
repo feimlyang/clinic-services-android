@@ -39,4 +39,17 @@
     <!-- Note: access number = 12070499 -->
     <string name="enter_employeeValidation">"Enter Access Number:</string>
     <string name="invalid_access_code">"The access code is invalid."</string>
+
+    <!-- Service Operation-->
+    <string name="service_exists">"Service already exists"</string>
+    <string name="service_added">"Service has been added!"</string>
+    <string name="addService_failed">"Fail to add service"</string>
+    <string name="service_not_exists">"Service does not exist"</string>
+    <string name="service_updated">"Service has been updated!"</string>
+    <string name="editService_failed">"Fail to update service"</string>
+    <string name="service_deleted">"Service has been added!"</string>
+    <string name="deleteService_failed">"Fail to delete"</string>
+
+
+
 </resources>

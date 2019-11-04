@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.clinic.InitActivity"
+            android:name=".ui.clinicApp.InitActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +19,8 @@
             </intent-filter>
         </activity>
         <!-- Register Login/ Register Activities -->
-        <activity android:name=".ui.clinic.register.RegisterActivity" > </activity>
-        <activity android:name=".ui.clinic.login.LoginActivity" > </activity>
+        <activity android:name=".ui.clinicApp.register.RegisterActivity" > </activity>
+        <activity android:name=".ui.clinicApp.login.LoginActivity" > </activity>
     </application>
 
 </manifest>
