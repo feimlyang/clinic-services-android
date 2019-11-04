@@ -7,99 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c711a4cc-5a17-4963-9317-94f867266400" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/model/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationFormState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationViewModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/.idea/dictionaries/Uly.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/google-services.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/androidTest/java/com/example/a2019_seg2105_project/ExampleInstrumentedTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/data/LoginRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/data/RegisterRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/data/Result.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/data/model/LoggedInUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/helpers/HashHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/InitActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoggedInUserView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginFormState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginViewModelFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterActivityUpdate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterFormState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterViewModelFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/UserList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/layout/activity_login.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/layout/activity_register.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/layout/init_interface.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/values/colors.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/values/dimens.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/values/integers.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/app/src/test/java/com/example/a2019_seg2105_project/ExampleUnitTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/group10_debug_apk.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019_SEG2105_Project/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/InitActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/InitActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoggedInUserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoggedInUserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginFormState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginFormState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/login/LoginViewModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginViewModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/register/RegisterActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterActivityUpdate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterFormState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/register/RegisterFormState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/register/RegisterResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/register/RegisterViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/RegisterViewModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/register/RegisterViewModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinic/register/UserList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/init_interface.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/init_interface.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationFormState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationViewModelFactory.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -122,35 +39,43 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/UserRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1755">
-              <caret line="135" column="41" selection-start-line="135" selection-start-column="28" selection-end-line="135" selection-end-column="41" />
+            <state relative-caret-position="762">
+              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
               <folding>
-                <element signature="e#2230#2253#0" expanded="true" />
-                <element signature="e#2762#2784#0" expanded="true" />
-                <element signature="e#2998#3024#0" expanded="true" />
-                <element signature="e#3165#3191#0" expanded="true" />
-                <element signature="e#4162#4189#0" expanded="true" />
-                <element signature="e#4698#4722#0" expanded="true" />
-                <element signature="e#4936#4963#0" expanded="true" />
-                <element signature="e#5104#5131#0" expanded="true" />
-                <element signature="e#5885#5912#0" expanded="true" />
-                <element signature="e#6209#6233#0" expanded="true" />
-                <element signature="e#6447#6476#0" expanded="true" />
-                <element signature="e#6617#6646#0" expanded="true" />
-                <element signature="e#7366#7395#0" expanded="true" />
-                <element signature="e#7532#7548#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2232#2259#0" expanded="true" />
+                <element signature="e#2541#2562#0" expanded="true" />
+                <element signature="e#2776#2802#0" expanded="true" />
+                <element signature="e#2943#2969#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/Result.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+            <state relative-caret-position="1251">
+              <caret line="102" column="59" lean-forward="true" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2230#2253#0" expanded="true" />
+                <element signature="e#2762#2784#0" expanded="true" />
+                <element signature="e#2998#3024#0" expanded="true" />
+                <element signature="e#3165#3191#0" expanded="true" />
+                <element signature="e#4183#4209#0" expanded="true" />
+                <element signature="e#4698#4722#0" expanded="true" />
+                <element signature="e#4936#4963#0" expanded="true" />
+                <element signature="e#5104#5131#0" expanded="true" />
+                <element signature="e#5920#5946#0" expanded="true" />
+                <element signature="e#6209#6233#0" expanded="true" />
+                <element signature="e#6447#6476#0" expanded="true" />
+                <element signature="e#6617#6646#0" expanded="true" />
+                <element signature="e#7366#7395#0" expanded="true" />
+                <element signature="e#7532#7548#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -167,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="40" column="77" lean-forward="true" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
+            <state relative-caret-position="505">
+              <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -176,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/LoginRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
+            <state relative-caret-position="1350">
               <caret line="100" column="21" lean-forward="true" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
               <folding>
                 <element signature="e#1387#1388#0" expanded="true" />
@@ -189,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/RegisterRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="71" column="25" lean-forward="true" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
+            <state relative-caret-position="-3">
+              <caret line="33" column="48" lean-forward="true" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -206,18 +131,6 @@
               <folding>
                 <element signature="e#1575#1576#0" expanded="true" />
                 <element signature="e#3286#3307#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationViewModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -259,84 +172,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/serviceRepository.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_0_2_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_2_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_0_0_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_0_0_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_1_1_3_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_0_1_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_0_0_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_1_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_1_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_1_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_ads_identifier_17_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_17_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_17_2_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_17_2_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_base_17_2_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_17_2_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_17_2_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_api_17_2_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_17_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_value_auto_value_annotations_1_6_5_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_17_2_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_17_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_19_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_17_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_collection_16_0_1_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_19_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_interop_17_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_18_0_0_aar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_kxml_kxml2_2_3_0_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/UserRepository.java" />
       </list>
     </option>
   </component>
@@ -364,6 +200,16 @@
             <path>
               <item name="2019_SEG2105_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="~/Documents/GitHub/seg2x05-project-f19-10/Deliverable2" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name=".gradle" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="2019_SEG2105_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Documents/GitHub/seg2x05-project-f19-10/Deliverable2" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="2019_SEG2105_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Documents/GitHub/seg2x05-project-f19-10/Deliverable2" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -428,19 +274,6 @@
               <item name="example" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="a2019_seg2105_project" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="data" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="2019_SEG2105_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Documents/GitHub/seg2x05-project-f19-10/Deliverable2" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="example" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="a2019_seg2105_project" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="data" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="model" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="2019_SEG2105_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -507,20 +340,6 @@
               <item name="clinicApp" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="register" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
-            <path>
-              <item name="2019_SEG2105_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Documents/GitHub/seg2x05-project-f19-10/Deliverable2" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="example" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="a2019_seg2105_project" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="ui" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="clinicApp" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="serviceOperation" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -531,6 +350,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
@@ -798,9 +618,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/RegisterRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="33" column="48" lean-forward="true" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/LoginRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
+        <state relative-caret-position="1350">
           <caret line="100" column="21" lean-forward="true" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
           <folding>
             <element signature="e#1387#1388#0" expanded="true" />
@@ -816,49 +653,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/RegisterRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="71" column="25" lean-forward="true" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="40" column="77" lean-forward="true" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/Result.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+        <state relative-caret-position="505">
+          <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="135" column="41" selection-start-line="135" selection-start-column="28" selection-end-line="135" selection-end-column="41" />
+        <state relative-caret-position="1251">
+          <caret line="102" column="59" lean-forward="true" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#2230#2253#0" expanded="true" />
             <element signature="e#2762#2784#0" expanded="true" />
             <element signature="e#2998#3024#0" expanded="true" />
             <element signature="e#3165#3191#0" expanded="true" />
-            <element signature="e#4162#4189#0" expanded="true" />
+            <element signature="e#4183#4209#0" expanded="true" />
             <element signature="e#4698#4722#0" expanded="true" />
             <element signature="e#4936#4963#0" expanded="true" />
             <element signature="e#5104#5131#0" expanded="true" />
-            <element signature="e#5885#5912#0" expanded="true" />
+            <element signature="e#5920#5946#0" expanded="true" />
             <element signature="e#6209#6233#0" expanded="true" />
             <element signature="e#6447#6476#0" expanded="true" />
             <element signature="e#6617#6646#0" expanded="true" />
             <element signature="e#7366#7395#0" expanded="true" />
             <element signature="e#7532#7548#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="762">
+          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2232#2259#0" expanded="true" />
+            <element signature="e#2541#2562#0" expanded="true" />
+            <element signature="e#2776#2802#0" expanded="true" />
+            <element signature="e#2943#2969#0" expanded="true" />
           </folding>
         </state>
       </provider>

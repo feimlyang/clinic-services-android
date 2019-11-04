@@ -51,7 +51,7 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 
 ## DELIVERABLE 2
 #### Features:(for admin user)
-* Can delete Employee and Patient Accounts (but cannot create account)
+* Can delete Employee and Patient Accounts (but cannot create/edit account)
 * Can add, edit and delete Services.
 * Service is stored by key of serviceName, and has three attributes: category, subcategory, rolePerforming.
 

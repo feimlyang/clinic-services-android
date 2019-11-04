@@ -102,7 +102,7 @@ public class ServiceRepository {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(!dataSnapshot.hasChild(serviceName))
                     {
-                        liveDataService.setValue(new Result.Failure(R.string.service_not_exists));
+                        liveDataService.setValue(new Result.Failure(R.string.service_not_exist));
                     }
                     else
                     {
@@ -144,7 +144,7 @@ public class ServiceRepository {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(!dataSnapshot.hasChild(serviceName))
                     {
-                        liveDataService.setValue(new Result.Failure(R.string.service_not_exists));
+                        liveDataService.setValue(new Result.Failure(R.string.service_not_exist));
                     }
                     else
                     {
