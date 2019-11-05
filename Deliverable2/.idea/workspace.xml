@@ -5,18 +5,22 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c711a4cc-5a17-4963-9317-94f867266400" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationFormState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/serviceOperation/ServiceOperationViewModelFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/LoginRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/LoginRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,11 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/UserRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="762">
-              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+            <state relative-caret-position="645">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2232#2259#0" expanded="true" />
@@ -58,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1251">
-              <caret line="102" column="59" lean-forward="true" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
+              <caret line="102" column="59" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2230#2253#0" expanded="true" />
@@ -81,28 +85,74 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/model/Service.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="505">
-              <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+              <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginViewModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-558">
+              <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+              <folding>
+                <element signature="e#1962#2982#0" expanded="true" />
+                <element signature="e#2981#2982#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginFormState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="760">
+              <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+              <folding>
+                <element signature="e#2773#3418#0" expanded="true" />
+                <element signature="e#3417#3418#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="638">
+              <caret line="67" column="34" lean-forward="true" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1041">
+              <caret line="176" column="44" lean-forward="true" selection-start-line="176" selection-start-column="44" selection-end-line="176" selection-end-column="44" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/LoginRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1350">
-              <caret line="100" column="21" lean-forward="true" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
+            <state relative-caret-position="583">
+              <caret line="130" column="31" lean-forward="true" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="31" />
               <folding>
                 <element signature="e#1387#1388#0" expanded="true" />
                 <element signature="e#1422#1423#0" expanded="true" />
@@ -112,39 +162,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/RegisterRepository.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginViewModelFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
-              <caret line="33" column="48" lean-forward="true" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/register/RegisterViewModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="38" column="63" selection-start-line="38" selection-start-column="63" selection-end-line="38" selection-end-column="63" />
-              <folding>
-                <element signature="e#1575#1576#0" expanded="true" />
-                <element signature="e#3286#3307#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginViewModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-              <folding>
-                <element signature="e#1962#2982#0" expanded="true" />
-                <element signature="e#2981#2982#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="120">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -173,14 +194,16 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/UserRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/LoginRepository.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1852" />
-    <option name="y" value="-16" />
-    <option name="width" value="1783" />
-    <option name="height" value="946" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1920" />
+    <option name="y" value="-47" />
+    <option name="width" value="1920" />
+    <option name="height" value="992" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -285,18 +308,6 @@
               <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="example" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="a2019_seg2105_project" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="helpers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="2019_SEG2105_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Documents/GitHub/seg2x05-project-f19-10/Deliverable2" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="example" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="a2019_seg2105_project" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="ui" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -318,13 +329,7 @@
               <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="example" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="a2019_seg2105_project" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="ui" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="clinicApp" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="login" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="2019_SEG2105_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -332,13 +337,15 @@
               <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="example" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="a2019_seg2105_project" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="ui" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="clinicApp" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="register" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="layout" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="2019_SEG2105_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Documents/GitHub/seg2x05-project-f19-10/Deliverable2" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -374,7 +381,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -442,10 +449,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1920" y="-47" width="1920" height="994" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1920" y="-47" width="1920" height="992" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32960597" />
+      <window_info content_ui="combo" id="Project" visible="true" weight="0.32960597" />
       <window_info id="Structure" side_tool="true" />
       <window_info id="Build Variants" side_tool="true" />
       <window_info id="Image Layers" />
@@ -454,19 +460,22 @@
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Run" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.3292683" />
-      <window_info anchor="bottom" id="Logcat" />
+      <window_info active="true" anchor="bottom" id="Logcat" visible="true" weight="0.23555556" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="TODO" />
-      <window_info anchor="bottom" id="Android Profiler" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Android Profiler" />
       <window_info anchor="bottom" id="Find" weight="0.23059867" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Build" weight="0.23392461" />
+      <window_info anchor="bottom" id="Debug" />
       <window_info anchor="right" id="Device File Explorer" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" />
       <window_info anchor="right" id="Gradle" />
       <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Assistant" weight="0.32960597" />
       <window_info anchor="right" id="Palette&#9;" />
       <window_info anchor="right" id="Preview" />
     </layout>
@@ -486,14 +495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="142" column="13" selection-start-line="142" selection-start-column="13" selection-end-line="142" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/helpers/HashHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -512,13 +513,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginFormState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -575,17 +569,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="91" column="11" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="11" />
-          <folding>
-            <element signature="e#2770#3415#0" expanded="true" />
-            <element signature="e#3414#3415#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/register/RegisterViewModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
@@ -607,17 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-          <folding>
-            <element signature="e#1962#2982#0" expanded="true" />
-            <element signature="e#2981#2982#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/Result.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -628,20 +600,9 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/RegisterRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3">
-          <caret line="33" column="48" lean-forward="true" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+          <caret line="33" column="48" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/LoginRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="100" column="21" lean-forward="true" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
-          <folding>
-            <element signature="e#1387#1388#0" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -656,14 +617,14 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="505">
-          <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/ServiceRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1251">
-          <caret line="102" column="59" lean-forward="true" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
+          <caret line="102" column="59" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2230#2253#0" expanded="true" />
@@ -686,14 +647,77 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/UserRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="762">
-          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+        <state relative-caret-position="645">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2232#2259#0" expanded="true" />
             <element signature="e#2541#2562#0" expanded="true" />
             <element signature="e#2776#2802#0" expanded="true" />
             <element signature="e#2943#2969#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginViewModelFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-558">
+          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+          <folding>
+            <element signature="e#1962#2982#0" expanded="true" />
+            <element signature="e#2981#2982#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginFormState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/ui/clinicApp/login/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+          <folding>
+            <element signature="e#2773#3418#0" expanded="true" />
+            <element signature="e#3417#3418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="67" column="34" lean-forward="true" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1041">
+          <caret line="176" column="44" lean-forward="true" selection-start-line="176" selection-start-column="44" selection-end-line="176" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a2019_seg2105_project/data/LoginRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="130" column="31" lean-forward="true" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="31" />
+          <folding>
+            <element signature="e#1387#1388#0" expanded="true" />
+            <element signature="e#1422#1423#0" expanded="true" />
           </folding>
         </state>
       </provider>
