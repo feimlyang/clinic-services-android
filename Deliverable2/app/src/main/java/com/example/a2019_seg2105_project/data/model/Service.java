@@ -9,14 +9,22 @@ public class Service {
     //attributes
     //category; subcategroy; rolePerforming
 
-    private ArrayList<String> categoryList;
-    private ArrayList<String> rolePerformingList;
+    private final ArrayList<String> categoryList;
+    private final ArrayList<String> rolePerformingList;
     //private ArrayList<ArrayList<String>> subcategory;
-    private ArrayList<String> subcategory0;
-    private ArrayList<String> subcategory1;
-    private ArrayList<String> subcategory2;
-    private ArrayList<String> subcategory3;
-    private ArrayList<String> subcategory4;
+    public enum subcategorySeries{
+        subcategory0,
+        subcategory1,
+        subcategory2,
+        subcategory3,
+        subcategory4;
+    }
+
+    private final ArrayList<String> subcategory0;
+    private final ArrayList<String> subcategory1;
+    private final ArrayList<String> subcategory2;
+    private final ArrayList<String> subcategory3;
+    private final ArrayList<String> subcategory4;
 
     //Constructor
     public Service(){
@@ -67,9 +75,21 @@ public class Service {
         return categoryList.get(n);
     }
 
+    public ArrayList<String> defineSubcategory(subcategorySeries subcategory){
+        switch (subcategory){
+            case subcategory0: return this.subcategory0;
+            case subcategory1: return this.subcategory1;
+            case subcategory2: return this.subcategory2;
+            case subcategory3: return this.subcategory3;
+            case subcategory4: return this.subcategory4;
+        }
+        return null;
+    }
+
     /*get subcategory by give related subcategory, and index of the elem of the subcategroy */
-    public String getSubcategory(ArrayList<String> subcategroyX, int n){
-        return subcategroyX.get(n);
+    public String getSubcategory(ArrayList<String> subcategroy, int n){
+        if (subcategroy == null) throw new NullPointerException("category does not exist");
+        return subcategroy.get(n);
     }
 
     public String getRolePerforming(int n){
