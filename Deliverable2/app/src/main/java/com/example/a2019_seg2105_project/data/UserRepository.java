@@ -81,5 +81,36 @@ public class UserRepository {
         return liveDataService;
     }
 
+    //getter
+    /*get username in arraylist*/
+    public LiveData<Result> getUsername(){
+        final DatabaseReference databaseUsers;
+        // each request sends back a liveData for callback
+        final MutableLiveData<Result> liveDataUsernamelist = new MutableLiveData<>();
+        try {
+            databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+            databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    ArrayList<String> usernamelist = new ArrayList<>();
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        String username = userSnapshot.getKey();
+                        usernamelist.add(username);
+                    }
+                    liveDataUsernamelist.setValue(new Result.Success<ArrayList<String>>(usernamelist));
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    liveDataUsernamelist.setValue(new Result.Error(new IOException("Failed to get username list")));
+                }
+            });
+        } catch (Exception e) {
+            liveDataUsernamelist.setValue(new Result.Error(new IOException("Failed to get username list")));
+        }
+        return liveDataUsernamelist;
+    }
 
 }
