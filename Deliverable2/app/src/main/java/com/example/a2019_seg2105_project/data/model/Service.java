@@ -75,6 +75,9 @@ public class Service {
         return categoryList.get(n);
     }
 
+    public ArrayList<String> getCategoryList()
+    { return this.categoryList;}
+
     public ArrayList<String> defineSubcategory(subcategorySeries subcategory){
         switch (subcategory){
             case subcategory0: return this.subcategory0;

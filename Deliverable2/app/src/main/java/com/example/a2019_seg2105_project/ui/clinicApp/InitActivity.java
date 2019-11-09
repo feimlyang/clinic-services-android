@@ -12,13 +12,15 @@ package com.example.a2019_seg2105_project.ui.clinicApp;
  * @see RegisterActivity
  * @author Wen Bin Pang
  *  Created : 2019/10/16
- *  Last Modified: 2019/10/16
+ *  Last Modified: 2019/11/7
  */
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 //  ************ Import class Intent
 import android.content.Intent;
 import java.io.Serializable;
+
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +39,8 @@ public class InitActivity extends AppCompatActivity {
     private  Button registerButton;
     static final int PICK_LOGIN_RESULT = 1;
     static final int PICK_REGISTER_RESULT = 2;
-
+    static final int DELAY_THEN_JUMP = 2000; // Time Delay after logged-in, then jump to MainActivity.
+                                             // Initially set to 2 second (2000 milliseconds)
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,15 +108,31 @@ public class InitActivity extends AppCompatActivity {
                 String userName = " "; //
                 String accountType = ""; //
                 // Show the logged-in user's information
-                Serializable userSerialization = data.getSerializableExtra(getString(R.string.logged_in_user));
+               final Serializable userSerialization = data.getSerializableExtra(getString(R.string.logged_in_user));
                 if(null != userSerialization)
                 {
                     LoggedInUserView user = (LoggedInUserView)userSerialization;
                     userName = user.getDisplayName();
                     accountType = user.getRole();
                 }
-                welcomeMessage.setText("Welcome " + userName + " ! You are logged in as "+ accountType +" .");
+                welcomeMessage.setText("Welcome " + userName + " ! You are logged in as "+ accountType +" ." +
+                        "The system will jump Main page in 3 seconds...");
                 welcomeMessage.setVisibility(View.VISIBLE);
+
+                // Jump to Main Page after few seconds
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Intent intent = new Intent(InitActivity.this, MainActivity.class);
+                        //Pass user information to Main
+                        //TODO: pass user inforamtion to Main
+                        LoggedInUserView user = (LoggedInUserView)userSerialization;
+                        intent.putExtra(getString(R.string.loggedIn_userName),user.getDisplayName());
+                        intent.putExtra(getString(R.string.loggedIn_userType),user.getRole());
+                        startActivity(intent);
+                    }
+                },DELAY_THEN_JUMP);
             }
             else
             {

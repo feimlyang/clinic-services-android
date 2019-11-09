@@ -21,6 +21,8 @@
         <!-- Register Login/ Register Activities -->
         <activity android:name=".ui.clinicApp.register.RegisterActivity" > </activity>
         <activity android:name=".ui.clinicApp.login.LoginActivity" > </activity>
+        <!-- Register Main Activities -->
+        <activity android:name=".ui.clinicApp.MainActivity" > </activity>
     </application>
 
 </manifest>

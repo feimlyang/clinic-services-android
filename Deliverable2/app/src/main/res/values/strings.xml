@@ -55,6 +55,18 @@
     <string name="service_deleted">"Service has been added!"</string>
     <string name="deleteService_failed">"Fail to delete"</string>
 
+    <!-- Special case: Navigation Bar -->
+    <string name="nav_show_profile">"My Profile"</string>
+    <string name="nav_home">"Home"</string>
+    <string name="nav_log_out">"Log Out"</string>
 
+    <!-- Logged in user -->
+    <string name="loggedIn_userName">"User Type"</string>
+    <string name="loggedIn_userType">"User Name: "</string>
 
+    <!-- Admin Operations -->
+    <string name="admin_addServices">"Add Service "</string>
+    <string name="admin_deleteServices">"Delete Service "</string>
+    <string name="admin_deleteAccounts">"Delete Account "</string>
+    <string name="admin_returnToPrevious">"Return "</string>
 </resources>
