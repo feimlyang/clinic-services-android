@@ -10,6 +10,7 @@ import com.example.a2019_seg2105_project.data.LoginRepository;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.data.model.LoggedInUser;
 import com.example.a2019_seg2105_project.R;
+
 /**
  * LoginViewModel is a class that observes user input change on UI (registration)
  * and check if input are legal.
@@ -93,7 +94,7 @@ public class LoginViewModel extends ViewModel {
      */
     private boolean isUsernameLengthValid(String username)
     {
-        return (!username.contains(" ") && username.length()<= R.integer.usernameLength) ? true : false;
+        return !username.contains(" ") && username.length() <= 10;
     }
     /**
      *  Check if current entered password  meet length requirement.
