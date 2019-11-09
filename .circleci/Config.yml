@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/seg2x05-project-f19-10
+    working_directory: ~/seg2x05-project-f19-10/Deliverable2
     docker:
       - image: circleci/android:api-28-alpha
     environment:
