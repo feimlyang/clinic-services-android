@@ -55,6 +55,15 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 * Can add, edit and delete Services.
 * Service is stored by key of serviceName, and has three attributes: category, subcategory, rolePerforming.
 
+#### Unit Test:
+
+| Unit Test 		| Constraints | 
+| :-------------:	| :------------------------------------| 
+| PasswordLengthTest |  The length of password should not be bigger than 16 and smaller than 5. |
+| UsernameLengthTest |  The length of username should not be bigger than 10. Username should not be null and should not have space. |  
+| EmailValidatorTest |  Email should not be null, and it should not ignore "@" and ".com". | 
+| SamePasswordTest |  The password re-entered should be the same than previous one. |
+| UsernameFormatTest |  Username should not have symbol such as ".!#@()" |
 
 
 ## DELIVERABLE 3
