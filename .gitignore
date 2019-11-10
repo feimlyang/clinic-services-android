@@ -17,6 +17,10 @@ proguard/
 
 # Android Studio captures folder
 captures/
+.bin
+.gradle
+.idea
+
 
 # IntelliJ
 *.iml
@@ -62,5 +66,7 @@ local.properties
 .loadpath
 .recommenders
 *.launch
+
+
 
 
