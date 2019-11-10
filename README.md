@@ -73,5 +73,13 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 
 ## DELIVERABLE 4
 
+### CircleCI
+
+Build Status
+[![Build
+Status](https://circleci.com/gh/SEG2105-uottawa/seg2x05-project-f19-10/tree/master)]
+(https://circleci.com/gh/SEG2105-uottawa/seg2x05-project-f19-10)
+
+
 
 
