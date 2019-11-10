@@ -16,10 +16,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
         android:text="@string/admin_addServices"
-        app:layout_constraintTop_toBottomOf="parent"/>
+        />
 
     <Button
-        android:id="@+id/btn_adminService_return"
+        android:id="@+id/btn_adminAccount_return"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
