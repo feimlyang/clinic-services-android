@@ -188,9 +188,7 @@ public class ServiceRepository {
                         servicelist.put(serviceKey, attributes);
                     }
                     liveDataServicelist.setValue(new Result.Success<Map<String, Map<String, String>>>(servicelist));
-
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     liveDataServicelist.setValue(new Result.Error(new IOException("Failed to get servicelist")));

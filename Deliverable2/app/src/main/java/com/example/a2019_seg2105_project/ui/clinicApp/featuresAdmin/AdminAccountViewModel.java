@@ -32,6 +32,7 @@ public class AdminAccountViewModel extends ViewModel {
                      public void onChanged(Result result) {
 
                      }
-              }
+              });
+              return null;
        }
 }

@@ -95,6 +95,7 @@ public class InitActivity extends AppCompatActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         // 1. Result from Login Activity
         if (requestCode == PICK_LOGIN_RESULT)
         {
@@ -116,7 +117,7 @@ public class InitActivity extends AppCompatActivity {
                     accountType = user.getRole();
                 }
                 welcomeMessage.setText("Welcome " + userName + " ! You are logged in as "+ accountType +" ." +
-                        "The system will jump Main page in 3 seconds...");
+                        "The system will jump Main page in 2 seconds...");
                 welcomeMessage.setVisibility(View.VISIBLE);
 
                 // Jump to Main Page after few seconds

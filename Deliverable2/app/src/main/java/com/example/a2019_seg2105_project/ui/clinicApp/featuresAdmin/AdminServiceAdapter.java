@@ -29,8 +29,6 @@ public class AdminServiceAdapter extends RecyclerView.Adapter <AdminServiceAdapt
     static class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView serviceName;
-
-
         public ViewHolder(View view)
         {
             // Assign to layout component
@@ -43,12 +41,12 @@ public class AdminServiceAdapter extends RecyclerView.Adapter <AdminServiceAdapt
     public AdminServiceAdapter(LiveData<Result> liveServiceData )
     {
 //TODO:在这里把result里的东西拆到serviceList里qwq
-        this.serviceList = new ArrayList<String>(serviceList);
+        this.serviceList = new ArrayList<String>();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_service_list_view,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_service_list_view, parent,false);
         ViewHolder serviceViewHolder = new ViewHolder(view);
         return serviceViewHolder;
     }

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         // 1. Initialize: load layout + navigation bar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DrawerLayout  drawer = findViewById(R.id.main_drawer);
+        DrawerLayout drawer = findViewById(R.id.main_drawer);
 
         // 2. Determine which HOME FRAGMENT will be displayed
         //Get account type & user name

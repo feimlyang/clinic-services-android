@@ -69,7 +69,6 @@ public class AdminMainFragment extends Fragment {
         transaction.addToBackStack(null);
         transaction.replace(R.id.admin_layout_home,fragment);
         transaction.commit();
-
     }
 
 }

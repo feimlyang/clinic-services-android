@@ -61,8 +61,8 @@
     <string name="nav_log_out">"Log Out"</string>
 
     <!-- Logged in user -->
-    <string name="loggedIn_userName">"User Type"</string>
-    <string name="loggedIn_userType">"User Name: "</string>
+    <string name="loggedIn_userName">"User Name:"</string>
+    <string name="loggedIn_userType">"User Type: "</string>
 
     <!-- Admin Operations -->
     <string name="admin_addServices">"Add Service "</string>

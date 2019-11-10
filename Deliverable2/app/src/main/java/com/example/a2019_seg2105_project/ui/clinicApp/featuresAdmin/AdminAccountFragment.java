@@ -47,7 +47,7 @@ public class AdminAccountFragment extends Fragment {
         UserRepository userRepo = UserRepository.getInstance();
         LiveData<Result> currentUserNames = userRepo.getUsername();
 
-        existingUserName = ; // TODO qwq还是找字符串
+        existingUserName = null; // TODO qwq还是找字符串
         return root;
     }// end of onCreateView
 
