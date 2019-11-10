@@ -31,6 +31,7 @@ public class Service {
         this.categoryList = new ArrayList<String>(){{
             add("Family Medicine"); //subcategory0 <- categoryList[0]
             add("Examination"); //subcategory1
+            add("Physiotherapy"); //subcategory2
             add("Immunization and Vaccination");//subcategory3
             add("Skin Care");//subcategory4
         }};
