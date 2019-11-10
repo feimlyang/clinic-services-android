@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.widget.Button;
 
 import com.example.a2019_seg2105_project.R;
+import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.AdminAccountDeleteFragment;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.ServiceAddFragment;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.ServiceDeleteFragment;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.ServiceEditFragment;
@@ -83,6 +84,11 @@ public class AdminMainFragment extends Fragment {
         accountDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.admin_layout_home,new AdminAccountDeleteFragment());
+                transaction.commit();
             }
         });
      }

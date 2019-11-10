@@ -41,7 +41,7 @@
     <string name="invalid_access_code">"The access code is invalid."</string>
 
     <!-- User Accounts -->
-    <string name="username_not_exist">"Service already exists"</string>
+    <string name="username_not_exist">"User specified does not exist."</string>
     <string name="user_deleted">"Service already exists"</string>
     <string name="deleteUser_failed">"Fail to delete user account"</string>
 

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.a2019_seg2105_project.data.UserRepository;
 import com.example.a2019_seg2105_project.data.Result;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class AdminAccountViewModel extends ViewModel {
        private UserRepository accountRepository;
@@ -20,6 +21,10 @@ public class AdminAccountViewModel extends ViewModel {
        public LiveData<Result> getDeleteAccountLiveData()
        {
               return this.deleteAccountLiveData;
+       }
+       public boolean isUserNameValid(String username)
+       {
+           return Pattern.matches(userNamePattern, username);
        }
 
        public ArrayList<String> getAccountList()
@@ -41,7 +46,8 @@ public class AdminAccountViewModel extends ViewModel {
                      @Override
                      public void onChanged(Result result) {
                             AdminAccountViewModel.this.deleteAccountLiveData.removeSource(deleteAccountLiveData);
-
+                            AdminAccountViewModel.this.deleteAccountLiveData.setValue(result);
+                            AdminAccountViewModel.this.deleteAccountLiveData.setValue(null);
                      }
               });
 
