@@ -23,8 +23,8 @@ class Account
 
 class Administrator{
     isA User;
-    1 -- * Employee;
-    1 -- * Patient;
+
+  
 
     void deleteUser(User user){}
  }
@@ -54,5 +54,3 @@ class Service{
   void deleteService(){}
     
   }
-
-
