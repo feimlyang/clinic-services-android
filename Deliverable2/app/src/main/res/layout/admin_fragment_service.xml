@@ -8,9 +8,6 @@
     tools:ignore="MergeRootFrame"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_admin_service">
-
-
-
     <Button
         android:id="@+id/btn_adminAccount_return"
         style="@style/Widget.AppCompat.Button.Colored"

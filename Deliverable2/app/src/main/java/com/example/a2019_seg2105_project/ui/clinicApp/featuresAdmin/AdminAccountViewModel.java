@@ -24,7 +24,6 @@ public class AdminAccountViewModel extends ViewModel {
 
        public ArrayList<String> getAccountList()
        {
-
               final LiveData<Result> liveAccountList = accountRepository.getUsername();
               ArrayList<String> currentUserNameList;
               accountLiveData.addSource(liveAccountList , new Observer<Result>() {

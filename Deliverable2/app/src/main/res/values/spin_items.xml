@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item>category_0</item>
+        <item>category_1</item>
+        <item>category_2</item>
+        <item>category_3</item>
+        <item>category_4</item>
+    </string-array>
+    <string-array name="subCategory">
+        <item>subcategory_0</item>
+        <item>subcategory_1</item>
+        <item>subcategory_2</item>
+        <item>subcategory_3</item>
+        <item>subcategory_4</item>
+    </string-array>
+    <string-array name="rolePerforming">
+        <item>role_0</item>
+        <item>role_1</item>
+        <item>role_2</item>
+        <item>role_3</item>
+        <item>role_4</item>
+    </string-array>
+</resources>

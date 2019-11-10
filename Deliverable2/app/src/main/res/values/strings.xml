@@ -55,6 +55,12 @@
     <string name="service_deleted">"Service has been added!"</string>
     <string name="deleteService_failed">"Fail to delete"</string>
 
+    <!-- service validators -->
+    <string name="service_name_invalid">"Service name is invalid"</string>
+    <string name="category_invalid">"Category is invalid"</string>
+    <string name="subcategory_invalid">"SubCategory is invalid"</string>
+    <string name="role_invalid">"Role is invalid"</string>
+
     <!-- Special case: Navigation Bar -->
     <string name="nav_show_profile">"My Profile"</string>
     <string name="nav_home">"Home"</string>
