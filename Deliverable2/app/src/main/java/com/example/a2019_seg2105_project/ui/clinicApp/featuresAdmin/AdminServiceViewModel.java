@@ -5,12 +5,9 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
-
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.data.ServiceRepository;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -37,9 +34,16 @@ public class AdminServiceViewModel extends ViewModel {
     {
         return addServiceResult;
     }
+    public LiveData<Result> getServicesEditLiveData()
+    {
+        return editServiceResult;
+    }
+    public LiveData<Result> getServicesDeleteLiveData()
+    {
+        return deleteServiceResult;
+    }
     public LiveData<AdminServiceFormState> getServiceFormState(){ return serviceFormState;}
-    public void validateServiceInfo(String service, String category, String subCategory,
-                                    String rolePerforming)
+    public void validateServiceInfo(String service)
     {
         Integer serviceError = isServiceNameValid(service) ? null : R.string.service_name_invalid;
         AdminServiceFormState formState = new AdminServiceFormState(serviceError);

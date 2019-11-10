@@ -150,7 +150,6 @@ public class ServiceRepository {
                     {
                         DatabaseReference serviceToRemove = databaseServices.child(serviceName);
                         serviceToRemove.removeValue();
-
                         liveDataService.setValue(new Result.Success(R.string.service_deleted));
                     }
                 }
