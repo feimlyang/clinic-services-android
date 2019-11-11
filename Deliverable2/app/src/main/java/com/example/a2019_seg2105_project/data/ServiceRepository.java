@@ -5,9 +5,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.a2019_seg2105_project.R;
-import com.example.a2019_seg2105_project.data.model.LoggedInUser;
-import com.example.a2019_seg2105_project.data.model.Service;
-import com.example.a2019_seg2105_project.helpers.HashHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,9 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 
@@ -181,7 +176,7 @@ public class ServiceRepository {
                     for (DataSnapshot serviceSnapshot : dataSnapshot.getChildren()) {
                         String serviceKey = serviceSnapshot.getKey();
                         Map<String, String> attributes = new HashMap<String, String>();
-                        for (DataSnapshot attributeSnapshot : dataSnapshot.getChildren()) {
+                        for (DataSnapshot attributeSnapshot : serviceSnapshot.getChildren()) {
                             attributes.put(attributeSnapshot.getKey(), attributeSnapshot.getValue(String.class));
                         }
                         servicelist.put(serviceKey, attributes);

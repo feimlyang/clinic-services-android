@@ -18,6 +18,7 @@ public class AdminServiceViewModel extends ViewModel {
 
     private ServiceRepository serviceRepository;
     private MediatorLiveData<List<Map<String, String>>> servicesList = new MediatorLiveData<>();
+    private MediatorLiveData<Result> listServiceResult = new MediatorLiveData<>();
     private MediatorLiveData<Result> addServiceResult = new MediatorLiveData<>();
     private MediatorLiveData<Result> editServiceResult = new MediatorLiveData<>();
     private MediatorLiveData<Result> deleteServiceResult = new MediatorLiveData<>();
@@ -26,9 +27,9 @@ public class AdminServiceViewModel extends ViewModel {
     {
         this.serviceRepository = repo;
     }
-    public LiveData<List<Map<String, String>>> getServicesListLiveData()
+    public LiveData<Result> getServicesListLiveData()
     {
-        return servicesList;
+        return listServiceResult;
     }
     public LiveData<Result> getServicesAddLiveData()
     {
@@ -48,6 +49,18 @@ public class AdminServiceViewModel extends ViewModel {
         Integer serviceError = isServiceNameValid(service) ? null : R.string.service_name_invalid;
         AdminServiceFormState formState = new AdminServiceFormState(serviceError);
         serviceFormState.setValue(formState);
+    }
+    public void listService()
+    {
+        final LiveData<Result> resultLiveData = serviceRepository.getServicelist();
+        this.listServiceResult.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                listServiceResult.removeSource(resultLiveData);
+                listServiceResult.setValue(result);
+                listServiceResult.setValue(null);
+            }
+        });
     }
 
     public void addService(String service, String category, String subCategory,
