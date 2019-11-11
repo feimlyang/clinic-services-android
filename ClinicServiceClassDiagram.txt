@@ -1,9 +1,9 @@
 class User{
     String firstName;
-	String lastName;
+  String lastName;
     String username;
-	String email;
-	String password;
+  String email;
+  String password;
     void login(String username, String password){}
     private boolean validateLoginInfo(){}
     protected String hash(String password){}
@@ -11,12 +11,12 @@ class User{
 class Account
 {   
     String firstName;
-	String lastName;
+  String lastName;
     String username;
-	String email;
-	String password;
-	String role;
-	Boolean isLoggedin;
+  String email;
+  String password;
+  String role;
+  Boolean isLoggedin;
     1 -- 1 User;
 }
 
@@ -54,3 +54,18 @@ class Service{
   void deleteService(){}
     
   }
+
+class Clinic{
+  String clinicName;
+  String clinicAddress;
+  String clinicPhoneNum;
+  String insuranceType;
+  String paymentMethod;
+  String workingHours;
+  * -- * Service;
+  1 -- 1 Employee;
+  void editProfile(){}
+  void addService(){}
+  void deleteService(){}
+  void editWorkingHours(){}
+}
