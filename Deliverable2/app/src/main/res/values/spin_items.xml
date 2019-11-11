@@ -28,7 +28,7 @@
         <item>Sport Injury</item>
     </string-array>
 
-    <string-array name="Vaccination">
+    <string-array name="subCategory_Vaccination">
         <item>Flu Shoot</item>
         <item>Hep B</item>
 

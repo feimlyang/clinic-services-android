@@ -6,8 +6,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -19,6 +22,11 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.ui.clinicApp.navigation.AdminMainFragment;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *       AdminServiceFragment is the fragment of service editting page.
@@ -37,7 +45,14 @@ public class ServiceAddFragment extends Fragment {
 
     private EditText serviceNameFilling;
     private AdminServiceViewModel addServiceViewModel;
-
+    public static int getResId(String resName, Class<?> c) {
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
     {
@@ -118,6 +133,25 @@ public class ServiceAddFragment extends Fragment {
                     addButton.setEnabled(false);
                     serviceNameFilling.setError(getString(adminServiceFormState.getError()));
                 }
+            }
+        });
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String subCategory_name = "subCategory_" + categorySpinner.getItemAtPosition(position).toString();
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
+                int family = getResId(subCategory_name, R.array.class);
+                if(family != -1) {
+                    List<String> Lines = Arrays.asList(getResources().getStringArray(family));
+                    arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, Lines);
+                }
+                subCategorySpinner.setAdapter(arrayAdapter);
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }

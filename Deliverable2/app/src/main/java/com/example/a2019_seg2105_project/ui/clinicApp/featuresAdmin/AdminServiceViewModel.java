@@ -53,7 +53,8 @@ public class AdminServiceViewModel extends ViewModel {
     public void addService(String service, String category, String subCategory,
                            String rolePerforming)
     {
-        final LiveData<Result> resultLiveData = serviceRepository.addService(service, category, subCategory,rolePerforming);
+        final LiveData<Result> resultLiveData = serviceRepository.addService(service.toLowerCase(), category.toLowerCase(),
+                subCategory.toLowerCase(), rolePerforming.toLowerCase());
         this.addServiceResult.addSource(resultLiveData, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
@@ -66,7 +67,8 @@ public class AdminServiceViewModel extends ViewModel {
     public void editService(String service, String category, String subCategory,
                            String rolePerforming)
     {
-        final LiveData<Result> resultLiveData = serviceRepository.editService(service, category, subCategory,rolePerforming);
+        final LiveData<Result> resultLiveData = serviceRepository.editService(service.toLowerCase(),
+                category.toLowerCase(), subCategory.toLowerCase(),rolePerforming.toLowerCase());
         this.editServiceResult.addSource(resultLiveData, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
@@ -78,7 +80,7 @@ public class AdminServiceViewModel extends ViewModel {
     }
     public void deleteService(String service)
     {
-        final LiveData<Result> resultLiveData = serviceRepository.deleteService(service);
+        final LiveData<Result> resultLiveData = serviceRepository.deleteService(service.toLowerCase());
         this.deleteServiceResult.addSource(resultLiveData, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
