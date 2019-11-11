@@ -24,7 +24,7 @@ jobs:
           name: Run PasswordLengthTest
           command: ./gradlew test
       - store_artifacts:
-          path: app/build/outputs/apk/debug/
+          path: app/build/outputs/apk/debug/app-debug.apk
           destination: apks/
       - store_test_results:
           path: app/build/test-results
