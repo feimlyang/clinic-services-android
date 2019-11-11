@@ -1,0 +1,3 @@
+<resources>
+    <integer name="usernameLength">10</integer>
+</resources>

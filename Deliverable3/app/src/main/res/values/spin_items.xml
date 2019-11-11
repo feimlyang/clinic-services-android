@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item>Family</item>
+        <item>Examination</item>
+        <item>Physiotherapy</item>
+        <item>Vaccination</item>
+        <item>SkinCare</item>
+    </string-array>
+
+    <string-array name="subCategory_Family">
+    <item>Internal Medicine</item>
+    <item>Surgery</item>
+    <item>Pediatrics</item>
+    <item>General Consulting</item>
+    </string-array>
+
+    <string-array name="subCategory_Examination">
+        <item>Ultrasound</item>
+        <item>X-ray</item>
+        <item>Blood Test</item>
+    </string-array>
+
+
+    <string-array name="subCategory_Physiotherapy">
+        <item>Magnetic Treatment</item>
+        <item>Massage</item>
+        <item>Sport Injury</item>
+    </string-array>
+
+    <string-array name="subCategory_Vaccination">
+        <item>Flu Shoot</item>
+        <item>Hep B</item>
+
+    </string-array>
+
+
+    <string-array name="subCategory_SkinCare">
+        <item>Acne</item>
+        <item>Tanning</item>
+        <item>Firming</item>
+    </string-array>
+
+
+    <string-array name="rolePerforming">
+        <item>Doctor</item>
+        <item>Nurse</item>
+        <item>Staff</item>
+    </string-array>
+</resources>
