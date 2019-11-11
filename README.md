@@ -8,8 +8,16 @@
 
 [Our Repository](https://github.com/SEG2105-uottawa/seg2x05-project-f19-10.git)
 
-##### Administrator Login Information
-> username: admin | password: 5T5ptQ 
+##### Predefined Administrator Login Information
+> username: admin  
+> password: 5T5ptQ   
+##### Predefined Employee Login Information
+> access code: 1207049  
+> username: imclinic  
+> password: test123  
+> first name: bigapple  
+> last name: bigtree  
+> email: test123@gmail.com  
 
 ## DELIVERABLE 1
 #### Features:
@@ -68,7 +76,21 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 
 
 ## DELIVERABLE 3
+#### Features:(for employee user)
+* Can complete the clinic profile information, includes enter address, phone number, name of the clinic, insurance type and payment method accepted. 
+* Can add services to the profile from a list of services, and employee can select multiple services.
+* Can delete services from the Profile.
+* Can specify clinic working hours. 
+* Can see the list of **their own** working hours. 
+* Can edit working hours. 
+* Developed 2 unit tests: 
 
+| Unit Test 		| Constraints | 
+| :-------------:	| :------------------------------------| 
+| xxx |  xxx |
+| xxx |  xxx |  
+
+Note: employee account is equivalent to clinic profile. Deleting an employee user is the equivalent of deleting a clinic. 
 
 
 
