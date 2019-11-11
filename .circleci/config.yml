@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/seg2x05-project-f19-10/Deliverable2
+    working_directory: ~/seg2x05-project-f19-10
     docker:
       - image: circleci/android:api-28-alpha
     environment:
@@ -21,7 +21,7 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: Run PasswordLengthTest
+          name: Run test
           command: ./gradlew test
       - store_artifacts:
           path: app/build/outputs/apk/debug/
