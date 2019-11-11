@@ -44,11 +44,6 @@ public class MainActivity extends AppCompatActivity {
         userName = getIntent().getStringExtra(getString(R.string.loggedIn_userName));
         accountType = getIntent().getStringExtra(getString(R.string.loggedIn_userType));
 
-        //Log.d("MainActivity",accountType);
-
-        // TODO: Determine which type of HOME FRAGMENT(last updated 2019/11/9)
-        //  后端暂时不用管这里qwq！
-
         // 3. Initialize Navigation Bar
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -56,18 +51,14 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_profile, R.id.nav_logOut)
                 .setDrawerLayout(drawer)
                 .build();
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
     }// end of onCreate()
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-}//end of MainActivity
+}

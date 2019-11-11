@@ -3,22 +3,14 @@ package com.example.a2019_seg2105_project.data;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.a2019_seg2105_project.R;
-import com.example.a2019_seg2105_project.data.model.LoggedInUser;
-import com.example.a2019_seg2105_project.data.model.Service;
-import com.example.a2019_seg2105_project.helpers.HashHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
 
 
 public class UserRepository {

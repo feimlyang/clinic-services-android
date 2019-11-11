@@ -41,7 +41,7 @@
     <string name="invalid_access_code">"The access code is invalid."</string>
 
     <!-- User Accounts -->
-    <string name="username_not_exist">"Service already exists"</string>
+    <string name="username_not_exist">"User specified does not exist."</string>
     <string name="user_deleted">"Service already exists"</string>
     <string name="deleteUser_failed">"Fail to delete user account"</string>
 
@@ -54,6 +54,12 @@
     <string name="editService_failed">"Fail to update service"</string>
     <string name="service_deleted">"Service has been added!"</string>
     <string name="deleteService_failed">"Fail to delete"</string>
+
+    <!-- service validators -->
+    <string name="service_name_invalid">"Service name is invalid"</string>
+    <string name="category_invalid">"Category is invalid"</string>
+    <string name="subcategory_invalid">"SubCategory is invalid"</string>
+    <string name="role_invalid">"Role is invalid"</string>
 
     <!-- Special case: Navigation Bar -->
     <string name="nav_show_profile">"My Profile"</string>

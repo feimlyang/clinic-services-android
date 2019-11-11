@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -14,7 +14,10 @@ import androidx.lifecycle.ViewModelProviders;
 import android.widget.Button;
 
 import com.example.a2019_seg2105_project.R;
-import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.AdminServiceFragment;
+import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.AdminAccountDeleteFragment;
+import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.ServiceAddFragment;
+import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.ServiceDeleteFragment;
+import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.ServiceEditFragment;
 
 /**
  *       AdminMainFragment is the home fragment of administrator account type.
@@ -26,49 +29,76 @@ import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.AdminService
 
 public class AdminMainFragment extends Fragment {
     private AdminMainViewModel adminMainViewModel;
+    private Button serviceAddButton;
+    private Button serviceEditButton;
+    private Button serviceDeleteButton;
+    private Button accountDeleteButton;
 
-        public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState)
-        {
-            //Set View Model
-            View root = inflater.inflate(R.layout.admin_fragment_home, container, false);
-           adminMainViewModel =
-                    ViewModelProviders.of(this).get(AdminMainViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+        ViewGroup container, Bundle savedInstanceState)
+    {
+        container.removeAllViews();
+        //Set View Model
+        View root = inflater.inflate(R.layout.admin_fragment_home, container, false);
+       adminMainViewModel =
+                ViewModelProviders.of(this).get(AdminMainViewModel.class);
 
-            return root;
-        }//end of onCreateView()
+        return root;
+    }//end of onCreateView()
 
-        public void onActivityCreated(Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-
         // Set Buttons
-       final Button serviceEditButton = (Button) getActivity().findViewById(R.id.btn_edit_services);
-       final Button accountEditButton = (Button) getActivity().findViewById(R.id.btn_edit_accounts);
+        serviceAddButton = (Button) getActivity().findViewById(R.id.btn_add_services);
+        serviceEditButton = (Button) getActivity().findViewById(R.id.btn_edit_services);
+        serviceDeleteButton = (Button) getActivity().findViewById(R.id.btn_delete_services);
+        accountDeleteButton = (Button) getActivity().findViewById(R.id.btn_delete_accounts);
         // Set onclick listeners
+        serviceAddButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toServiceFragment(new ServiceAddFragment());
+                }
+            });
         serviceEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.admin_layout_home,new ServiceEditFragment());
+                transaction.commit();
+            }
+        });
+
+        serviceDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                toServiceFragment(new AdminServiceFragment());
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.addToBackStack(null);
+                    transaction.replace(R.id.admin_layout_home,new ServiceDeleteFragment());
+                    transaction.commit();
                 }
             });
-        accountEditButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-
-         }//end of onActivityCreated()
-
+        accountDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.admin_layout_home,new AdminAccountDeleteFragment());
+                transaction.commit();
+            }
+        });
+     }
     //Jump to related fragment
     private void toServiceFragment(Fragment fragment)
     {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        // Replace fragment with current FRAGMENT
         transaction.addToBackStack(null);
         transaction.replace(R.id.admin_layout_home,fragment);
         transaction.commit();
     }
-
 }

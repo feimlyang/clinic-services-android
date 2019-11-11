@@ -3,10 +3,7 @@ package com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.example.a2019_seg2105_project.data.LoginRepository;
 import com.example.a2019_seg2105_project.data.ServiceRepository;
-import com.example.a2019_seg2105_project.ui.clinicApp.login.LoginViewModel;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

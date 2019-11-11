@@ -1,45 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id ="@+id/admin_category_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="25sp" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MergeRootFrame"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_admin_service">
 
-    <!-- Set Subcategory and Services to be initially invisible & not taking spaces-->
-    <TextView
-        android:id ="@+id/admin_sub_category_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
 
-        android:textSize="20sp"
-        android:visibility="gone"
-        />
-
-    <TextView
-        android:id ="@+id/admin_services_item"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/listViewServices"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="a service"
-        android:textSize="15sp"
-        android:visibility="visible"/>
+        android:layout_below="@+id/textView">
+    </ListView>
 
-    <Button
-        android:id="@+id/admin_delete_service"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|end"
-        android:text="@string/admin_deleteServices"
-        android:visibility="visible" />
-</LinearLayout>
+</FrameLayout>
