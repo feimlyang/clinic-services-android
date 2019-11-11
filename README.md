@@ -51,11 +51,12 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 
 ## DELIVERABLE 2
 #### Features:(for admin user)
-* Can delete Employee and Patient Accounts (but cannot create/edit account)
+* Can delete Employee and Patient Accounts by username.
 * Can add, edit and delete Services.
 * Service is stored by key of serviceName, and has three attributes: category, subcategory, rolePerforming.
-
-#### Unit Test:
+  Click on each service in service list to see attribute information. 
+* Integrated with CircleCI.
+* Developed 5 unit tests:
 
 | Unit Test 		| Constraints | 
 | :-------------:	| :------------------------------------| 
@@ -75,5 +76,3 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 
 ### CircleCI
 [![CircleCI](https://circleci.com/gh/SEG2105-uottawa/seg2x05-project-f19-10/tree/master.svg?style=svg&circle-token=dfc8cf14869d1c662016f9038e259c3505c4074a)](https://circleci.com/gh/SEG2105-uottawa/seg2x05-project-f19-10/tree/master)
-
-
