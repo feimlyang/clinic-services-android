@@ -59,13 +59,32 @@ class Clinic{
   String clinicName;
   String clinicAddress;
   String clinicPhoneNum;
-  String insuranceType;
-  String paymentMethod;
-  String workingHours;
+  List insuranceType;
+  List paymentMethod;
+  List workingHours;
+  List avaliableServices;
   * -- * Service;
   1 -- 1 Employee;
-  void editProfile(){}
-  void addService(){}
-  void deleteService(){}
+  void editProfile(Clinic clinic){}
+  void addAvaliableService(Service service){}
+  void deleteAvaliableService(Service service){}
+  void addWrokingHours(){}
   void editWorkingHours(){}
+  void getRating(){}
 }
+
+class Rating{
+   Boolean score;
+   List comments;
+   1 -- 1 Clinic;
+}
+
+class Appointment{
+  Null inDeveloping;
+  1 -- 1 Patient;
+  * -- 1 Clinic;
+  1 -- 0..1 Rating;
+}
+
+
+
