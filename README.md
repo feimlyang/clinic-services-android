@@ -6,7 +6,8 @@
 > * Daniel Xu 300030558
 > * Wen Bin Pang 8882970
 
-[Our Repository](https://github.com/SEG2105-uottawa/seg2x05-project-f19-10.git)
+[Our Repository](https://github.com/SEG2105-uottawa/seg2x05-project-f19-10.git)  
+[Our Firebase](https://console.firebase.google.com/u/0/project/clinicservice-f449a/database/clinicservice-f449a/data)
 
 ##### Predefined Administrator Login Information
 > username: admin  
