@@ -62,12 +62,12 @@ class Clinic{
   List insuranceType;
   List paymentMethod;
   List workingHours;
-  List avaliableServices;
+  List serviceOffered;
   * -- * Service;
   1 -- 1 Employee;
   void editProfile(Clinic clinic){}
-  void addAvaliableService(Service service){}
-  void deleteAvaliableService(Service service){}
+  void addServiceOffered(Service service){}
+  void deleteServiceOffered(Service service){}
   void addWrokingHours(){}
   void editWorkingHours(){}
   void getRating(){}

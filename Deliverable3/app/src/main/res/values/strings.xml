@@ -52,7 +52,7 @@
     <string name="service_not_exist">"Service does not exist"</string>
     <string name="service_updated">"Service has been updated!"</string>
     <string name="editService_failed">"Fail to update service"</string>
-    <string name="service_deleted">"Service has been added!"</string>
+    <string name="service_deleted">"Service has been deleted!"</string>
     <string name="deleteService_failed">"Fail to delete"</string>
 
     <!-- service validators -->
@@ -75,4 +75,13 @@
     <string name="admin_deleteServices">"Delete Service "</string>
     <string name="admin_deleteAccounts">"Delete Account "</string>
     <string name="admin_returnToPrevious">"Return "</string>
+
+    <!-- Clinic Operation-->
+    <string name="clinic_exists">"Service already exists"</string>
+    <string name="serviceOffered_added">"A new service added to clinic!"</string>
+    <string name="addServiceOffered_failed">"Fail to add service to clinic!"</string>
+    <string name="serviceOffered_deleted">"Service has been deleted from clinic!"</string>
+    <string name="deleteServiceOffered_failed">"Fail to delete a service from clinic"</string>
+
+
 </resources>

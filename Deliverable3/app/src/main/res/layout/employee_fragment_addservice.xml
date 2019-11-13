@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:text="Please follow the steps below:"
+            android:text="Search it!"
             android:textColor="#3F51B5" />
 
         <Spinner
