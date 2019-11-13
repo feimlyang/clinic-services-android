@@ -9,32 +9,66 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textViewInstruction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Please enter the available service name: "
+            android:textColor="#FA070000"
+            android:textSize="18sp" />
+
         <EditText
-            android:id="@+id/editTextServiceName"
+            android:id="@+id/editTextEnterName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="50dp"
             android:ems="10"
             android:hint="Enter Service Name"
             android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btn_Deleteservices"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dp"
+            android:text="Add Service" />
+
+        <TextView
+            android:id="@+id/textViewQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:text="Don't know the service name?"
+            android:textColor="#3F51B5" />
+
+        <TextView
+            android:id="@+id/textViewFollowStep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:text="Please follow the steps below:"
+            android:textColor="#3F51B5" />
 
         <Spinner
             android:id="@+id/select_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="50dp"
-            android:entries="@array/category" />
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="50dp" />
 
         <Spinner
             android:id="@+id/select_subcategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="50dp" />
 
         <Spinner
@@ -42,9 +76,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="50dp"
-            android:entries="@array/rolePerforming" />
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="50dp" />
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350dp">
+
+        </SearchView>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="70dp" />
 
     </LinearLayout>
 
@@ -55,20 +101,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_Addservices"
+            android:id="@+id/btn_Return"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:text="Add Service" />
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="150dp"
+            android:text="Return" />
 
-        <Button
-            android:id="@+id/btn_Cancel"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="Cancel" />
     </LinearLayout>
 </FrameLayout>

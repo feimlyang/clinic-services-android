@@ -8,31 +8,90 @@
 
     <!-- Main View :Employee -->
 
-    <Button
-        android:id="@+id/btn_edit_profile"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Clinic Profile" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_add_services"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Services" />
+        <TextView
+            android:id="@+id/textViewList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="30dp"
+            android:text="Select one of buttons to see the list:"
+            android:textColor="#020000"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btn_delete_services"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete Services" />
+        <Button
+            android:id="@+id/btn_profileList"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dp"
+            android:text="Show Clinic Profile"
+            android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/btn_edit_workingHours"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Working Hours" />
+        <Button
+            android:id="@+id/btn_workingHoursList"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="245dp"
+            android:text="Show Working Hours"
+            android:textSize="12sp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="#020000" />
+
+        <TextView
+            android:id="@+id/textViewMainOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="50dp"
+            android:text="Main Options:"
+            android:textColor="#070000"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_edit_profile"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Edit Clinic Profile" />
+
+        <Button
+            android:id="@+id/btn_add_services"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Add Services" />
+
+        <Button
+            android:id="@+id/btn_delete_services"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Delete Services" />
+
+        <Button
+            android:id="@+id/btn_addedit_workingHours"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Add/Edit Working Hours" />
+
+    </LinearLayout>
+
 </LinearLayout>
