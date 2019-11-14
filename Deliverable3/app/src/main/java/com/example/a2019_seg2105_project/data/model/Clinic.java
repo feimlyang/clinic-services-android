@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ClinicProfile {
+public class Clinic {
+    // key
+    public String employeeUsername;
 
     public String clinicName;
     public String clinicAddress;
@@ -13,9 +15,9 @@ public class ClinicProfile {
     public ArrayList<String> workingHours;
     public ArrayList<String> servicesInProfile;
 
-    public ClinicProfile(final String clinicName, final String clinicAddress, final String clinicPhoneNum,
-    final ArrayList<String> insuranceType, final ArrayList<String> paymentMethod, final ArrayList<String> workingHours,
-                         final ArrayList<String> ServicesInProfile){
+    public Clinic(final String clinicName, final String clinicAddress, final String clinicPhoneNum,
+                  final ArrayList<String> insuranceType, final ArrayList<String> paymentMethod, final ArrayList<String> workingHours,
+                  final ArrayList<String> ServicesInProfile){
 
         this.clinicName = clinicName;
         this.clinicAddress = clinicAddress;
