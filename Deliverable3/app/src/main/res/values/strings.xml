@@ -75,4 +75,13 @@
     <string name="admin_deleteServices">"Delete Service "</string>
     <string name="admin_deleteAccounts">"Delete Account "</string>
     <string name="admin_returnToPrevious">"Return "</string>
+
+    <!-- ClinicProfile Operation-->
+    <string name="serviceoffered_exits">"Service already exists in this profile!"</string>
+    <string name="serviceOffered_added">"A new service added to clinic!"</string>
+    <string name="addServiceOffered_failed">"Fail to add service to clinic!"</string>
+    <string name="serviceOffered_deleted">"Service has been deleted from clinic!"</string>
+    <string name="deleteServiceOffered_failed">"Fail to delete a service from clinic"</string>
+
+
 </resources>

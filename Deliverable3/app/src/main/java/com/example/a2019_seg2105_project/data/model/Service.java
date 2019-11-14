@@ -1,13 +1,26 @@
 package com.example.a2019_seg2105_project.data.model;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Service {
     //key
-    public String serviceName;
-
+    public String serviceName = null;
     //attributes
-    //category; subcategroy; rolePerforming
+    public String category = null;
+    public String subcategory = null;
+    public String rolePerforming = null;
+
+    //Construtor
+    public Service(final String serviceName, final String category, final String subcategory, final String rolePerforming) {
+        this.serviceName = serviceName;
+        this.category = category;
+        this.subcategory = subcategory;
+        this.rolePerforming = rolePerforming;
+    }
+
+
+/*
 
     private final ArrayList<String> categoryList;
     private final ArrayList<String> rolePerformingList;
@@ -27,7 +40,7 @@ public class Service {
     private final ArrayList<String> subcategory4;
 
     //Constructor
-    public Service(){
+    private Service(){
         this.categoryList = new ArrayList<String>(){{
             add("Family Medicine"); //subcategory0 <- categoryList[0]
             add("Examination"); //subcategory1
@@ -71,7 +84,9 @@ public class Service {
     }
 
     //Getters
-    /*get category by index*/
+    */
+    /*get category by index*//*
+
     public String getCategory(int n){
         return categoryList.get(n);
     }
@@ -90,7 +105,9 @@ public class Service {
         return null;
     }
 
-    /*get subcategory by give related subcategory, and index of the elem of the subcategroy */
+    */
+    /*get subcategory by give related subcategory, and index of the elem of the subcategroy *//*
+
     public String getSubcategory(ArrayList<String> subcategroy, int n){
         if (subcategroy == null) throw new NullPointerException("category does not exist");
         return subcategroy.get(n);
@@ -100,4 +117,5 @@ public class Service {
         return rolePerformingList.get(n);
     }
 
+*/
 }
