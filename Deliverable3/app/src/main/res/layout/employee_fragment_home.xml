@@ -14,100 +14,6 @@
         android:orientation="vertical">
 
 
-        <TextView
-            android:id="@+id/textViewShowWorkingHoursList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Your clinic profile:"
-            android:textColor="#FC070000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textViewDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Address Name:"
-            android:textColor="#FD050000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textViewShowDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" />
-
-        <TextView
-            android:id="@+id/textViewWorkingHours"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Phone Number:"
-            android:textColor="#FD050000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textViewShowWorkingHours"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" />
-
-        <TextView
-            android:id="@+id/textViewClinicName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Clinic Name:"
-            android:textColor="#090000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textViewShowClinicName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" />
-
-        <TextView
-            android:id="@+id/textViewInsuranceType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Insurance Type:"
-            android:textColor="#FA070000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textViewShowInsuranceType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" />
-
-        <TextView
-            android:id="@+id/textViewPaymentMethod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Payment Method:"
-            android:textColor="#FC020000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textViewShowPaymentMethod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" />
-
-
-
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="30dp"
-            android:background="#020000" />
-
         <Button
             android:id="@+id/btn_edit_profile"
             style="@style/Widget.AppCompat.Button.Colored"
@@ -115,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Edit Clinic Profile" />
+            android:text="COMPLETE THE PROFILE" />
 
         <Button
             android:id="@+id/btn_add_services"
@@ -123,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Add Services" />
+            android:text="ADD SERVICE TO PROFILE" />
 
         <Button
             android:id="@+id/btn_delete_services"
@@ -131,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Delete Services" />
+            android:text="REMOVE SERVICE FROM PROFILE" />
 
         <Button
             android:id="@+id/btn_addedit_workingHours"
@@ -139,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Add/Edit Working Hours" />
+            android:text="REVIEW/EDIT WORKING HOURS" />
 
 
 
