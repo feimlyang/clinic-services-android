@@ -9,8 +9,8 @@ public class ClinicViewModelFactory implements ViewModelProvider.Factory {
     @Override
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(ClinicViewModelFactory.class)) {
-            return (T) new ClinicViewModelFactory(ClinicRepository.getInstance());
+        if (modelClass.isAssignableFrom(ClinicViewModel.class)) {
+            return (T) new ClinicViewModel(ClinicRepository.getInstance());
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

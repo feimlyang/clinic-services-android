@@ -88,5 +88,8 @@
     <string name="profile_updated_failed">"Fail to update clinic profile!"</string>
     <string name="profile_invalid">"Profile is not completed!"</string>
     <string name="getProfileInfo_failed">"Fail to add profile information!"</string>
-    
+    <string name="wrokingHours_updated">"Wrokinghours are updated!"</string>
+    <string name="wrokingHours_updated_failed">"Fail to update workinghours!"</string>
+
+
 </resources>

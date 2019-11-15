@@ -261,42 +261,34 @@ public class ClinicRepository {
                     }
                     else
                     {
+                        //wrap data
                         Map<String, Map<String, Boolean>> dataElem = new HashMap<>();
+                        Map<String, Boolean> timeSlotElem = new HashMap<>();
                         for (String timeSlot : listOfTimeSlot){
-                            Map<String, Boolean> timeSlotElem = new HashMap<>();
                             timeSlotElem.put(timeSlot, true);
                         }
-                        dataElem.put(date, )
+                        dataElem.put(date, timeSlotElem );
 
                         if (!dataSnapshot.child(employeeUsername).hasChild("workingHours")){
                             //workingHours has not been created
-
+                            databaseWorkingHours.setValue("workingHours", dataElem);
                         }
                         else {
                             DatabaseReference fromWorkingHours = databaseWorkingHours.child("workingHours");
-                            if (!dataSnapshot.child("workingHours").hasChild(date))
-                            {
-                                //workinghours does not created under this date
-                                liveDataWorkingHours.setValue(new Result.Failure(R.string.profile_invalid));
-                            } else {
-                                //reaset workinghours under this date
-
-
-                                liveDataWorkingHours.setValue(new Result.Success(R.string.profile_updated));
-                            }
+                            fromWorkingHours.setValue(dataElem);
                         }
-
+                        liveDataWorkingHours.setValue(new Result.Success(R.string.wrokingHours_updated));
                     }
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    liveDataWorkingHours.setValue(new Result.Failure(R.string.profile_updated_failed));
+                    liveDataWorkingHours.setValue(new Result.Failure(R.string.wrokingHours_updated_failed));
                 }
             });
         }
         catch(Exception e)
         {
-            liveDataWorkingHours.setValue(new Result.Failure(R.string.profile_updated_failed));
+            liveDataWorkingHours.setValue(new Result.Failure(R.string.wrokingHours_updated_failed));
         }
         return liveDataWorkingHours;
 
