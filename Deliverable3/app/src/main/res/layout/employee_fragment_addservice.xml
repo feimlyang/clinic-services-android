@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/empoyee_layout_addservice"
+    android:id="@+id/employee_layout_addservice"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,13 +14,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView">
         </ListView>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/serviceListReturnButton"
-            android:layout_gravity="center"
-            android:text="Return">
-        </Button>
     </LinearLayout>
 
 

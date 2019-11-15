@@ -27,6 +27,10 @@ public class ClinicViewModel extends ViewModel {
     public MediatorLiveData<Result> setWorkingHoursData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getWorkingHoursData = new MediatorLiveData<>();
     public MutableLiveData<ClinicFormState> clinicFormState = new MutableLiveData<ClinicFormState>();
+    public LiveData<Result> getServicesListLiveData()
+    {
+        return getServicesOfferedListData;
+    }
 
     public ClinicViewModel(ClinicRepository repo)
     {
