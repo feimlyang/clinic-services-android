@@ -140,11 +140,11 @@ public class ClinicRepository {
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    liveDataServicelist.setValue(new Result.Error(new IOException("Failed to get service list in the profile")));
+                    liveDataServicelist.setValue(new Result.Failure(R.string.getserviceOffered_failed));
                 }
             });
         } catch (Exception e) {
-            liveDataServicelist.setValue(new Result.Error(new IOException("Failed to get service list in the profile")));
+            liveDataServicelist.setValue(new Result.Failure(R.string.getserviceOffered_failed));
         }
         return liveDataServicelist;
     }
@@ -320,13 +320,13 @@ public class ClinicRepository {
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    liveDataWorkingHoursList.setValue(new Result.Failure(R.string.profile_updated_failed));
+                    liveDataWorkingHoursList.setValue(new Result.Failure(R.string.getwrokingHours_failed));
                 }
             });
         }
         catch(Exception e)
         {
-            liveDataWorkingHoursList.setValue(new Result.Failure(R.string.profile_updated_failed));
+            liveDataWorkingHoursList.setValue(new Result.Failure(R.string.getwrokingHours_failed));
         }
         return liveDataWorkingHoursList;
 

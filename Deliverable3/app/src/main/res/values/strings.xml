@@ -79,7 +79,6 @@
     <!-- Clinic Operation-->
 
     <string name="serviceoffered_exits">"Service already exists in this profile!"</string>
-    <string name="clinic_exists">"Service already exists"</string>
     <string name="serviceOffered_added">"A new service added to clinic!"</string>
     <string name="addServiceOffered_failed">"Fail to add service to clinic!"</string>
     <string name="serviceOffered_deleted">"Service has been deleted from clinic!"</string>
@@ -90,6 +89,13 @@
     <string name="getProfileInfo_failed">"Fail to add profile information!"</string>
     <string name="wrokingHours_updated">"Wrokinghours are updated!"</string>
     <string name="wrokingHours_updated_failed">"Fail to update workinghours!"</string>
+    <string name="getwrokingHours_failed">"Fail to get workinghours!"</string>
+    <string name="getserviceOffered_failed">"Fail to get services offered in the profile!"</string>
+
+
+
+
+
 
 
 </resources>
