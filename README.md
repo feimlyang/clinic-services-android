@@ -6,7 +6,8 @@
 > * Daniel Xu 300030558
 > * Wen Bin Pang 8882970
 
-[Our Repository](https://github.com/SEG2105-uottawa/seg2x05-project-f19-10.git)
+[Our Repository](https://github.com/SEG2105-uottawa/seg2x05-project-f19-10.git)  
+[Our Firebase](https://console.firebase.google.com/u/0/project/clinicservice-f449a/database/clinicservice-f449a/data)
 
 ##### Predefined Administrator Login Information
 > username: admin  
@@ -61,8 +62,7 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 #### Features:(for admin user)
 * Can delete Employee and Patient Accounts by username.
 * Can add, edit and delete Services.
-* Service is stored by key of serviceName, and has three attributes: category, subcategory, rolePerforming.
-  Click on each service in service list to see attribute information. 
+* Service is stored by key of serviceName, and has three attributes: category, subcategory, rolePerforming.  **CLICK** on each service in **service list** to see attribute information.
 * Integrated with CircleCI.
 * Developed 5 unit tests:
 
