@@ -295,7 +295,7 @@ public class ClinicRepository {
     }
 
     /*get working hours list in a give date*/
-    public  LiveData getWorkingHours(final String employeeUsername, final String date){
+    public  LiveData<Result> getWorkingHours(final String employeeUsername, final String date){
         final DatabaseReference databaseWorkingHours;
         final MutableLiveData<Result> liveDataWorkingHoursList = new MutableLiveData<>();
 

@@ -19,21 +19,23 @@ public class ClinicViewModel extends ViewModel {
 
     private ClinicRepository clinicRepository;
 
-    private MediatorLiveData<Result> addServiceToProfileData = new MediatorLiveData<>();
-    private MediatorLiveData<Result> deleteServiceFromProfileData = new MediatorLiveData<>();
-    private MediatorLiveData<Result> setClinicProfileData = new MediatorLiveData<>();
-    private MediatorLiveData<Result> setWorkingHoursData = new MediatorLiveData<>();
-    private MediatorLiveData<ArrayList<String>> getServicesOfferedListData = new MediatorLiveData<>();
-    private MediatorLiveData<ArrayList<String>> getProfileInfoData = new MediatorLiveData<>();
-    private MediatorLiveData<ArrayList<String>> getWorkingHoursData = new MediatorLiveData<>();
-    private MutableLiveData<ClinicFormState> clinicFormState = new MutableLiveData<ClinicFormState>();
+    public MediatorLiveData<Result> addServiceToProfileData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> deleteServiceFromProfileData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> getServicesOfferedListData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> setClinicProfileData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> getProfileInfoData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> setWorkingHoursData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> getWorkingHoursData = new MediatorLiveData<>();
+    public MutableLiveData<ClinicFormState> clinicFormState = new MutableLiveData<ClinicFormState>();
 
     public ClinicViewModel(ClinicRepository repo)
     {
         this.clinicRepository = repo;
     }
-    public LiveData<ClinicFormState> getServiceFormState(){ return clinicFormState;}
 
+
+    /* add new service to clinic Profile by service Name, those services are created by admin user
+     * too lookup attributes in each service, use the method in ServiceRepo*/
     public void addServiceToProfile(String employeeUsername, String serviceName)
     {
         final LiveData<Result> resultLiveData = clinicRepository.addServiceToProfile(employeeUsername.toLowerCase(), serviceName.toLowerCase());
@@ -47,6 +49,87 @@ public class ClinicViewModel extends ViewModel {
         });
     }
 
+    /*Delete service from clinic profile, delete by service name */
+    public void deleteServiceFromProfile(String employeeUsername, String serviceName){
+        final LiveData<Result> resultLiveData = clinicRepository.deleteServiceFromProfile(employeeUsername.toLowerCase(), serviceName.toLowerCase());
+        this.deleteServiceFromProfileData.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                deleteServiceFromProfileData.removeSource(resultLiveData);
+                deleteServiceFromProfileData.setValue(result);
+                deleteServiceFromProfileData.setValue(null);
+            }
+        });
+    }
 
+    /*get all services that already added into profile in a list*/
+    public void getServicesOfferedList(String employeeUsername){
+        final LiveData<Result> resultLiveData = clinicRepository.getServicesOfferedList(employeeUsername.toLowerCase());
+        this.getServicesOfferedListData.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                getServicesOfferedListData.removeSource(resultLiveData);
+                getServicesOfferedListData.setValue(result);
+                getServicesOfferedListData.setValue(null);
+            }
+        });
+
+    }
+
+    /*set or reset profile */
+    public void setClinicProfile(String employeeUsername, String clinicName, String clinicAddress, String clinicPhoneNum,
+                      ArrayList<String> insuranceType, ArrayList<String> paymentMethod ){
+        final LiveData<Result> resultLiveData = clinicRepository.setClinicProfile(employeeUsername.toLowerCase(), clinicName.toLowerCase(),
+                clinicAddress.toLowerCase(), clinicPhoneNum.toLowerCase(),insuranceType,paymentMethod);
+        this.setClinicProfileData.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                setClinicProfileData.removeSource(resultLiveData);
+                setClinicProfileData.setValue(result);
+                setClinicProfileData.setValue(null);
+            }
+        });
+
+    }
+
+    /*get profile by give employee username if the profile is already set under this user
+     * subKey could be either:clinicName, clinicAddress, clinicPhoneNum, insuranceType, paymentMethod */
+    public void getProfileInfo(String employeeUsername, String subKey){
+        final LiveData<Result> resultLiveData = clinicRepository.getProfileInfo(employeeUsername.toLowerCase(), subKey);
+        this.getProfileInfoData.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                getProfileInfoData.removeSource(resultLiveData);
+                getProfileInfoData.setValue(result);
+                getProfileInfoData.setValue(null);
+            }
+        });
+    }
+
+
+    public void setWorkingHours(String employeeUsername, String date,  ArrayList<String> listOfTimeSlot){
+        final LiveData<Result> resultLiveData = clinicRepository.setWorkingHours(employeeUsername.toLowerCase(), date, listOfTimeSlot);
+        this.setWorkingHoursData.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                setWorkingHoursData.removeSource(resultLiveData);
+                setWorkingHoursData.setValue(result);
+                setWorkingHoursData.setValue(null);
+            }
+        });
+
+    }
+    public void getWorkingHours(String employeeUsername, String date){
+        final LiveData<Result> resultLiveData = clinicRepository.getWorkingHours(employeeUsername.toLowerCase(), date);
+        this.getWorkingHoursData.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                getWorkingHoursData.removeSource(resultLiveData);
+                getWorkingHoursData.setValue(result);
+                getWorkingHoursData.setValue(null);
+            }
+        });
+
+    }
 
 }
