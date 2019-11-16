@@ -32,6 +32,7 @@ import java.util.List;
 
 public class ProfileCompleteFragment extends Fragment {
 
+
     private Button updateButton;
     private Button confirmButton;
     private Button returnButton;

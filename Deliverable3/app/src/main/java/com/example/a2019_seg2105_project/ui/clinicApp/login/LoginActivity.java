@@ -23,6 +23,8 @@ import com.example.a2019_seg2105_project.R;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+
+import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 import com.example.a2019_seg2105_project.helpers.HashHelper;
 /**
  * LoginActivity is the class that inspects and responds to change on UI on login page.
@@ -36,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     // Inspect UI
     private LoginViewModel loginViewModel;
     // UI fields
-    private EditText userEmail;
+    private EditText userName;
     private EditText userPassword;
 
     @Override
@@ -48,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
         // Initialize: associte UI
-        userEmail = findViewById(R.id.username);
+        userName = findViewById(R.id.username);
         userPassword = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final Button cancelButton = findViewById(R.id.cancelLogin);
@@ -64,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginButton.setEnabled(loginFormState.isDataValid());
 
                 if (loginFormState.getUsernameError() != null) {
-                    userEmail.setError(getString(loginFormState.getUsernameError()));
+                    userName.setError(getString(loginFormState.getUsernameError()));
                 }
                 if (loginFormState.getPasswordError() != null) {
                     userPassword.setError(getString(loginFormState.getPasswordError()));
@@ -85,6 +87,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                     setResult(Activity.RESULT_OK, getIntent());
+
+                    //successfully logged in, save username in globalObj helper
+                    GlobalObjectManager saveUsername = GlobalObjectManager.getInstance();
+                    saveUsername.setCurrentUsername(new String(userName.toString()));
+
                     // back to Init Activity
                     finish();
                 }
@@ -105,11 +112,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(userEmail.getText().toString(),
+                loginViewModel.loginDataChanged(userName.getText().toString(),
                         userPassword.getText().toString());
             }
         };
-        userEmail.addTextChangedListener(afterTextChangedListener);
+        userName.addTextChangedListener(afterTextChangedListener);
         userPassword.addTextChangedListener(afterTextChangedListener);
 
 /*
@@ -125,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                 String hashedPassword = HashHelper.hash(userPassword.getText().toString());
                 if(null == hashedPassword)
                     hashedPassword = userPassword.getText().toString();
-                loginViewModel.login(userEmail.getText().toString().toLowerCase(), hashedPassword);
+                loginViewModel.login(userName.getText().toString().toLowerCase(), hashedPassword);
             }
         });
 /*
