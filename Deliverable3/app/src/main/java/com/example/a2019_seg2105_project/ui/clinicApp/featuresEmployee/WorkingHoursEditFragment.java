@@ -27,5 +27,69 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
-public class WorkingHoursEditFragment extends Fragment {
+//public class WorkingHoursEditFragment extends Fragment {
+
+    private Button editButton;
+    private Button confirmButton;
+    private Button returnButton;
+    private ClinicViewModel serviceViewModel;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState)
+    {
+        container.removeAllViews();
+        serviceViewModel = ViewModelProviders.of(this, new ClinicViewModelFactory()).get(ClinicViewModel.class);
+        View root = inflater.inflate(R.layout.employee_fragment_editworkinghours, container, false);
+        return root;
+    }
+
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        // Set Buttons
+        editButton = (Button) getActivity().findViewById(R.id.btn_Complete);
+        confirmButton = (Button) getActivity().findViewById(R.id.btn_confirm_workingHours);
+        returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
+
+
+
+        // Set onclick listeners
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toServiceFragment(new ServiceAddFragment());
+            }
+        });
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.employee_layout_workingHours,new WorkingHoursEditFragment());
+                transaction.commit();
+            }
+        });
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.employee_layout_workingHours,new ServiceDeleteFragment());
+                transaction.commit();
+            }
+        });
+
+    }
+    private void toServiceFragment(Fragment fragment)
+    {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.employee_layout_workingHours,fragment);
+        transaction.commit();
+    }
+
+
 }

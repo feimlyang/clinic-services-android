@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_employee_editProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -60,38 +61,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipUHIP"
+                <CheckBox
+                    android:id="@+id/checkUHIP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="50dp"
+                    android:onClick="selectInsurance"
                     android:text="UHIP" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipOHIP"
+                <CheckBox
+                    android:id="@+id/checkOHIP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
+                    android:onClick="selectInsurance"
                     android:text="OHIP" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipPrivateInsurance"
+                <CheckBox
+                    android:id="@+id/checkPrivateInsurance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="50dp"
+                    android:onClick="selectInsurance"
                     android:text="Private Insurance" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipNoInsurance"
+                <CheckBox
+                    android:id="@+id/checkNoInsurance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="50dp"
+                    android:onClick="selectInsurance"
                     android:text="No Insurance" />
 
                 <TextView
@@ -105,31 +110,34 @@
                     android:textColor="#020000"
                     android:textSize="18sp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCash"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="50dp"
-                    android:text="Cash" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipDebit"
+                <CheckBox
+                    android:id="@+id/checkCash"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="50dp"
-                    android:text="Debit Card" />
+                    android:onClick="selectPayment"
+                    android:text="Cash" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCredit"
-                    android:layout_width="wrap_content"
+                <CheckBox
+                    android:id="@+id/checkDebitCard"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="50dp"
+                    android:onClick="selectPayment"
+                    android:text="Debit Card" />
+
+                <CheckBox
+                    android:id="@+id/checkCreditCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="50dp"
+                    android:onClick="selectPayment"
                     android:text="Credit Card" />
 
             </com.google.android.material.chip.ChipGroup>
@@ -147,8 +155,8 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:text="Update" />
 
             <Button
@@ -156,8 +164,8 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:text="Confirm" />
 
             <Button
