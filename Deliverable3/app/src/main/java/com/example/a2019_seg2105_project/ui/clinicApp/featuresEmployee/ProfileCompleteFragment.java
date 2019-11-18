@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.EmployeeMainFragment;
+import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class ProfileCompleteFragment extends Fragment {
     private CheckBox checkNoInsurance;
     ArrayList<String> selectionInsurance = new ArrayList<String>();
     ArrayList<String> selectionPayment = new ArrayList<String>();
+    GlobalObjectManager helper = GlobalObjectManager.getInstance();
+
 
     private ClinicViewModel clinicViewModel;
 
@@ -68,23 +71,22 @@ public class ProfileCompleteFragment extends Fragment {
         confirmButton = getActivity().findViewById(R.id.btn_confirmprofile);
         updateButton = getActivity().findViewById(R.id.btn_updateprofile);
 
-//need to be modified!!!
         confirmButton.setEnabled(false);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clinicViewModel.setClinicProfile(,clinicNameFilling.getText().toString(),
+                clinicViewModel.setClinicProfile(helper.getCurrentUsername(),clinicNameFilling.getText().toString(),
                         addressNameFilling.getText().toString(),
                         phoneNumberFilling.getText().toString(),
                         selectionInsurance,selectionPayment);
             }
         });
-//need to be modified!!!
+
         updateButton.setEnabled(false);
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clinicViewModel.setClinicProfile(,clinicNameFilling.getText().toString(),
+                clinicViewModel.setClinicProfile(helper.getCurrentUsername(),clinicNameFilling.getText().toString(),
                         addressNameFilling.getText().toString(),
                         phoneNumberFilling.getText().toString(),
                         selectionInsurance,selectionPayment);

@@ -23,6 +23,7 @@
         <activity android:name=".ui.clinicApp.login.LoginActivity" > </activity>
         <!-- Register Main Activities -->
         <activity android:name=".ui.clinicApp.MainActivity" > </activity>
+        <activity android:name=".ui.clinicApp.featuresEmployee.EmployeeMainFragment"></activity>
     </application>
 
 </manifest>

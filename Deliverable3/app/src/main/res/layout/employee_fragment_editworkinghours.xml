@@ -20,6 +20,15 @@
             android:textColor="#020000"
             android:textSize="18sp" />
 
+        <TextView
+            android:id="@+id/textViewSelectedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="105dp"
+            android:layout_marginRight="105dp"
+            android:text="0000/00/00" />
+
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
@@ -43,64 +52,75 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp">
 
-            <com.google.android.material.chip.Chip
+
+            <CheckBox
                 android:id="@+id/time1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="08:00-09:00" />
 
-            <com.google.android.material.chip.Chip
+            <CheckBox
                 android:id="@+id/time2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="09:00-10:00" />
 
-            <com.google.android.material.chip.Chip
+            <CheckBox
                 android:id="@+id/time3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="10:00-11:00" />
 
-            <com.google.android.material.chip.Chip
+            <CheckBox
                 android:id="@+id/time4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="11:00-12:00" />
 
-            <com.google.android.material.chip.Chip
+            <CheckBox
                 android:id="@+id/time5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="12:00-13:00" />
 
-            <com.google.android.material.chip.Chip
+            <CheckBox
                 android:id="@+id/time6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="13:00-14:00" />
 
-            <com.google.android.material.chip.Chip
+            <CheckBox
                 android:id="@+id/time7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="14:00-15:00" />
 
-            <com.google.android.material.chip.Chip
+            <CheckBox
                 android:id="@+id/time8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="15:00-16:00" />
 
-            <com.google.android.material.chip.Chip
+            <CheckBox
                 android:id="@+id/time9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="16:00-17:00" />
 
-            <com.google.android.material.chip.Chip
+            <CheckBox
                 android:id="@+id/time10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="selectTime"
                 android:text="17:00-18:00" />
         </com.google.android.material.chip.ChipGroup>
 
@@ -117,7 +137,8 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:text="EDIT" />
 

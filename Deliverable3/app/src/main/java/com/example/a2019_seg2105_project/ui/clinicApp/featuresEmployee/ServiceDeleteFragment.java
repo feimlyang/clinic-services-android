@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.EmployeeMainFragment;
+import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -47,6 +48,7 @@ public class ServiceDeleteFragment extends Fragment {
     private ListView listOfServices;
     private List<Map<String, String>> servicesAttributes;
     private List<String> services;
+    GlobalObjectManager helper = GlobalObjectManager.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
@@ -65,37 +67,37 @@ public class ServiceDeleteFragment extends Fragment {
         returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
         clinicViewModel.getServicesListLiveData().observe(this, new Observer<Result>() {
             @Override
-//            public void onChanged(Result result) {
-//                if(result == null) return;
-//                services.clear();
-//                servicesAttributes.clear();
-//                if(result instanceof Result.Failure || result instanceof Result.Error)
-//                {
-//                    Toast.makeText(getContext(), "Failed to list all services.", Toast.LENGTH_SHORT).show();
-//                }
-//                else
-//                {
-//                    Result.Success<Map<String, Map<String, String>>> services_map;
-//                    try{
-//                        services_map  = (Result.Success<Map<String, Map<String, String>>>)(result);
-//
-//                    }catch (Exception e)
-//                    {
-//                        Map<String, Map<String, String>> emptyMap = new HashMap<>();
-//                        services_map = new Result.Success<Map<String, Map<String, String>>>(emptyMap);
-//                    }
-//                    Map<String, Map<String, String>> resultMap = services_map.getData();
-//                    for(String key : resultMap.keySet())
-//                    {
-//                        services.add(key);
-//                        servicesAttributes.add(resultMap.get(key));
-//                    }
-//                }
-//                ArrayAdapter<String> adapter = new ArrayAdapter<String>( getContext(), android.R.layout.simple_list_item_1, services);
-//                listOfServices.setAdapter(adapter);
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
+            public void onChanged(Result result) {
+                if(result == null) return;
+                services.clear();
+                servicesAttributes.clear();
+                if(result instanceof Result.Failure || result instanceof Result.Error)
+                {
+                    Toast.makeText(getContext(), "Failed to list all services.", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Result.Success<Map<String, Map<String, String>>> services_map;
+                    try{
+                        services_map  = (Result.Success<Map<String, Map<String, String>>>)(result);
+
+                    }catch (Exception e)
+                    {
+                        Map<String, Map<String, String>> emptyMap = new HashMap<>();
+                        services_map = new Result.Success<Map<String, Map<String, String>>>(emptyMap);
+                    }
+                    Map<String, Map<String, String>> resultMap = services_map.getData();
+                    for(String key : resultMap.keySet())
+                    {
+                        services.add(key);
+                        servicesAttributes.add(resultMap.get(key));
+                    }
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>( getContext(), android.R.layout.simple_list_item_1, services);
+                listOfServices.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         listOfServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -135,7 +137,7 @@ public class ServiceDeleteFragment extends Fragment {
                 transaction.commit();
             }
         });
-        clinicViewModel.getServicesOfferedList();
+        clinicViewModel.getServicesOfferedList(helper.getCurrentUsername());
     }
 
 

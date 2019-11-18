@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.EmployeeMainFragment;
+import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +41,7 @@ public class ServiceAddFragment extends Fragment {
     private List<String> services;
     private Button returnButton;
     private ClinicViewModel serviceViewModel;
-    private ClinicViewModel addServiceViewModel;
+    GlobalObjectManager helper = GlobalObjectManager.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
@@ -104,6 +105,7 @@ public class ServiceAddFragment extends Fragment {
                         Toast.makeText(getContext(), "Added!", Toast.LENGTH_SHORT).show();
                     }
                 } );
+                serviceViewModel.addServiceToProfile(helper.getCurrentUsername(),serviceName);
 
                 dialogBuilder.setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
                     @Override
@@ -129,7 +131,7 @@ public class ServiceAddFragment extends Fragment {
                 transaction.commit();
             }
         });
-        serviceViewModel.getServicesOfferedList();
+        serviceViewModel.getServicesOfferedList(helper.getCurrentUsername());
     }
 
 

@@ -26,6 +26,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
+
+import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.EmployeeMainFragment;
 import com.example.a2019_seg2105_project.ui.clinicApp.login.LoggedInUserView;
 import com.example.a2019_seg2105_project.ui.clinicApp.login.LoginActivity;
 import com.example.a2019_seg2105_project.ui.clinicApp.register.RegisterActivity;
@@ -100,7 +102,7 @@ public class InitActivity extends AppCompatActivity {
         if (requestCode == PICK_LOGIN_RESULT)
         {
             // Make sure the request was successful
-            if (resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 //1. Make original interface dissapear gradually
                 loginButton.setVisibility(View.GONE); //set Gone to free-up space
                 registerButton.setVisibility(View.GONE);
@@ -109,16 +111,17 @@ public class InitActivity extends AppCompatActivity {
                 String userName = " "; //
                 String accountType = ""; //
                 // Show the logged-in user's information
-               final Serializable userSerialization = data.getSerializableExtra(getString(R.string.logged_in_user));
-                if(null != userSerialization)
-                {
-                    LoggedInUserView user = (LoggedInUserView)userSerialization;
+                final Serializable userSerialization = data.getSerializableExtra(getString(R.string.logged_in_user));
+                if (null != userSerialization) {
+                    LoggedInUserView user = (LoggedInUserView) userSerialization;
                     userName = user.getDisplayName();
                     accountType = user.getRole();
                 }
-                welcomeMessage.setText("Welcome " + userName + " ! You are logged in as "+ accountType +" ." +
-                        "The system will jump Main page in 2 seconds...");
+                welcomeMessage.setText("Welcome " + userName + " ! You are logged in as " + accountType + "." +
+                        " The system will jump Main page in 2 seconds...");
                 welcomeMessage.setVisibility(View.VISIBLE);
+
+
 
                 // Jump to Main Page after few seconds
                 new Handler().postDelayed(new Runnable() {
@@ -127,7 +130,7 @@ public class InitActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(InitActivity.this, MainActivity.class);
                         //Pass user information to Main
-                        //TODO: pass user inforamtion to Main
+                        //TODO: pass user information to Main
                         LoggedInUserView user = (LoggedInUserView)userSerialization;
                         intent.putExtra(getString(R.string.loggedIn_userName),user.getDisplayName());
                         intent.putExtra(getString(R.string.loggedIn_userType),user.getRole());
