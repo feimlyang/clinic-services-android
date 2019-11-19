@@ -121,8 +121,6 @@ public class InitActivity extends AppCompatActivity {
                         " The system will jump Main page in 2 seconds...");
                 welcomeMessage.setVisibility(View.VISIBLE);
 
-
-
                 // Jump to Main Page after few seconds
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -132,6 +130,7 @@ public class InitActivity extends AppCompatActivity {
                         //Pass user information to Main
                         //TODO: pass user information to Main
                         LoggedInUserView user = (LoggedInUserView)userSerialization;
+                        //Pass information about username/usertype to the intent to be jumped
                         intent.putExtra(getString(R.string.loggedIn_userName),user.getDisplayName());
                         intent.putExtra(getString(R.string.loggedIn_userType),user.getRole());
                         startActivity(intent);
