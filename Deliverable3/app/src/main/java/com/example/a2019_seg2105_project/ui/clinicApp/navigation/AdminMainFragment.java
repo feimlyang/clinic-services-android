@@ -39,7 +39,7 @@ public class AdminMainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
         ViewGroup container, Bundle savedInstanceState)
     {
-        //container.removeAllViews();
+        container.removeAllViews();
         //Set View Model
         View root = inflater.inflate(R.layout.admin_fragment_home, container, false);
        adminMainViewModel =
