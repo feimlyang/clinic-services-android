@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         userName = getIntent().getStringExtra(getString(R.string.loggedIn_userName));
         accountType = getIntent().getStringExtra(getString(R.string.loggedIn_userType));
 
-        Log.d("MainActivity",accountType);
         FragmentTransaction fragmentTransaction  = this.getSupportFragmentManager().beginTransaction();
 
         // Depending on user type, load different fragment
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         {
             AdminMainFragment adminHome = new AdminMainFragment();
             adminHome.setArguments(getIntent().getExtras());
-            fragmentTransaction.replace(R.id.main_fragment, adminHome);
+            fragmentTransaction.add(R.id.main_fragment, adminHome);
 
             fragmentTransaction.commit();
 
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         else if(accountType.equals("employee")){
             EmployeeMainFragment employeeHome = new EmployeeMainFragment();
             employeeHome.setArguments(getIntent().getExtras());
-            fragmentTransaction.add(R.id.main_fragment, new EmployeeMainFragment());
+            fragmentTransaction.add(R.id.main_fragment, employeeHome);
 
         }
         else
