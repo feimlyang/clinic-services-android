@@ -87,8 +87,8 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 
 | Unit Test 		| Constraints | 
 | :-------------:	| :------------------------------------| 
-| xxx |  xxx |
-| xxx |  xxx |  
+| RegisteredNameLengthTest |  The length of username should not be bigger than 10 when register. Username should not be null and should not have space when register. The length of username can be exactly 10 when register. |
+| PasswordWithinRangeTest |  The length of password should not be bigger than 16 and smaller than 5. The length of password can be exactly 5 or 16. |  
 
 Note: employee account is equivalent to clinic profile. Deleting an employee user is the equivalent of deleting a clinic. 
 

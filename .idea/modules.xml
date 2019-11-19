@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/seg2x05-project-f19-10.iml" filepath="$PROJECT_DIR$/seg2x05-project-f19-10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/seg2x05-project-f19-10.iml" filepath="$PROJECT_DIR$/seg2x05-project-f19-10.iml" group="seg2x05-project-f19-10" />
     </modules>
   </component>
 </project>
