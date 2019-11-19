@@ -112,6 +112,7 @@ public class ServiceDeleteFragment extends Fragment {
                         Toast.makeText(getContext(), "Deleted!", Toast.LENGTH_SHORT).show();
                     }
                 } );
+                clinicViewModel.deleteServiceFromProfile(helper.getCurrentUsername(),serviceName);
 
                 dialogBuilder.setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
                     @Override

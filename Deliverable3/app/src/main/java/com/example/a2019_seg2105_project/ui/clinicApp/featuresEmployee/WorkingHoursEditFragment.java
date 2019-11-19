@@ -70,7 +70,7 @@ public class WorkingHoursEditFragment extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int day) {
-               String dateSelected = year + "/" + month + "/" + day;
+               String dateSelected = year + "/" + (month +1) + "/" + day;
                myDate.setText(dateSelected);
 //               serviceViewModel.getWorkingHours(helper.getCurrentUsername(), dateSelected);
             }
@@ -79,7 +79,7 @@ public class WorkingHoursEditFragment extends Fragment {
 //        editButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                toServiceFragment(new ServiceAddFragment());
+//                toServiceFragment(new AddServiceFragment());
 //            }
 //        });
         confirmButton.setEnabled(false);
@@ -96,7 +96,7 @@ public class WorkingHoursEditFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
-                transaction.replace(R.id.employee_layout_workingHours,new ServiceDeleteFragment());
+                transaction.replace(R.id.employee_layout_workingHours,new EmployeeMainFragment());
                 transaction.commit();
             }
         });

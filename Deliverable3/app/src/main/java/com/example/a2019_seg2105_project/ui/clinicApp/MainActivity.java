@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
             employeeHome.setArguments(getIntent().getExtras());
             fragmentTransaction.add(R.id.main_fragment, employeeHome);
 
+            fragmentTransaction.commit();
+
         }
         else
         {

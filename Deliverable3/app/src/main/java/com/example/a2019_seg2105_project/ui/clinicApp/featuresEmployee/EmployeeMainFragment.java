@@ -14,15 +14,12 @@ import androidx.lifecycle.ViewModelProviders;
 import android.widget.Button;
 
 import com.example.a2019_seg2105_project.R;
-import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.ServiceDeleteFragment;
-import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.ServiceAddFragment;
-import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.ProfileCompleteFragment;
-import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.WorkingHoursEditFragment;
 
 
 public class EmployeeMainFragment extends Fragment {
 
     private ClinicViewModel clinicViewModel;
+    private EmployeeMainViewModel employeeMainViewModel;
     private Button serviceDeleteButton;
     private Button profileCompleteButton;
     private Button serviceAddButton;
@@ -34,8 +31,8 @@ public class EmployeeMainFragment extends Fragment {
         container.removeAllViews();
         //Set View Model
         View root = inflater.inflate(R.layout.employee_fragment_home, container, false);
-        clinicViewModel =
-                ViewModelProviders.of(this).get(ClinicViewModel.class);
+        employeeMainViewModel =
+                ViewModelProviders.of(this).get(EmployeeMainViewModel.class);
 
         return root;
     }//end of onCreateView()
@@ -51,7 +48,11 @@ public class EmployeeMainFragment extends Fragment {
         serviceAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toServiceFragment(new ServiceAddFragment());
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.employee_layout_home,new AddServiceFragment());
+                transaction.commit();
             }
         });
         workingHoursEditButton.setOnClickListener(new View.OnClickListener() {

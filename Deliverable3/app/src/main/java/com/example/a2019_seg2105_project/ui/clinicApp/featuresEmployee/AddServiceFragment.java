@@ -35,7 +35,7 @@ import java.util.Map;
 
 
 
-public class ServiceAddFragment extends Fragment {
+public class AddServiceFragment extends Fragment {
     private ListView listOfServices;
     private List<Map<String, String>> servicesAttributes;
     private List<String> services;
