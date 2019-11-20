@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="50dp"
             android:text="Select Working Date:"
             android:textColor="#020000"
@@ -31,8 +31,8 @@
 
         <CalendarView
             android:id="@+id/calendarView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="307dp"
+            android:layout_height="301dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp" />
 
@@ -48,7 +48,7 @@
 
         <com.google.android.material.chip.ChipGroup
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp">
 
@@ -58,106 +58,115 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="08:00-09:00" />
+                android:text="08:00-09:00"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/time2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="09:00-10:00" />
+                android:text="09:00-10:00"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/time3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="10:00-11:00" />
+                android:text="10:00-11:00"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/time4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="11:00-12:00" />
+                android:text="11:00-12:00"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/time5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="12:00-13:00" />
+                android:text="12:00-13:00"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/time6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="13:00-14:00" />
+                android:text="13:00-14:00"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/time7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="14:00-15:00" />
+                android:text="14:00-15:00"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/time8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="15:00-16:00" />
+                android:text="15:00-16:00"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/time9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="16:00-17:00" />
+                android:text="16:00-17:00"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/time10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selectTime"
-                android:text="17:00-18:00" />
+                android:text="17:00-18:00"
+                android:textSize="14sp" />
         </com.google.android.material.chip.ChipGroup>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_Complete"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="10dp"
+                android:text="EDIT" />
+
+            <Button
+                android:id="@+id/btn_confirm_workingHours"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="CONFIRM" />
+
+            <Button
+                android:id="@+id/btn_Return"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:text="RETURN" />
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_Complete"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:text="EDIT" />
-
-        <Button
-            android:id="@+id/btn_confirm_workingHours"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="20dp"
-            android:text="CONFIRM" />
-
-        <Button
-            android:id="@+id/btn_Return"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
-            android:layout_marginBottom="20dp"
-            android:text="RETURN" />
-    </LinearLayout>
 </FrameLayout>
