@@ -131,7 +131,7 @@ public class ServiceAddFragment extends Fragment {
                 transaction.commit();
             }
         });
-//        serviceViewModel.getServicesOfferedList(helper.getCurrentUsername());
+        serviceViewModel.getServicesOfferedList(helper.getCurrentUsername());
     }
 
 
