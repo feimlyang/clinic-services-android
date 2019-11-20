@@ -72,7 +72,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="50dp"
                 android:enabled="false"
-                android:onClick="selectInsurance"
                 android:text="UHIP" />
 
             <CheckBox
@@ -81,7 +80,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:enabled="false"
-                android:onClick="selectInsurance"
                 android:text="OHIP" />
 
             <CheckBox
@@ -91,7 +89,6 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:enabled="false"
-                android:onClick="selectInsurance"
                 android:text="Private Insurance" />
 
             <CheckBox
@@ -101,7 +98,6 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:enabled="false"
-                android:onClick="selectInsurance"
                 android:text="No Insurance" />
 
             <TextView
@@ -123,7 +119,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="50dp"
                 android:enabled="false"
-                android:onClick="selectPayment"
                 android:text="Cash" />
 
             <CheckBox
@@ -133,7 +128,6 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:enabled="false"
-                android:onClick="selectPayment"
                 android:text="Debit Card" />
 
             <CheckBox
@@ -143,7 +137,6 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:enabled="false"
-                android:onClick="selectPayment"
                 android:text="Credit Card" />
 
             <LinearLayout

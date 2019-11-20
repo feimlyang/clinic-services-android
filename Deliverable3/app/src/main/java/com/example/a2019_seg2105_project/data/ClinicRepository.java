@@ -218,17 +218,21 @@ public class ClinicRepository {
                             liveDataClinic.setValue(new Result.Failure(R.string.profile_invalid));
                         }
                         else{
-                            final DataSnapshot fromSubKey = dataSnapshot.child(subKey);
+                            final DataSnapshot fromSubKey = fromEmployeeUsername.child(subKey);
                             if(subKey.equals("clinicName")|| subKey.equals("clinicAddress")|| subKey.equals("clinicPhoneNum")){
                                 String returnInfoString = fromSubKey.getValue(String.class);
-                                liveDataClinic.setValue(new Result.Success<String>(returnInfoString));
+                                Map<String, String> attribute = new HashMap<String, String>();
+                                attribute.put(subKey, returnInfoString);
+                                liveDataClinic.setValue(new Result.Success<Map<String, String>>(attribute));
                             }
                             else{
-                                ArrayList<String> returnInfoList = new ArrayList();
+                                ArrayList<Object> returnInfoList = new ArrayList();
                                 for ( DataSnapshot elem : fromSubKey.getChildren()){
                                     returnInfoList.add(elem.getKey());
                                 }
-                                liveDataClinic.setValue(new Result.Success<ArrayList<String>>(returnInfoList));
+                                Map<String, ArrayList<Object>> attribute = new HashMap<String, ArrayList<Object>>();
+                                attribute.put(subKey, returnInfoList);
+                                liveDataClinic.setValue(new Result.Success<Map<String, ArrayList<Object>>>(attribute));
                             }
                         }
                     }

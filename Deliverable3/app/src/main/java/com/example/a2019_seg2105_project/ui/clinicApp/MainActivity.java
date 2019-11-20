@@ -52,26 +52,20 @@ public class MainActivity extends AppCompatActivity {
         {
             AdminMainFragment adminHome = new AdminMainFragment();
             adminHome.setArguments(getIntent().getExtras());
-            fragmentTransaction.add(R.id.main_fragment, adminHome);
-
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.replace(R.id.main_fragment, adminHome);
             fragmentTransaction.commit();
-
         }
         else if(accountType.equals("employee")){
             EmployeeMainFragment employeeHome = new EmployeeMainFragment();
             employeeHome.setArguments(getIntent().getExtras());
-            fragmentTransaction.add(R.id.main_fragment, employeeHome);
-
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.replace(R.id.main_fragment, employeeHome);
             fragmentTransaction.commit();
-
         }
         else
         {
 
         }
-
-
-
     }// end of onCreate()
-
 }

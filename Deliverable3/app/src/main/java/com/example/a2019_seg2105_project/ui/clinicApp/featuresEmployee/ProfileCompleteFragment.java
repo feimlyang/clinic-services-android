@@ -32,6 +32,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import android.widget.Toast;
 
 public class ProfileCompleteFragment extends Fragment {
@@ -65,7 +67,6 @@ public class ProfileCompleteFragment extends Fragment {
         container.removeAllViews();
         clinicViewModel = ViewModelProviders.of(this, new ClinicViewModelFactory()).get(ClinicViewModel.class);
         View root = inflater.inflate(R.layout.employee_fragment_editprofile, container, false);
-
         return root;
     }
 
@@ -80,14 +81,14 @@ public class ProfileCompleteFragment extends Fragment {
         confirmButton = getActivity().findViewById(R.id.btn_confirmprofile);
         updateButton = getActivity().findViewById(R.id.btn_updateprofile);
 
-        checkUHIP = (CheckBox)getActivity().findViewById(R.id.checkUHIP);
-        checkOHIP = (CheckBox)getActivity().findViewById(R.id.checkOHIP);
-        checkPrivateInsurance = (CheckBox)getActivity().findViewById(R.id.checkPrivateInsurance);
-        checkNoInsurance = (CheckBox)getActivity().findViewById(R.id.checkNoInsurance);
+        checkUHIP = getActivity().findViewById(R.id.checkUHIP);
+        checkOHIP = getActivity().findViewById(R.id.checkOHIP);
+        checkPrivateInsurance = getActivity().findViewById(R.id.checkPrivateInsurance);
+        checkNoInsurance = getActivity().findViewById(R.id.checkNoInsurance);
 
-        checkCash = (CheckBox)getActivity().findViewById(R.id.checkCash);
-        checkDebitCard = (CheckBox)getActivity().findViewById(R.id.checkDebitCard);
-        checkCreditCard = (CheckBox)getActivity().findViewById(R.id.checkCreditCard);
+        checkCash = getActivity().findViewById(R.id.checkCash);
+        checkDebitCard = getActivity().findViewById(R.id.checkDebitCard);
+        checkCreditCard = getActivity().findViewById(R.id.checkCreditCard);
 
 
         confirmButton.setEnabled(false);
@@ -109,18 +110,80 @@ public class ProfileCompleteFragment extends Fragment {
                 {
                     Toast.makeText(getContext(), (Integer)((Result.Failure) result).getData(), Toast.LENGTH_SHORT).show();
                 }
-                else
+                else if(result instanceof Result.Success)
                 {
-                    Toast.makeText(getContext(), "Profile is added successfully",  Toast.LENGTH_SHORT).show();
-                    clinicNameFilling.setText("");
-                    addressNameFilling.setText("");
-                    phoneNumberFilling.setText("");
-//                    selectionInsurance.setSelection(0);
+                    if(((Result.Success) result).getData() instanceof  Map)
+                    {
+                        Map attributes = (Map)((Result.Success) result).getData();
+                        if(attributes.containsKey("clinicAddress"))
+                        {
+                            addressNameFilling.setText((String)attributes.get("clinicAddress"));
+                            addressNameFilling.setEnabled(true);
+                        }
+                        else if(attributes.containsKey("clinicPhoneNum"))
+                        {
+                            phoneNumberFilling.setText((String)attributes.get("clinicPhoneNum"));
+                            phoneNumberFilling.setEnabled(true);
+                        }
+                        else if(attributes.containsKey("clinicName"))
+                        {
+                            clinicNameFilling.setText((String)attributes.get("clinicName"));
+                            clinicNameFilling.setEnabled(true);
+                        }
+                        else if(attributes.containsKey("insuranceType"))
+                        {
+                            ArrayList<Object> insuranceTypeUncast = (ArrayList<Object>)attributes.get("insuranceType");
+                            for(Object item : insuranceTypeUncast)
+                            {
+                                String insuranceType = (String)item;
+                                switch (insuranceType)
+                                {
+                                    case "OHIP":
+                                        checkOHIP.setChecked(true);
+                                        break;
 
+                                    case "UHIP":
+                                        checkUHIP.setChecked(true);
+                                        break;
+                                    case "Private Insurance":
+                                        checkPrivateInsurance.setChecked(true);
+                                        break;
+                                    case "No Insurance":
+                                        checkNoInsurance.setChecked(true);
+                                        break;
+                                    default:
+                                }
+                            }
+                        }
+                        else if(attributes.containsKey("paymentType"))
+                        {
+                            ArrayList<Object> paymentTypeUncast = (ArrayList<Object>)attributes.get("paymentType");
+                            for(Object item : paymentTypeUncast)
+                            {
+                                String paymentType = (String)item;
+                                switch (paymentType)
+                                {
+                                    case "Cash":
+                                        checkCash.setChecked(true);
+                                        break;
+                                    case "Credit":
+                                        checkCreditCard.setChecked(true);
+                                        break;
+                                    case "Debit":
+                                        checkDebitCard.setChecked(true);
+                                        break;
+                                    default:
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(getContext(), (Integer)((Result.Failure) result).getData(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
-
 
         updateButton.setEnabled(true);
         updateButton.setOnClickListener(new OnClickListener() {
@@ -135,8 +198,6 @@ public class ProfileCompleteFragment extends Fragment {
                 checkCash.setEnabled(true);//to enable it
                 checkDebitCard.setEnabled(true);//to enable it
                 checkCreditCard.setEnabled(true);//to enable it
-
-                Toast.makeText(getContext(),"Now you can edit!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -146,21 +207,17 @@ public class ProfileCompleteFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // TODO Auto-generated method stub
-
                 if(isChecked)
                 {
-                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                    selectionInsurance.add("UHIP");
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                    selectionInsurance.remove("UHIP");
                 }
-
             }
 
         });
-
-
         checkOHIP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -169,11 +226,11 @@ public class ProfileCompleteFragment extends Fragment {
 
                 if(isChecked)
                 {
-                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                    selectionInsurance.add("OHIP");
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                    selectionInsurance.remove("OHIP");
                 }
 
             }
@@ -187,11 +244,11 @@ public class ProfileCompleteFragment extends Fragment {
 
                 if(isChecked)
                 {
-                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                    selectionInsurance.add("Private Insurance");
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                    selectionInsurance.remove("Private Insurance");
                 }
 
             }
@@ -205,11 +262,11 @@ public class ProfileCompleteFragment extends Fragment {
 
                 if(isChecked)
                 {
-                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                    selectionInsurance.add("No Insurance");
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                    selectionInsurance.remove("No Insurance");
                 }
 
             }
@@ -223,15 +280,13 @@ public class ProfileCompleteFragment extends Fragment {
 
                 if(isChecked)
                 {
-                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                    selectionPayment.add("Cash");
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                    selectionPayment.remove("Cash");
                 }
-
             }
-
         });
         checkDebitCard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -241,11 +296,11 @@ public class ProfileCompleteFragment extends Fragment {
 
                 if(isChecked)
                 {
-                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                    selectionPayment.add("Debit");
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                    selectionPayment.remove("Debit");
                 }
 
             }
@@ -259,11 +314,11 @@ public class ProfileCompleteFragment extends Fragment {
 
                 if(isChecked)
                 {
-                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                    selectionPayment.add("Credit");
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                    selectionPayment.remove("Credit");
                 }
 
             }
@@ -294,11 +349,11 @@ public class ProfileCompleteFragment extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),addressNameFilling.getText().toString());
-                if(clinicViewModel.getProfileInfoLiveData() != null){
-                    addressNameFilling.setError("The address name already exists.");
-
-                }
+//                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),addressNameFilling.getText().toString());
+//                if(clinicViewModel.getProfileInfoLiveData() != null){
+//                    addressNameFilling.setError("The address name already exists.");
+//
+//                }
             }
         });
 
@@ -312,11 +367,11 @@ public class ProfileCompleteFragment extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),phoneNumberFilling.getText().toString());
-                if(clinicViewModel.getProfileInfoLiveData() != null){
-                    phoneNumberFilling.setError("The phone number already exists.");
-
-                }
+//                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),phoneNumberFilling.getText().toString());
+//                if(clinicViewModel.getProfileInfoLiveData() != null){
+//                    phoneNumberFilling.setError("The phone number already exists.");
+//
+//                }
 
             }
         });
@@ -331,20 +386,21 @@ public class ProfileCompleteFragment extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),clinicNameFilling.getText().toString());
-                if(clinicViewModel.getProfileInfoLiveData() != null){
-                    clinicNameFilling.setError("The clinic name already exists.");
-
-                }
+//                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),clinicNameFilling.getText().toString());
+//                if(clinicViewModel.getProfileInfoLiveData() != null){
+//                    clinicNameFilling.setError("The clinic name already exists.");
+//
+//                }
             }
         });
-
+        selectionInsurance.clear();
+        selectionPayment.clear();
+        clinicViewModel.getProfileInfo("imclinic", "clinicAddress");
+        clinicViewModel.getProfileInfo("imclinic", "clinicPhoneNum");
+        clinicViewModel.getProfileInfo("imclinic", "clinicName");
+        clinicViewModel.getProfileInfo("imclinic", "insuranceType");
+        clinicViewModel.getProfileInfo("imclinic", "paymentType");
     }
-
-
-
-
-
 
     public void selectInsurance(View view){
         boolean checked = ((CheckBox)view).isChecked();
@@ -403,9 +459,6 @@ public class ProfileCompleteFragment extends Fragment {
                     selectionPayment.remove("Credit Card");
                 }
                 break;
-
         }
     }
-
-
 }
