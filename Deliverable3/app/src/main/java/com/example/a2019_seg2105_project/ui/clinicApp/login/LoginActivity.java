@@ -87,11 +87,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                     setResult(Activity.RESULT_OK, getIntent());
-
                     //successfully logged in, save username in globalObj helper
                     GlobalObjectManager saveUsername = GlobalObjectManager.getInstance();
-                    saveUsername.setCurrentUsername(new String(userName.toString()));
-
+                    saveUsername.setCurrentUsername(new String(userName.getText().toString()));
                     // back to Init Activity
                     finish();
                 }

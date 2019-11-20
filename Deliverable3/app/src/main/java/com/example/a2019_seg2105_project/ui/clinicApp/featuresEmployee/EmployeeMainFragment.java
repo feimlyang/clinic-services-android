@@ -88,13 +88,4 @@ public class EmployeeMainFragment extends Fragment {
         });
 
     }
-    //Jump to related fragment
-    private void toServiceFragment(Fragment fragment)
-    {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.id.employee_layout_home,fragment);
-        transaction.commit();
-    }
 }

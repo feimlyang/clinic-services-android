@@ -1,6 +1,7 @@
 package com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee;
 
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -184,6 +185,20 @@ public class ProfileCompleteFragment extends Fragment {
                 }
             }
         });
+        clinicViewModel.setClinicProfileData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if(null == result) return;
+                if(result instanceof Result.Success)
+                {
+                    Toast.makeText(getContext(), (Integer)((Result.Success) result).getData(), Toast.LENGTH_SHORT).show();
+                }
+                else if(result instanceof Result.Failure)
+                {
+                    Toast.makeText(getContext(), (Integer)((Result.Failure) result).getData(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         updateButton.setEnabled(true);
         updateButton.setOnClickListener(new OnClickListener() {
@@ -198,6 +213,7 @@ public class ProfileCompleteFragment extends Fragment {
                 checkCash.setEnabled(true);//to enable it
                 checkDebitCard.setEnabled(true);//to enable it
                 checkCreditCard.setEnabled(true);//to enable it
+                confirmButton.setEnabled(true);
             }
         });
 
@@ -338,43 +354,7 @@ public class ProfileCompleteFragment extends Fragment {
         });
 
 
-        addressNameFilling.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-//                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),addressNameFilling.getText().toString());
-//                if(clinicViewModel.getProfileInfoLiveData() != null){
-//                    addressNameFilling.setError("The address name already exists.");
-//
-//                }
-            }
-        });
-
-        phoneNumberFilling.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-//                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),phoneNumberFilling.getText().toString());
-//                if(clinicViewModel.getProfileInfoLiveData() != null){
-//                    phoneNumberFilling.setError("The phone number already exists.");
-//
-//                }
-
-            }
-        });
+        phoneNumberFilling.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         clinicNameFilling.addTextChangedListener(new TextWatcher() {
             @Override
@@ -386,11 +366,14 @@ public class ProfileCompleteFragment extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
-//                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),clinicNameFilling.getText().toString());
-//                if(clinicViewModel.getProfileInfoLiveData() != null){
-//                    clinicNameFilling.setError("The clinic name already exists.");
-//
-//                }
+                clinicViewModel.clinicNameValidator(s.toString());
+            }
+        });
+        clinicViewModel.clinicFormState.observe(this, new Observer<ClinicFormState>() {
+            @Override
+            public void onChanged(ClinicFormState clinicFormState) {
+                if(null == clinicFormState.getError()) return;
+                clinicNameFilling.setError("Clinic name is invalid.");
             }
         });
         selectionInsurance.clear();
@@ -400,65 +383,5 @@ public class ProfileCompleteFragment extends Fragment {
         clinicViewModel.getProfileInfo("imclinic", "clinicName");
         clinicViewModel.getProfileInfo("imclinic", "insuranceType");
         clinicViewModel.getProfileInfo("imclinic", "paymentType");
-    }
-
-    public void selectInsurance(View view){
-        boolean checked = ((CheckBox)view).isChecked();
-        switch(view.getId()){
-            case R.id.checkUHIP:
-                if(checked){
-                    selectionInsurance.add("UHIP");
-                }else{
-                    selectionInsurance.remove("UHIP");
-                }
-                break;
-            case R.id.checkOHIP:
-                if(checked){
-                    selectionInsurance.add("OHIP");
-                }else{
-                    selectionInsurance.remove("OHIP");
-                }
-                break;
-            case R.id.checkPrivateInsurance:
-                if(checked){
-                    selectionInsurance.add("Private Insurance");
-                }else{
-                    selectionInsurance.remove("Private Insurance");
-                }
-                break;
-            case R.id.checkNoInsurance:
-                if(checked){
-                    selectionInsurance.add("No Insurance");
-                }else{
-                    selectionInsurance.remove("No Insurance");
-                }
-                break;
-        }
-    }
-    public void selectPayment(View view){
-        boolean checked = ((CheckBox)view).isChecked();
-        switch(view.getId()){
-            case R.id.checkCash:
-                if(checked){
-                    selectionPayment.add("Cash");
-                }else{
-                    selectionPayment.remove("Cash");
-                }
-                break;
-            case R.id.checkDebitCard:
-                if(checked){
-                    selectionPayment.add("Debit Card");
-                }else{
-                    selectionPayment.remove("Debit Card");
-                }
-                break;
-            case R.id.checkCreditCard:
-                if(checked){
-                    selectionPayment.add("Credit Card");
-                }else{
-                    selectionPayment.remove("Credit Card");
-                }
-                break;
-        }
     }
 }

@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 public class ClinicViewModel extends ViewModel {
 
     private ClinicRepository clinicRepository;
+    private static String clinicNamePattern = "([a-z]|[A-Z])(\\w|\\d|\\s)*$";
 
     public MediatorLiveData<Result> addServiceToProfileData = new MediatorLiveData<>();
     public MediatorLiveData<Result> deleteServiceFromProfileData = new MediatorLiveData<>();
@@ -36,6 +37,11 @@ public class ClinicViewModel extends ViewModel {
         return getProfileInfoData;
     }
     public LiveData<ClinicFormState> getServiceFormState(){ return clinicFormState;}
+
+    public void clinicNameValidator(String username)
+    {
+        clinicFormState.setValue(Pattern.matches(clinicNamePattern, username) ? new ClinicFormState(null): new ClinicFormState(new Integer(1)));
+    }
 
     public ClinicViewModel(ClinicRepository repo)
     {

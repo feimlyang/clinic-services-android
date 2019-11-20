@@ -2,19 +2,15 @@ package com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee;
 import androidx.annotation.Nullable;
 public class ClinicFormState {
     @Nullable
-    private Integer usernameError;
+    private Integer clinicNameError;
 
-    public ClinicFormState(@Nullable Integer usernameError)
+    public ClinicFormState(@Nullable Integer clinicNameError)
     {
         //valid employee username
-        this.usernameError = usernameError;
+        this.clinicNameError = clinicNameError;
     }
     public Integer getError()
     {
-        if(null != usernameError)
-        {
-            return usernameError;
-        }
-        return null;
+        return this.clinicNameError;
     }
 }

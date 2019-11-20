@@ -130,7 +130,6 @@ public class ClinicRepository {
                     {
                         liveDataServicelist.setValue(new Result.Error(new IOException("clinic invalid")));
                     }
-
                     ArrayList<String> serviceOfferedList = new ArrayList<>();
                     for (DataSnapshot serviceSnapshot : dataSnapshot.child(employeeUsername).child(servicesOffered).getChildren()) {
                         String serviceKey = serviceSnapshot.getKey();
@@ -162,27 +161,21 @@ public class ClinicRepository {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         final DatabaseReference fromEmployeeUsername = databaseProfile.child(employeeUsername);
-                        Map<String, String> toClinicName= new HashMap<>();
-                        Map<String, String> toClinicAddress = new HashMap<>();
-                        Map<String, String> toClinicPhoneNum = new HashMap<>();
-                        toClinicName.put("clinicName", clinicName);
-                        toClinicAddress.put("clinicAddress", clinicAddress);
-                        toClinicPhoneNum.put("clinicPhoneNum", clinicPhoneNum);
-                        fromEmployeeUsername.setValue(toClinicName);
-                        fromEmployeeUsername.setValue(toClinicAddress);
-                        fromEmployeeUsername.setValue(toClinicPhoneNum);
+
+                        fromEmployeeUsername.child("clinicName").setValue(clinicName);
+                        fromEmployeeUsername.child("clinicAddress").setValue(clinicAddress);
+                        fromEmployeeUsername.child("clinicPhoneNum").setValue(clinicPhoneNum);
+                        Map<String, Boolean> elemInsMap = new HashMap<>();
+                        Map<String, Boolean> elemPayMap = new HashMap<>();
 
                         for(String elemIns : insuranceType){
-                            Map<String, Boolean> elemInsMap = new HashMap<>();
                             elemInsMap.put(elemIns, Boolean.TRUE);
-                            fromEmployeeUsername.child("insuranceType").setValue(elemInsMap);
                         }
+                        fromEmployeeUsername.child("insuranceType").setValue(elemInsMap);
                         for(String elemPay : paymentMethod) {
-                            Map<String, Boolean> elemPayMap = new HashMap<>();
                             elemPayMap.put(elemPay, Boolean.TRUE);
-                            fromEmployeeUsername.child("paymentMethod").setValue(elemPayMap);
                         }
-
+                        fromEmployeeUsername.child("paymentType").setValue(elemPayMap);
                         liveDataProfile.setValue(new Result.Success(R.string.profile_updated));
                 }
                     @Override
@@ -333,8 +326,5 @@ public class ClinicRepository {
             liveDataWorkingHoursList.setValue(new Result.Failure(R.string.getwrokingHours_failed));
         }
         return liveDataWorkingHoursList;
-
     }
-
-
 }
