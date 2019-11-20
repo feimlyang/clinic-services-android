@@ -49,6 +49,10 @@ public class ProfileCompleteFragment extends Fragment {
     private CheckBox checkOHIP;
     private CheckBox checkPrivateInsurance;
     private CheckBox checkNoInsurance;
+
+    private CheckBox checkCash;
+    private CheckBox checkDebitCard;
+    private CheckBox checkCreditCard;
     ArrayList<String> selectionInsurance = new ArrayList<String>();
     ArrayList<String> selectionPayment = new ArrayList<String>();
     GlobalObjectManager helper = GlobalObjectManager.getInstance();
@@ -82,6 +86,10 @@ public class ProfileCompleteFragment extends Fragment {
         checkPrivateInsurance = (CheckBox)getActivity().findViewById(R.id.checkPrivateInsurance);
         checkNoInsurance = (CheckBox)getActivity().findViewById(R.id.checkNoInsurance);
 
+        checkCash = (CheckBox)getActivity().findViewById(R.id.checkCash);
+        checkDebitCard = (CheckBox)getActivity().findViewById(R.id.checkDebitCard);
+        checkCreditCard = (CheckBox)getActivity().findViewById(R.id.checkCreditCard);
+
 
         confirmButton.setEnabled(false);
         confirmButton.setOnClickListener(new View.OnClickListener() {
@@ -94,14 +102,21 @@ public class ProfileCompleteFragment extends Fragment {
             }
         });
 
-        updateButton.setEnabled(false);
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+        updateButton.setEnabled(true);
+        updateButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                clinicViewModel.setClinicProfile(helper.getCurrentUsername(),clinicNameFilling.getText().toString(),
-                        addressNameFilling.getText().toString(),
-                        phoneNumberFilling.getText().toString(),
-                        selectionInsurance,selectionPayment);
+                addressNameFilling.setFocusableInTouchMode(true); //to enable it
+                phoneNumberFilling.setFocusableInTouchMode(true); //to enable it
+                clinicNameFilling.setFocusableInTouchMode(true); //to enable it
+                checkUHIP.setEnabled(true);//to enable it
+                checkOHIP.setEnabled(true);//to enable it
+                checkPrivateInsurance.setEnabled(true);//to enable it
+                checkNoInsurance.setEnabled(true);//to enable it
+                checkCash.setEnabled(true);//to enable it
+                checkDebitCard.setEnabled(true);//to enable it
+                checkCreditCard.setEnabled(true);//to enable it
+
+                Toast.makeText(getContext(),"Now you can edit!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -163,7 +178,7 @@ public class ProfileCompleteFragment extends Fragment {
 
 
 
-        public void selectInsurance(View view){
+    public void selectInsurance(View view){
         boolean checked = ((CheckBox)view).isChecked();
         switch(view.getId()){
             case R.id.checkUHIP:
@@ -194,35 +209,35 @@ public class ProfileCompleteFragment extends Fragment {
                     selectionInsurance.remove("No Insurance");
                 }
                 break;
-            }
         }
-        public void selectPayment(View view){
-            boolean checked = ((CheckBox)view).isChecked();
-            switch(view.getId()){
-                case R.id.checkCash:
-                    if(checked){
-                        selectionPayment.add("Cash");
-                    }else{
-                        selectionPayment.remove("Cash");
-                    }
-                    break;
-                case R.id.checkDebitCard:
-                    if(checked){
-                        selectionPayment.add("Debit Card");
-                    }else{
-                        selectionPayment.remove("Debit Card");
-                    }
-                    break;
-                case R.id.checkCreditCard:
-                    if(checked){
-                        selectionPayment.add("Credit Card");
-                    }else{
-                        selectionPayment.remove("Credit Card");
-                    }
-                    break;
+    }
+    public void selectPayment(View view){
+        boolean checked = ((CheckBox)view).isChecked();
+        switch(view.getId()){
+            case R.id.checkCash:
+                if(checked){
+                    selectionPayment.add("Cash");
+                }else{
+                    selectionPayment.remove("Cash");
+                }
+                break;
+            case R.id.checkDebitCard:
+                if(checked){
+                    selectionPayment.add("Debit Card");
+                }else{
+                    selectionPayment.remove("Debit Card");
+                }
+                break;
+            case R.id.checkCreditCard:
+                if(checked){
+                    selectionPayment.add("Credit Card");
+                }else{
+                    selectionPayment.remove("Credit Card");
+                }
+                break;
 
-            }
         }
+    }
 
 
 }

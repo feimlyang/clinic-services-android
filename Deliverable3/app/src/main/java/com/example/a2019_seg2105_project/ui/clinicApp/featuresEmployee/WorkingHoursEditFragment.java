@@ -42,6 +42,18 @@ public class WorkingHoursEditFragment extends Fragment {
     private CalendarView calendarView;
     private TextView myDate;
     private ClinicViewModel serviceViewModel;
+
+    private CheckBox time1;
+    private CheckBox time2;
+    private CheckBox time3;
+    private CheckBox time4;
+    private CheckBox time5;
+    private CheckBox time6;
+    private CheckBox time7;
+    private CheckBox time8;
+    private CheckBox time9;
+    private CheckBox time10;
+
     GlobalObjectManager helper = GlobalObjectManager.getInstance();
 
     ArrayList<String> selectionTime = new ArrayList<String>();
@@ -64,24 +76,48 @@ public class WorkingHoursEditFragment extends Fragment {
         calendarView = (CalendarView) getActivity().findViewById(R.id.calendarView);
         myDate = (TextView) getActivity().findViewById(R.id.textViewSelectedDate);
 
+        time1 = (CheckBox)getActivity().findViewById(R.id.time1);
+        time2 = (CheckBox)getActivity().findViewById(R.id.time2);
+        time3 = (CheckBox)getActivity().findViewById(R.id.time3);
+        time4 = (CheckBox)getActivity().findViewById(R.id.time4);
+        time5 = (CheckBox)getActivity().findViewById(R.id.time5);
+        time6 = (CheckBox)getActivity().findViewById(R.id.time6);
+        time7 = (CheckBox)getActivity().findViewById(R.id.time7);
+        time8 = (CheckBox)getActivity().findViewById(R.id.time8);
+        time9 = (CheckBox)getActivity().findViewById(R.id.time9);
+        time10 = (CheckBox)getActivity().findViewById(R.id.time10);
+
 
 
         // Set onclick listeners
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int day) {
-               String dateSelected = year + "/" + (month +1) + "/" + day;
-               myDate.setText(dateSelected);
+                String dateSelected = year + "/" + (month +1) + "/" + day;
+                myDate.setText(dateSelected);
 //               serviceViewModel.getWorkingHours(helper.getCurrentUsername(), dateSelected);
             }
         });
 
-//        editButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                toServiceFragment(new AddServiceFragment());
-//            }
-//        });
+        editButton.setEnabled(true);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                time1.setEnabled(true);//to enable it
+                time2.setEnabled(true);//to enable it
+                time3.setEnabled(true);//to enable it
+                time4.setEnabled(true);//to enable it
+                time5.setEnabled(true);//to enable it
+                time6.setEnabled(true);//to enable it
+                time7.setEnabled(true);//to enable it
+                time8.setEnabled(true);//to enable it
+                time9.setEnabled(true);//to enable it
+                time10.setEnabled(true);//to enable it
+
+                Toast.makeText(getContext(),"Now you can edit!",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         confirmButton.setEnabled(false);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -19,8 +19,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginRight="50dp"
+                android:clickable="false"
                 android:ems="10"
+                android:focusable="false"
                 android:hint="Enter Address Name"
                 android:inputType="textPersonName" />
 
@@ -29,9 +32,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
+                android:clickable="false"
                 android:ems="10"
+                android:focusable="false"
                 android:hint="Enter Phone Number"
                 android:inputType="phone" />
 
@@ -40,9 +45,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
+                android:clickable="false"
                 android:ems="10"
+                android:focusable="false"
                 android:hint="Enter Clinic Name"
                 android:inputType="textPersonName" />
 
@@ -51,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:text="Insurance Types:"
                 android:textColor="#020000"
                 android:textSize="18sp" />
@@ -68,6 +75,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="50dp"
                     android:onClick="selectInsurance"
+                    android:enabled="false"
                     android:text="UHIP" />
 
                 <CheckBox
@@ -76,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:onClick="selectInsurance"
+                    android:enabled="false"
                     android:text="OHIP" />
 
                 <CheckBox
@@ -86,6 +95,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="50dp"
                     android:onClick="selectInsurance"
+                    android:enabled="false"
                     android:text="Private Insurance" />
 
                 <CheckBox
@@ -96,6 +106,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="50dp"
                     android:onClick="selectInsurance"
+                    android:enabled="false"
                     android:text="No Insurance" />
 
                 <TextView
@@ -117,6 +128,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="50dp"
                     android:onClick="selectPayment"
+                    android:enabled="false"
                     android:text="Cash" />
 
                 <CheckBox
@@ -127,6 +139,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="50dp"
                     android:onClick="selectPayment"
+                    android:enabled="false"
                     android:text="Debit Card" />
 
                 <CheckBox
@@ -137,6 +150,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="50dp"
                     android:onClick="selectPayment"
+                    android:enabled="false"
                     android:text="Credit Card" />
 
             </com.google.android.material.chip.ChipGroup>
@@ -144,6 +158,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <Button
