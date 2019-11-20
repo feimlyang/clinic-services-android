@@ -15,12 +15,22 @@
             android:orientation="vertical">
 
 
+            <TextView
+                android:id="@+id/textViewClinicName"
+                style="@android:style/Widget.DeviceDefault.Light.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="30dp"
+                android:text="Clinic Name"
+                android:textColor="#009688"
+                android:textSize="14sp" />
+
             <EditText
                 android:id="@+id/editTextClinicName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="50dp"
                 android:layout_marginRight="50dp"
                 android:clickable="false"
                 android:ems="10"
@@ -28,12 +38,20 @@
                 android:hint="Enter Clinic Name"
                 android:inputType="textPersonName" />
 
+            <TextView
+                android:id="@+id/textViewPhoneNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Phone Number"
+                android:textColor="#009688" />
+
             <EditText
                 android:id="@+id/editTextPhoneNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
                 android:clickable="false"
                 android:ems="10"
@@ -41,12 +59,20 @@
                 android:hint="Enter Phone Number"
                 android:inputType="phone" />
 
+            <TextView
+                android:id="@+id/textViewAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Address"
+                android:textColor="#009688" />
+
             <EditText
                 android:id="@+id/editTextAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
                 android:clickable="false"
                 android:ems="10"
@@ -157,7 +183,7 @@
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="50dp"
                     android:layout_marginRight="30dp"
                     android:text="Edit" />
 
