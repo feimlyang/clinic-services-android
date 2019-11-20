@@ -31,6 +31,10 @@ public class ClinicViewModel extends ViewModel {
     {
         return getServicesOfferedListData;
     }
+    public LiveData<Result> getProfileInfoLiveData()
+    {
+        return getProfileInfoData;
+    }
     public LiveData<ClinicFormState> getServiceFormState(){ return clinicFormState;}
 
     public ClinicViewModel(ClinicRepository repo)

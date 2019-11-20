@@ -35,7 +35,7 @@ import java.util.Map;
 
 
 
-public class AddServiceFragment extends Fragment {
+public class ServiceAddFragment extends Fragment {
     private ListView listOfServices;
     private List<Map<String, String>> servicesAttributes;
     private List<String> services;
@@ -131,7 +131,7 @@ public class AddServiceFragment extends Fragment {
                 transaction.commit();
             }
         });
-        serviceViewModel.getServicesOfferedList(helper.getCurrentUsername());
+//        serviceViewModel.getServicesOfferedList(helper.getCurrentUsername());
     }
 
 

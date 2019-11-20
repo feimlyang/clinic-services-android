@@ -58,107 +58,97 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:text="Insurance Types:"
                 android:textColor="#020000"
                 android:textSize="18sp" />
 
-            <com.google.android.material.chip.ChipGroup
+            <CheckBox
+                android:id="@+id/checkUHIP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:onClick="selectInsurance"
+                android:text="UHIP" />
+
+            <CheckBox
+                android:id="@+id/checkOHIP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:enabled="false"
+                android:onClick="selectInsurance"
+                android:text="OHIP" />
+
+            <CheckBox
+                android:id="@+id/checkPrivateInsurance"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:onClick="selectInsurance"
+                android:text="Private Insurance" />
 
-                <CheckBox
-                    android:id="@+id/checkUHIP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="50dp"
-                    android:onClick="selectInsurance"
-                    android:enabled="false"
-                    android:text="UHIP" />
+            <CheckBox
+                android:id="@+id/checkNoInsurance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:onClick="selectInsurance"
+                android:text="No Insurance" />
 
-                <CheckBox
-                    android:id="@+id/checkOHIP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:onClick="selectInsurance"
-                    android:enabled="false"
-                    android:text="OHIP" />
+            <TextView
+                android:id="@+id/textViewPaymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:text="Payment Method:"
+                android:textColor="#020000"
+                android:textSize="18sp" />
 
-                <CheckBox
-                    android:id="@+id/checkPrivateInsurance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="50dp"
-                    android:onClick="selectInsurance"
-                    android:enabled="false"
-                    android:text="Private Insurance" />
+            <CheckBox
+                android:id="@+id/checkCash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:onClick="selectPayment"
+                android:text="Cash" />
 
-                <CheckBox
-                    android:id="@+id/checkNoInsurance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="50dp"
-                    android:onClick="selectInsurance"
-                    android:enabled="false"
-                    android:text="No Insurance" />
+            <CheckBox
+                android:id="@+id/checkDebitCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:onClick="selectPayment"
+                android:text="Debit Card" />
 
-                <TextView
-                    android:id="@+id/textViewPaymentMethod"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="50dp"
-                    android:text="Payment Method:"
-                    android:textColor="#020000"
-                    android:textSize="18sp" />
-
-                <CheckBox
-                    android:id="@+id/checkCash"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="50dp"
-                    android:onClick="selectPayment"
-                    android:enabled="false"
-                    android:text="Cash" />
-
-                <CheckBox
-                    android:id="@+id/checkDebitCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="50dp"
-                    android:onClick="selectPayment"
-                    android:enabled="false"
-                    android:text="Debit Card" />
-
-                <CheckBox
-                    android:id="@+id/checkCreditCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="50dp"
-                    android:onClick="selectPayment"
-                    android:enabled="false"
-                    android:text="Credit Card" />
-
-            </com.google.android.material.chip.ChipGroup>
+            <CheckBox
+                android:id="@+id/checkCreditCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:onClick="selectPayment"
+                android:text="Credit Card" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <Button

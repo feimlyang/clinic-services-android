@@ -8,18 +8,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <ListView
             android:id="@+id/listViewServices"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView">
-        </ListView>
+            android:layout_height="512dp"
+            android:layout_below="@+id/textView"></ListView>
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="570dp"
         android:gravity="bottom"
         android:orientation="horizontal">
 

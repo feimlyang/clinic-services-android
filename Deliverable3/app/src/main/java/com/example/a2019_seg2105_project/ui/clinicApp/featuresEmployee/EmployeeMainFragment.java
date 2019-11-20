@@ -51,7 +51,7 @@ public class EmployeeMainFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
-                transaction.replace(R.id.employee_layout_home,new AddServiceFragment());
+                transaction.replace(R.id.employee_layout_home,new ServiceAddFragment());
                 transaction.commit();
             }
         });

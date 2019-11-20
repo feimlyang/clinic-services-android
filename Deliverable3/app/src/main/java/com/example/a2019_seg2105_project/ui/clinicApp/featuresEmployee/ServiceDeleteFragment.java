@@ -138,7 +138,7 @@ public class ServiceDeleteFragment extends Fragment {
                 transaction.commit();
             }
         });
-        clinicViewModel.getServicesOfferedList(helper.getCurrentUsername());
+//        clinicViewModel.getServicesOfferedList(helper.getCurrentUsername());
     }
 
 

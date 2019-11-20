@@ -57,7 +57,6 @@ public class ProfileCompleteFragment extends Fragment {
     ArrayList<String> selectionPayment = new ArrayList<String>();
     GlobalObjectManager helper = GlobalObjectManager.getInstance();
 
-
     private ClinicViewModel clinicViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -102,6 +101,27 @@ public class ProfileCompleteFragment extends Fragment {
             }
         });
 
+        clinicViewModel.getProfileInfoLiveData().observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if(null == result) return;
+                if(result instanceof Result.Failure)
+                {
+                    Toast.makeText(getContext(), (Integer)((Result.Failure) result).getData(), Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Profile is added successfully",  Toast.LENGTH_SHORT).show();
+                    clinicNameFilling.setText("");
+                    addressNameFilling.setText("");
+                    phoneNumberFilling.setText("");
+//                    selectionInsurance.setSelection(0);
+
+                }
+            }
+        });
+
+
         updateButton.setEnabled(true);
         updateButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -119,6 +139,137 @@ public class ProfileCompleteFragment extends Fragment {
                 Toast.makeText(getContext(),"Now you can edit!",Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        checkUHIP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+
+                if(isChecked)
+                {
+                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        });
+
+
+        checkOHIP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+
+                if(isChecked)
+                {
+                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        });
+        checkPrivateInsurance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+
+                if(isChecked)
+                {
+                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        });
+        checkNoInsurance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+
+                if(isChecked)
+                {
+                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        });
+        checkCash.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+
+                if(isChecked)
+                {
+                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        });
+        checkDebitCard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+
+                if(isChecked)
+                {
+                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        });
+        checkCreditCard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+
+                if(isChecked)
+                {
+                    Toast.makeText(getContext(), "Android Checked", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Android Un-Checked", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        });
+
 
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,9 +290,15 @@ public class ProfileCompleteFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
             }
             @Override
             public void afterTextChanged(Editable s) {
+                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),addressNameFilling.getText().toString());
+                if(clinicViewModel.getProfileInfoLiveData() != null){
+                    addressNameFilling.setError("The address name already exists.");
+
+                }
             }
         });
 
@@ -155,6 +312,12 @@ public class ProfileCompleteFragment extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
+                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),phoneNumberFilling.getText().toString());
+                if(clinicViewModel.getProfileInfoLiveData() != null){
+                    phoneNumberFilling.setError("The phone number already exists.");
+
+                }
+
             }
         });
 
@@ -168,6 +331,11 @@ public class ProfileCompleteFragment extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
+                clinicViewModel.getProfileInfo(helper.getCurrentUsername(),clinicNameFilling.getText().toString());
+                if(clinicViewModel.getProfileInfoLiveData() != null){
+                    clinicNameFilling.setError("The clinic name already exists.");
+
+                }
             }
         });
 
