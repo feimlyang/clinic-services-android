@@ -85,7 +85,7 @@ public class WorkingHoursEditFragment extends Fragment {
         time7 = (CheckBox)getActivity().findViewById(R.id.time7);
         time8 = (CheckBox)getActivity().findViewById(R.id.time8);
         time9 = (CheckBox)getActivity().findViewById(R.id.time9);
-        time10 = (CheckBox)getActivity().findViewById(R.id.time10);
+        //time10 = (CheckBox)getActivity().findViewById(R.id.time10);
 
 
 
@@ -212,13 +212,16 @@ public class WorkingHoursEditFragment extends Fragment {
                     selectionTime.remove("16:00-17:00");
                 }
                 break;
-            case R.id.time10:
+            /*
+                case R.id.time10:
                 if(checked){
                     selectionTime.add("17:00-18:00");
                 }else{
                     selectionTime.remove("17:00-18:00");
                 }
                 break;
+
+             */
         }
     }
 

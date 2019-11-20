@@ -77,21 +77,17 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 
 ## DELIVERABLE 3
 #### Features:(for employee user)
-* Can complete the clinic profile information, includes enter address, phone number, name of the clinic, insurance type and payment method accepted. 
-* Can add services to the profile from a list of services, and employee can select multiple services.
-* Can delete services from the Profile.
-* Can specify clinic working hours. 
-* Can see the list of **their own** working hours. 
-* Can edit working hours. 
+* Clinic profile shows the current information, includes enter address, phone number, name of the clinic, insurance type and payment method accepted. Click EDIT then CONFIRM to update the profile. 
+* Can add avaliable services created by admin from a list of services. Click each element to ADD. 
+* Can delete services that currently offered in the clinic. Click each element to DELETE. 
+* Can specify clinic working hours in a calendar view. 
+* Can see the working hours by select a date. Click EDIT then CONFIRM to update the working hours. 
 * Developed 2 unit tests: 
 
 | Unit Test 		| Constraints | 
 | :-------------:	| :------------------------------------| 
 | RegisteredNameLengthTest |  The length of username should not be bigger than 10 when register. Username should not be null and should not have space when register. The length of username can be exactly 10 when register. |
 | PasswordWithinRangeTest |  The length of password should not be bigger than 16 and smaller than 5. The length of password can be exactly 5 or 16. |  
-
-Note: employee account is equivalent to clinic profile. Deleting an employee user is the equivalent of deleting a clinic. 
-
 
 
 ## DELIVERABLE 4

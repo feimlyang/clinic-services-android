@@ -60,7 +60,7 @@
                 android:onClick="selectTime"
                 android:text="08:00-09:00"
                 android:enabled="false"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <CheckBox
                 android:id="@+id/time2"
@@ -69,7 +69,7 @@
                 android:onClick="selectTime"
                 android:text="09:00-10:00"
                 android:enabled="false"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <CheckBox
                 android:id="@+id/time3"
@@ -78,7 +78,7 @@
                 android:onClick="selectTime"
                 android:text="10:00-11:00"
                 android:enabled="false"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <CheckBox
                 android:id="@+id/time4"
@@ -87,7 +87,7 @@
                 android:onClick="selectTime"
                 android:text="11:00-12:00"
                 android:enabled="false"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <CheckBox
                 android:id="@+id/time5"
@@ -96,7 +96,7 @@
                 android:onClick="selectTime"
                 android:text="12:00-13:00"
                 android:enabled="false"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <CheckBox
                 android:id="@+id/time6"
@@ -105,7 +105,7 @@
                 android:onClick="selectTime"
                 android:text="13:00-14:00"
                 android:enabled="false"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <CheckBox
                 android:id="@+id/time7"
@@ -114,7 +114,7 @@
                 android:onClick="selectTime"
                 android:text="14:00-15:00"
                 android:enabled="false"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <CheckBox
                 android:id="@+id/time8"
@@ -123,7 +123,7 @@
                 android:onClick="selectTime"
                 android:text="15:00-16:00"
                 android:enabled="false"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <CheckBox
                 android:id="@+id/time9"
@@ -132,16 +132,8 @@
                 android:onClick="selectTime"
                 android:text="16:00-17:00"
                 android:enabled="false"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
-            <CheckBox
-                android:id="@+id/time10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="selectTime"
-                android:text="17:00-18:00"
-                android:enabled="false"
-                android:textSize="14sp" />
         </com.google.android.material.chip.ChipGroup>
 
         <LinearLayout
@@ -158,6 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="EDIT"
                 android:textColorLink="@color/colorPrimaryDark" />
 
@@ -167,6 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="CONFIRM"
                 android:textColorLink="@color/colorPrimaryDark" />
 
@@ -176,6 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
+                android:layout_marginBottom="10dp"
                 android:text="RETURN" />
         </LinearLayout>
 
