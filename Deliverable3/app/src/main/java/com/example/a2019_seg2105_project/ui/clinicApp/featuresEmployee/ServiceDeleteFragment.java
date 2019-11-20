@@ -62,7 +62,6 @@ public class ServiceDeleteFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         services = new ArrayList<String>();
-        servicesAttributes = new ArrayList<Map<String, String>>();
         listOfServices = (ListView) getActivity().findViewById(R.id.listViewServices);
         returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
         clinicViewModel.getServicesListLiveData().observe(this, new Observer<Result>() {
@@ -138,8 +137,5 @@ public class ServiceDeleteFragment extends Fragment {
                 transaction.commit();
             }
         });
-//        clinicViewModel.getServicesOfferedList(helper.getCurrentUsername());
     }
-
-
 }

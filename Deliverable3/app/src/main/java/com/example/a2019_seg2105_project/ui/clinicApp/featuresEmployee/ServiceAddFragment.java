@@ -2,7 +2,6 @@ package com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.view.View.OnClickListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,15 +20,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
-import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.EmployeeMainFragment;
 import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 
@@ -58,7 +52,7 @@ public class ServiceAddFragment extends Fragment {
         servicesAttributes = new ArrayList<Map<String, String>>();
         listOfServices = (ListView) getActivity().findViewById(R.id.listViewServices);
         returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
-        serviceViewModel.getServicesListLiveData().observe(this, new Observer<Result>() {
+        serviceViewModel.getAvailableServices.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
                 if(result == null) return;
@@ -95,29 +89,40 @@ public class ServiceAddFragment extends Fragment {
         listOfServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String serviceName = services.get(position);
+                final String serviceName = services.get(position);
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
                 dialogBuilder.setTitle(serviceName);
                 dialogBuilder.setMessage("Would you like to add it?");
                 dialogBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i){
-                        Toast.makeText(getContext(), "Added!", Toast.LENGTH_SHORT).show();
+                        serviceViewModel.addServiceToProfile(helper.getCurrentUsername(),serviceName);
                     }
                 } );
-                serviceViewModel.addServiceToProfile(helper.getCurrentUsername(),serviceName);
-
                 dialogBuilder.setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i){
                         Toast.makeText(getContext(), "Cancelled!", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
                 dialogBuilder.show();
+            }
+        });
 
-
+        serviceViewModel.addServiceToProfileData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if(null == result) return;
+                if(result instanceof Result.Success)
+                {
+                    Integer success = ((Result.Success<Integer>)result).getData();
+                    Toast.makeText(getContext(), getString(success), Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Integer failure = ((Result.Failure<Integer>)result).getData();
+                    Toast.makeText(getContext(), getString(failure), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -131,7 +136,7 @@ public class ServiceAddFragment extends Fragment {
                 transaction.commit();
             }
         });
-        serviceViewModel.getServicesOfferedList(helper.getCurrentUsername());
+        serviceViewModel.listAvailableServices();
     }
 
 

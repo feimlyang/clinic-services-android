@@ -5,24 +5,23 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
-import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.data.ClinicRepository;
-import com.example.a2019_seg2105_project.data.model.Clinic;
+import com.example.a2019_seg2105_project.data.ServiceRepository;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 public class ClinicViewModel extends ViewModel {
 
     private ClinicRepository clinicRepository;
+    private ServiceRepository serviceRepository;
     private static String clinicNamePattern = "([a-z]|[A-Z])(\\w|\\d|\\s)*$";
 
     public MediatorLiveData<Result> addServiceToProfileData = new MediatorLiveData<>();
     public MediatorLiveData<Result> deleteServiceFromProfileData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getServicesOfferedListData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> getAvailableServices = new MediatorLiveData<>();
     public MediatorLiveData<Result> setClinicProfileData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getProfileInfoData = new MediatorLiveData<>();
     public MediatorLiveData<Result> setWorkingHoursData = new MediatorLiveData<>();
@@ -46,6 +45,7 @@ public class ClinicViewModel extends ViewModel {
     public ClinicViewModel(ClinicRepository repo)
     {
         this.clinicRepository = repo;
+        this.serviceRepository = ServiceRepository.getInstance();
     }
 
 
@@ -89,6 +89,18 @@ public class ClinicViewModel extends ViewModel {
             }
         });
 
+    }
+    public void listAvailableServices()
+    {
+        final LiveData<Result> resultLiveData = this.serviceRepository.getServicelist();
+        this.getAvailableServices.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                getAvailableServices.removeSource(resultLiveData);
+                getAvailableServices.setValue(result);
+                getAvailableServices.setValue(null);
+            }
+        });
     }
 
     /*set or reset profile */

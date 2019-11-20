@@ -34,7 +34,6 @@ public class ClinicRepository {
         return instance;
     }
 
-
     /* add new service to clinic Profile by service Name, those services are created by admin user
      * too lookup attributes in each service, use the method in ServiceRepo*/
     public LiveData<Result> addServiceToProfile(final String employeeUsername, final String serviceName) {
@@ -57,9 +56,7 @@ public class ClinicRepository {
                             liveDataClinic.setValue(new Result.Failure(R.string.serviceoffered_exits));
                         }
                         else{
-                            Map<String, Boolean> serviceInfo = new HashMap<>();
-                            serviceInfo.put(serviceName, Boolean.TRUE);
-                            databaseClinics.child(employeeUsername).child(servicesOffered).setValue(serviceInfo);
+                            databaseClinics.child(employeeUsername).child(servicesOffered).child(serviceName).setValue(true);
                         }
                         liveDataClinic.setValue(new Result.Success(R.string.serviceOffered_added));
                     }
