@@ -158,7 +158,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
-                android:text="EDIT" />
+                android:text="EDIT"
+                android:textColorLink="@color/colorPrimaryDark" />
 
             <Button
                 android:id="@+id/btn_confirm_workingHours"
@@ -166,7 +167,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="CONFIRM" />
+                android:text="CONFIRM"
+                android:textColorLink="@color/colorPrimaryDark" />
 
             <Button
                 android:id="@+id/btn_Return"
