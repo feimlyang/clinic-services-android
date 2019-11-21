@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">Walk-in Clinic Services</string>
+    <!-- Greeting messages -->
+    <string name="welcome">"Welcome to the Walk-in Clinic Services App!"</string>
+    <!-- Strings related to login/register -->
+    <string name="enter_lName">"Last Name"</string>
+    <string name="enter_fName">"First Name"</string>
+    <string name="prompt_username">"Enter Username"</string>
+    <string name="prompt_password">"Enter Password"</string>
+    <string name="validate_password">"Enter Password Again"</string>
+    <string name="action_sign_in_short">"Sign in"</string>
+    <string name="select_account">"Account Type "</string>
+
+    <!-- Strings related to error messages in login / registration -->
+    <string name="invalid_usernameFormat">"Username should only contain NUMBERS and CHARACTERS."</string>
+    <string name="invalid_usernameLength">"Username should not exceed 10 characters!"</string>
+    <string name="invalid_name">"Name should not contain digit and symbols!"</string>
+    <string name="invalid_email">"Please enter a valid email address!"</string>
+    <string name="invalid_passwordLength">"Password length must be between 5~16 characters."</string>
+    <string name="invalid_passwordFormat">"Password must include at least 1 digit and 1 alphabet."</string>
+    <string name="register_password_unmatch">"Current password doesn't match the previous one!"</string>
+    <!-- Empty Field Error Message -->
+    <string name="empty_username">"Username is required !"</string>
+    <string name="empty_firstName">"First name is required !"</string>
+    <string name="empty_lastName">"Last name is required !"</string>
+    <string name="empty_email">"Email address is required !"</string>
+    <string name="empty_password">"Password is required !"</string>
+    <string name="empty_employee_access_code">"Please enter employee access code."</string>
+
+    <!-- Login/Register failed -->
+    <string name="login_failed">"Login failed."</string>
+    <string name="register_failed">"Registration failed."</string>
+    <string name="register_error_existingAccount">"Username already exists.Please try another one."</string>
+    <string name="error_unknown">"Unknown error occurred."</string>
+    <!-- Login/Register Succeeds -->
+    <string name="logged_in_user">"loggedInUser"</string>
+    <string name="register_succeeds">"Registration succeeds"</string>
+    <!-- Special case: Employee Validation -->
+    <!-- Note: access number = 12070499 -->
+    <string name="enter_employeeValidation">"Enter Access Number:</string>
+    <string name="invalid_access_code">"The access code is invalid."</string>
+
+    <!-- User Accounts -->
+    <string name="username_not_exist">"User specified does not exist."</string>
+    <string name="user_deleted">"Service already exists"</string>
+    <string name="deleteUser_failed">"Fail to delete user account"</string>
+
+    <!-- Service Operation-->
+    <string name="service_exists">"Service already exists"</string>
+    <string name="service_added">"Service has been added!"</string>
+    <string name="addService_failed">"Fail to add service"</string>
+    <string name="service_not_exist">"Service does not exist"</string>
+    <string name="service_updated">"Service has been updated!"</string>
+    <string name="editService_failed">"Fail to update service"</string>
+    <string name="service_deleted">"Service has been deleted!"</string>
+    <string name="deleteService_failed">"Fail to delete"</string>
+
+    <!-- service validators -->
+    <string name="service_name_invalid">"Service name is invalid"</string>
+    <string name="category_invalid">"Category is invalid"</string>
+    <string name="subcategory_invalid">"SubCategory is invalid"</string>
+    <string name="role_invalid">"Role is invalid"</string>
+
+    <!-- Special case: Navigation Bar -->
+    <string name="nav_show_profile">"My Profile"</string>
+    <string name="nav_home">"Home"</string>
+    <string name="nav_log_out">"Log Out"</string>
+
+    <!-- Logged in user -->
+    <string name="loggedIn_userName">"User Name:"</string>
+    <string name="loggedIn_userType">"User Type: "</string>
+
+    <!-- Admin Operations -->
+    <string name="admin_addServices">"Add Service "</string>
+    <string name="admin_deleteServices">"Delete Service "</string>
+    <string name="admin_deleteAccounts">"Delete Account "</string>
+    <string name="admin_returnToPrevious">"Return "</string>
+
+    <!-- Clinic Operation-->
+
+    <string name="serviceoffered_exits">"Can't add! Service already exists in clinic!"</string>
+    <string name="serviceOffered_added">"A new service added to clinic!"</string>
+    <string name="addServiceOffered_failed">"Fail to add service to clinic!"</string>
+    <string name="serviceOffered_deleted">"Service has been deleted from clinic!"</string>
+    <string name="deleteServiceOffered_failed">"Fail to delete a service from clinic"</string>
+    <string name="profile_updated">"Clinic profile has been updated!"</string>
+    <string name="profile_updated_failed">"Fail to update clinic profile!"</string>
+    <string name="profile_invalid">"Profile is not completed!"</string>
+    <string name="getProfileInfo_failed">"Fail to add profile information!"</string>
+    <string name="wrokingHours_updated">"Wrokinghours are updated!"</string>
+    <string name="wrokingHours_updated_failed">"Fail to update workinghours!"</string>
+    <string name="getwrokingHours_failed">"Fail to get workinghours!"</string>
+    <string name="getserviceOffered_failed">"Fail to get services offered in the profile!"</string>
+
+
+
+
+
+
+
+</resources>

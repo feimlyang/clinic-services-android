@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/employee_layout_workingHours"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:text="Select Working Date:"
+            android:textColor="#020000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewSelectedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="105dp"
+            android:layout_marginRight="105dp"
+            android:text="0000/00/00" />
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="307dp"
+            android:layout_height="301dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp" />
+
+        <TextView
+            android:id="@+id/textViewWorkingHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:text="Select Working Hours:"
+            android:textColor="#020000"
+            android:textSize="18sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp">
+
+
+            <CheckBox
+                android:id="@+id/time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="08:00-09:00"
+                android:enabled="false"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:00-10:00"
+                android:enabled="false"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/time3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:00-11:00"
+                android:enabled="false"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/time4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11:00-12:00"
+                android:enabled="false"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/time5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:00-13:00"
+                android:enabled="false"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/time6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13:00-14:00"
+                android:enabled="false"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/time7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14:00-15:00"
+                android:enabled="false"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/time8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15:00-16:00"
+                android:enabled="false"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/time9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16:00-17:00"
+                android:enabled="false"
+                android:textSize="12sp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_Complete"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="EDIT"
+                android:textColorLink="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_confirm_workingHours"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="CONFIRM"
+                android:textColorLink="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_Return"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_marginBottom="10dp"
+                android:text="RETURN" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

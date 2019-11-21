@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_employee_editProfile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textViewClinicName"
+                style="@android:style/Widget.DeviceDefault.Light.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+
+                android:text="Clinic Name"
+                android:textColor="#009688"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/editTextClinicName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:clickable="false"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Enter Clinic Name"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textViewPhoneNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Phone Number"
+                android:textColor="#009688" />
+
+            <EditText
+                android:id="@+id/editTextPhoneNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:clickable="false"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Enter Phone Number"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textViewAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Address"
+                android:textColor="#009688" />
+
+            <EditText
+                android:id="@+id/editTextAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:clickable="false"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Enter Address"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textViewInsuranceType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Insurance Types:"
+                android:textColor="#020000"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkUHIP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:text="UHIP" />
+
+            <CheckBox
+                android:id="@+id/checkOHIP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:enabled="false"
+                android:text="OHIP" />
+
+            <CheckBox
+                android:id="@+id/checkPrivateInsurance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:text="Private Insurance" />
+
+            <CheckBox
+                android:id="@+id/checkNoInsurance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:text="No Insurance" />
+
+            <TextView
+                android:id="@+id/textViewPaymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:text="Payment Method:"
+                android:textColor="#020000"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkCash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:text="Cash" />
+
+            <CheckBox
+                android:id="@+id/checkDebitCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:text="Debit Card" />
+
+            <CheckBox
+                android:id="@+id/checkCreditCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:enabled="false"
+                android:text="Credit Card" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_updateprofile"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="30dp"
+                    android:text="Edit" />
+
+                <Button
+                    android:id="@+id/btn_confirmprofile"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm" />
+
+                <Button
+                    android:id="@+id/btn_Return"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Return" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

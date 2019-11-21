@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_interface"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:visibility="visible"
+    tools:context="com.example.a2019_seg2105_project.ui.clinicApp.register.RegisterActivity"> <!-- Not available yet-->
+    <!--
+                    Last Modified: 2019/10/17
+    -->
+    <!-- Set User Name -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
+        android:text="Username "
+        android:textColor="#00574B"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <EditText
+        android:id="@+id/register_userName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="24dp"
+        android:imeOptions="actionNext"
+
+        android:textSize="17sp"
+        android:hint="Username"
+        android:inputType="text"
+        android:singleLine="true"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="First Name"
+        android:textColor="#00574B"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_userName" />
+
+    <EditText
+        android:id="@+id/fName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="24dp"
+        android:imeOptions="actionNext"
+
+        android:textSize="17sp"
+        android:hint="@string/enter_fName"
+        android:inputType="text"
+        android:singleLine="true"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_userName" />
+       />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Last Name "
+        android:textColor="#00574B"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fName" />
+
+    <EditText
+        android:id="@+id/lName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="24dp"
+        android:imeOptions="actionNext"
+
+        android:textSize="17sp"
+        android:hint="@string/enter_lName"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fName" />
+
+    <!-- Set User Email -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Email "
+        android:textColor="#00574B"
+        android:textSize="13sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lName" />
+
+    <EditText
+        android:id="@+id/emailID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="24dp"
+        android:imeOptions="actionNext"
+
+        android:textSize="17sp"
+        android:hint="Enter Email Address"
+        android:inputType="textEmailAddress"
+        android:singleLine="true"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lName" />
+
+    <!-- Set User Password -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Password"
+        android:textColor="#00574B"
+        android:textSize="13sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailID" />
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="24dp"
+
+        android:textSize="17sp"
+        android:hint="@string/prompt_password"
+        android:imeOptions="actionNext"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailID" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Verify Password"
+        android:textColor="#00574B"
+        android:textSize="13sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
+
+    <EditText
+        android:id="@+id/register_validatePassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="24dp"
+
+        android:textSize="17sp"
+        android:hint="@string/validate_password"
+        android:enabled="false"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
+
+ <!--  Select Type of Account -->
+    <TextView
+        android:id="@+id/accountSelectMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/select_account"
+        android:textSize="13sp"
+        android:textColor="#00574B"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_validatePassword" />
+
+    <RadioGroup
+        android:id="@+id/radioAccountType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
+        app:layout_constraintStart_toEndOf="@+id/accountSelectMsg"
+        app:layout_constraintTop_toBottomOf="@+id/register_validatePassword">
+
+        <RadioButton
+            android:id="@+id/btnPatient"
+            android:layout_marginStart="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patient" />
+
+        <RadioButton
+            android:id="@+id/btnEmployee"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Employee" />
+    </RadioGroup>
+
+    <!-- When selected 'Employee', should enter Employee Number -->
+    <TextView
+        android:id="@+id/registrationCodeBanner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="24dp"
+        android:text="Registration Code"
+        android:textColor="#00574B"
+        android:textSize="13sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioAccountType" />
+
+    <EditText
+        android:id="@+id/employeeValidation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="24dp"
+
+        android:textSize="17sp"
+        android:hint="@string/enter_employeeValidation"
+        android:inputType="number"
+        android:singleLine="true"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/radioAccountType" />
+    <!-- Register or Cancel -->
+
+    <Button
+        android:id="@+id/register"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="32dp"
+        android:enabled="false"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employeeValidation"
+        app:layout_constraintVertical_bias="0.123" />
+
+    <Button
+        android:id="@+id/cancelRegister"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="32dp"
+        android:enabled="true"
+        android:text="Cancel"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employeeValidation"
+        app:layout_constraintVertical_bias="0.123" />
+</androidx.constraintlayout.widget.ConstraintLayout>
