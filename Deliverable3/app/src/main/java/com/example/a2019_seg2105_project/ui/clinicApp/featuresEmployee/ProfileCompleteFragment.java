@@ -47,6 +47,7 @@ public class ProfileCompleteFragment extends Fragment {
     ArrayList<String> selectionInsurance = new ArrayList<String>();
     ArrayList<String> selectionPayment = new ArrayList<String>();
     GlobalObjectManager helper = GlobalObjectManager.getInstance();
+    String currentUsername = helper.getCurrentUsername();
 
     private ClinicViewModel clinicViewModel;
 
@@ -91,7 +92,7 @@ public class ProfileCompleteFragment extends Fragment {
             }
         });
 
-        clinicViewModel.getProfileInfoLiveData().observe(this, new Observer<Result>() {
+        clinicViewModel.getProfileInfoData.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
                 if(null == result) return;
@@ -267,10 +268,21 @@ public class ProfileCompleteFragment extends Fragment {
                 if(isChecked)
                 {
                     selectionInsurance.add("No Insurance");
+                    checkUHIP.setChecked(false);
+                    checkOHIP.setChecked(false);
+                    checkPrivateInsurance.setChecked(false);
+
+                    checkUHIP.setEnabled(false);
+                    checkOHIP.setEnabled(false);
+                    checkPrivateInsurance.setEnabled(false);
                 }
                 else
                 {
                     selectionInsurance.remove("No Insurance");
+
+                    checkUHIP.setEnabled(true);
+                    checkOHIP.setEnabled(true);
+                    checkPrivateInsurance.setEnabled(true);
                 }
 
             }
@@ -366,10 +378,10 @@ public class ProfileCompleteFragment extends Fragment {
         });
         selectionInsurance.clear();
         selectionPayment.clear();
-        clinicViewModel.getProfileInfo("imclinic", "clinicAddress");
-        clinicViewModel.getProfileInfo("imclinic", "clinicPhoneNum");
-        clinicViewModel.getProfileInfo("imclinic", "clinicName");
-        clinicViewModel.getProfileInfo("imclinic", "insuranceType");
-        clinicViewModel.getProfileInfo("imclinic", "paymentType");
+        clinicViewModel.getProfileInfo(currentUsername, "clinicAddress");
+        clinicViewModel.getProfileInfo(currentUsername, "clinicPhoneNum");
+        clinicViewModel.getProfileInfo(currentUsername, "clinicName");
+        clinicViewModel.getProfileInfo(currentUsername, "insuranceType");
+        clinicViewModel.getProfileInfo(currentUsername, "paymentType");
     }
 }

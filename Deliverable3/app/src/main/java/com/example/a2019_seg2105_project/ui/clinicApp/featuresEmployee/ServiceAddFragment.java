@@ -52,7 +52,7 @@ public class ServiceAddFragment extends Fragment {
         servicesAttributes = new ArrayList<Map<String, String>>();
         listOfServices = (ListView) getActivity().findViewById(R.id.listViewServices);
         returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
-        serviceViewModel.getAvailableServices.observe(this, new Observer<Result>() {
+        serviceViewModel.getAvailableServicesData.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
                 if(result == null) return;
@@ -92,7 +92,7 @@ public class ServiceAddFragment extends Fragment {
                 final String serviceName = services.get(position);
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
                 dialogBuilder.setTitle(serviceName);
-                dialogBuilder.setMessage("Would you like to add it?");
+                dialogBuilder.setMessage("Would you like to add it to your clinic?");
                 dialogBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i){

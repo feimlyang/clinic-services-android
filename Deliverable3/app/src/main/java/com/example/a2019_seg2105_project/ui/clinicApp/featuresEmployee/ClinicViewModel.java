@@ -21,21 +21,13 @@ public class ClinicViewModel extends ViewModel {
     public MediatorLiveData<Result> addServiceToProfileData = new MediatorLiveData<>();
     public MediatorLiveData<Result> deleteServiceFromProfileData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getServicesOfferedListData = new MediatorLiveData<>();
-    public MediatorLiveData<Result> getAvailableServices = new MediatorLiveData<>();
+    public MediatorLiveData<Result> getAvailableServicesData = new MediatorLiveData<>();
     public MediatorLiveData<Result> setClinicProfileData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getProfileInfoData = new MediatorLiveData<>();
     public MediatorLiveData<Result> setWorkingHoursData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getWorkingHoursData = new MediatorLiveData<>();
     public MutableLiveData<ClinicFormState> clinicFormState = new MutableLiveData<ClinicFormState>();
-    public LiveData<Result> getServicesListLiveData()
-    {
-        return getServicesOfferedListData;
-    }
-    public LiveData<Result> getProfileInfoLiveData()
-    {
-        return getProfileInfoData;
-    }
-    public LiveData<ClinicFormState> getServiceFormState(){ return clinicFormState;}
+
 
     public void clinicNameValidator(String username)
     {
@@ -93,12 +85,12 @@ public class ClinicViewModel extends ViewModel {
     public void listAvailableServices()
     {
         final LiveData<Result> resultLiveData = this.serviceRepository.getServicelist();
-        this.getAvailableServices.addSource(resultLiveData, new Observer<Result>() {
+        this.getAvailableServicesData.addSource(resultLiveData, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
-                getAvailableServices.removeSource(resultLiveData);
-                getAvailableServices.setValue(result);
-                getAvailableServices.setValue(null);
+                getAvailableServicesData.removeSource(resultLiveData);
+                getAvailableServicesData.setValue(result);
+                getAvailableServicesData.setValue(null);
             }
         });
     }
