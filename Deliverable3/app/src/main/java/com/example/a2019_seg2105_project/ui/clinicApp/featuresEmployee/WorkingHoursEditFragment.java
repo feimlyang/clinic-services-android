@@ -10,13 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
 import java.time.Year;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -31,8 +35,15 @@ import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.EmployeeM
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.lang.String;
+import java.util.Map;
+import java.util.Set;
 
 public class WorkingHoursEditFragment extends Fragment {
 
@@ -52,12 +63,11 @@ public class WorkingHoursEditFragment extends Fragment {
     private CheckBox time7;
     private CheckBox time8;
     private CheckBox time9;
-    private CheckBox time10;
 
-    GlobalObjectManager helper = GlobalObjectManager.getInstance();
-
-    ArrayList<String> selectionTime = new ArrayList<String>();
-
+    private GlobalObjectManager helper = GlobalObjectManager.getInstance();
+    private boolean editMode = false;
+    private Map<String, Set<String>> selectionTimeSlots = new HashMap<String, Set<String>>();
+    private Map<String, CheckBox> checkBoxMap;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
     {
@@ -75,27 +85,53 @@ public class WorkingHoursEditFragment extends Fragment {
         returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
         calendarView = (CalendarView) getActivity().findViewById(R.id.calendarView);
         myDate = (TextView) getActivity().findViewById(R.id.textViewSelectedDate);
+        checkBoxMap = new HashMap<>();
 
         time1 = (CheckBox)getActivity().findViewById(R.id.time1);
+        checkBoxMap.put("08:00-09:00", time1);
         time2 = (CheckBox)getActivity().findViewById(R.id.time2);
+        checkBoxMap.put("09:00-10:00", time2);
         time3 = (CheckBox)getActivity().findViewById(R.id.time3);
+        checkBoxMap.put("10:00-11:00", time3);
         time4 = (CheckBox)getActivity().findViewById(R.id.time4);
+        checkBoxMap.put("11:00-12:00", time4);
         time5 = (CheckBox)getActivity().findViewById(R.id.time5);
+        checkBoxMap.put("12:00-13:00", time5);
         time6 = (CheckBox)getActivity().findViewById(R.id.time6);
+        checkBoxMap.put("13:00-14:00", time6);
         time7 = (CheckBox)getActivity().findViewById(R.id.time7);
+        checkBoxMap.put("14:00-15:00", time7);
         time8 = (CheckBox)getActivity().findViewById(R.id.time8);
+        checkBoxMap.put("15:00-16:00", time8);
         time9 = (CheckBox)getActivity().findViewById(R.id.time9);
+        checkBoxMap.put("16:00-17:00", time9);
         //time10 = (CheckBox)getActivity().findViewById(R.id.time10);
-
-
+        myDate.setText(new SimpleDateFormat("yyyyMMdd").format(new Date(calendarView.getDate())));
+        calendarView.setMinDate(calendarView.getDate());
 
         // Set onclick listeners
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int day) {
-                String dateSelected = year + "/" + (month +1) + "/" + day;
+                String dateSelected = String.format("%04d%02d%02d", year, month + 1,day);
                 myDate.setText(dateSelected);
-//               serviceViewModel.getWorkingHours(helper.getCurrentUsername(), dateSelected);
+                cleanCheckBoxes();
+                serviceViewModel.getWorkingHours(helper.getCurrentUsername(), dateSelected);
+            }
+        });
+        serviceViewModel.getWorkingHoursData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if(null == result) return;
+                if(result instanceof Result.Success)
+                {
+                    ArrayList<String> workingHours = ((Result.Success<ArrayList<String>>)result).getData();
+                    String date = workingHours.get(0);
+                    workingHours.remove(0);
+                    Set<String> hourSet = new HashSet<>(workingHours);
+                    selectionTimeSlots.put(date, hourSet);
+                    populateHoursToCheckBoxes(date);
+                }
             }
         });
 
@@ -103,17 +139,38 @@ public class WorkingHoursEditFragment extends Fragment {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                time1.setEnabled(true);//to enable it
-                time2.setEnabled(true);//to enable it
-                time3.setEnabled(true);//to enable it
-                time4.setEnabled(true);//to enable it
-                time5.setEnabled(true);//to enable it
-                time6.setEnabled(true);//to enable it
-                time7.setEnabled(true);//to enable it
-                time8.setEnabled(true);//to enable it
-                time9.setEnabled(true);//to enable it
-                time10.setEnabled(true);//to enable it
-
+                editMode = true;
+                for(String hours: checkBoxMap.keySet())
+                {
+                    final CheckBox checkBox = checkBoxMap.get(hours);
+                    checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            String currentDate = String.valueOf(myDate.getText());
+                            if(isChecked) {
+                                if (selectionTimeSlots.containsKey(currentDate)) {
+                                    selectionTimeSlots.get(currentDate).add(String.valueOf(checkBox.getText()));
+                                }
+                                else
+                                {
+                                    Set<String> hourSet = new HashSet<>();
+                                    hourSet.add(String.valueOf(checkBox.getText()));
+                                    selectionTimeSlots.put(currentDate, hourSet);
+                                }
+                            }
+                            else
+                            {
+                                if (selectionTimeSlots.containsKey(currentDate)) {
+                                    selectionTimeSlots.get(currentDate).remove(String.valueOf(checkBox.getText()));
+                                    if (selectionTimeSlots.get(currentDate).isEmpty())
+                                        selectionTimeSlots.remove(currentDate);
+                            }
+                            }
+                        }
+                    });
+                    checkBox.setEnabled(true);
+                }
+                confirmButton.setEnabled(true);
                 Toast.makeText(getContext(),"Now you can edit!",Toast.LENGTH_SHORT).show();
             }
         });
@@ -122,7 +179,10 @@ public class WorkingHoursEditFragment extends Fragment {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                serviceViewModel.setWorkingHours(helper.getCurrentUsername(), String.valueOf(myDate.getText()),selectionTime);
+                String date = String.valueOf(myDate.getText());
+                Set<String> hourSlots = selectionTimeSlots.get(date) == null ?  new HashSet<String>() : selectionTimeSlots.get(date);
+                ArrayList<String> hoursArray = new ArrayList<>(hourSlots);
+                serviceViewModel.setWorkingHours(helper.getCurrentUsername(), date, hoursArray);
             }
         });
 
@@ -136,94 +196,26 @@ public class WorkingHoursEditFragment extends Fragment {
                 transaction.commit();
             }
         });
-
+        serviceViewModel.getWorkingHours(helper.getCurrentUsername(), String.valueOf(myDate.getText()));
     }
-    private void toServiceFragment(Fragment fragment)
+
+    private void cleanCheckBoxes()
     {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.id.employee_layout_workingHours,fragment);
-        transaction.commit();
-    }
-    public void selectTime(View view){
-        boolean checked = ((CheckBox)view).isChecked();
-        switch(view.getId()){
-            case R.id.time1:
-                if(checked){
-                    selectionTime.add("08:00-09:00");
-                }else{
-                    selectionTime.remove("08:00-09:00");
-                }
-                break;
-            case R.id.time2:
-                if(checked){
-                    selectionTime.add("09:00-10:00");
-                }else{
-                    selectionTime.remove("09:00-10:00");
-                }
-                break;
-            case R.id.time3:
-                if(checked){
-                    selectionTime.add("10:00-11:00");
-                }else{
-                    selectionTime.remove("10:00-11:00");
-                }
-                break;
-            case R.id.time4:
-                if(checked){
-                    selectionTime.add("11:00-12:00");
-                }else{
-                    selectionTime.remove("11:00-12:00");
-                }
-                break;
-            case R.id.time5:
-                if(checked){
-                    selectionTime.add("12:00-13:00");
-                }else{
-                    selectionTime.remove("12:00-13:00");
-                }
-                break;
-            case R.id.time6:
-                if(checked){
-                    selectionTime.add("13:00-14:00");
-                }else{
-                    selectionTime.remove("13:00-14:00");
-                }
-                break;
-            case R.id.time7:
-                if(checked){
-                    selectionTime.add("14:00-15:00");
-                }else{
-                    selectionTime.remove("14:00-15:00");
-                }
-                break;
-            case R.id.time8:
-                if(checked){
-                    selectionTime.add("15:00-16:00");
-                }else{
-                    selectionTime.remove("15:00-16:00");
-                }
-                break;
-            case R.id.time9:
-                if(checked){
-                    selectionTime.add("16:00-17:00");
-                }else{
-                    selectionTime.remove("16:00-17:00");
-                }
-                break;
-            /*
-                case R.id.time10:
-                if(checked){
-                    selectionTime.add("17:00-18:00");
-                }else{
-                    selectionTime.remove("17:00-18:00");
-                }
-                break;
-
-             */
+        for(String timeslot : checkBoxMap.keySet())
+        {
+            checkBoxMap.get(timeslot).setChecked(false);
         }
     }
 
-
+    private void populateHoursToCheckBoxes(String date)
+    {
+        if(!selectionTimeSlots.containsKey(date)) return;
+        for(String hour : selectionTimeSlots.get(date))
+        {
+            if(checkBoxMap.containsKey(hour))
+            {
+                checkBoxMap.get(hour).setChecked(true);
+            }
+        }
+    }
 }

@@ -265,11 +265,11 @@ public class ClinicRepository {
 
                         if (!dataSnapshot.child(employeeUsername).hasChild("workingHours")){
                             //workingHours has not been created
-                            databaseWorkingHours.setValue("workingHours", dataElem);
+                            databaseWorkingHours.child(employeeUsername).child("workingHours").setValue(dataElem);
                         }
                         else {
-                            DatabaseReference fromWorkingHours = databaseWorkingHours.child("workingHours");
-                            fromWorkingHours.setValue(dataElem);
+                            DatabaseReference fromWorkingHours = databaseWorkingHours.child(employeeUsername).child("workingHours");
+                            fromWorkingHours.child(date).setValue(timeSlotElem);
                         }
                         liveDataWorkingHours.setValue(new Result.Success(R.string.wrokingHours_updated));
                     }
@@ -299,17 +299,20 @@ public class ClinicRepository {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (!dataSnapshot.hasChild(employeeUsername) ||
-                            !dataSnapshot.child(employeeUsername).hasChild(date)) {
+                            !dataSnapshot.child(employeeUsername).hasChild("workingHours") ||
+                            !dataSnapshot.child(employeeUsername).child("workingHours").hasChild(date)) {
                         liveDataWorkingHoursList.setValue(new Result.Failure(R.string.profile_invalid));
                     }
-                    DataSnapshot fromDate = dataSnapshot.child(employeeUsername).child(date);
-                    ArrayList<String> workingHoursList = new ArrayList<>();
+                    DataSnapshot fromDate = dataSnapshot.child(employeeUsername).child("workingHours").child(date);
+                    ArrayList<String> workingDateAndHoursList = new ArrayList<>();
+                    // add date at index 0
+                    workingDateAndHoursList.add(date);
 
                     for (DataSnapshot timeslot: fromDate.getChildren()){
-                        workingHoursList.add(timeslot.getKey());
+                        System.out.println(timeslot.getKey());
+                        workingDateAndHoursList.add(timeslot.getKey());
                     }
-
-                    liveDataWorkingHoursList.setValue(new Result.Success<ArrayList<String>>(workingHoursList));
+                    liveDataWorkingHoursList.setValue(new Result.Success<ArrayList<String>>(workingDateAndHoursList));
 
                 }
                 @Override
