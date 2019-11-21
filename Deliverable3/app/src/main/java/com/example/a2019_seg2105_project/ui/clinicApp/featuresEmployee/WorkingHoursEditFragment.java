@@ -1,4 +1,5 @@
 package com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee;
+import android.icu.text.DateFormat;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.Year;
 
 import androidx.annotation.NonNull;
@@ -30,17 +32,13 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
-import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.EmployeeMainFragment;
 
-import java.lang.reflect.Field;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.lang.String;
 import java.util.Map;
 import java.util.Set;
@@ -116,6 +114,7 @@ public class WorkingHoursEditFragment extends Fragment {
                 String dateSelected = String.format("%04d%02d%02d", year, month + 1,day);
                 myDate.setText(dateSelected);
                 cleanCheckBoxes();
+
                 serviceViewModel.getWorkingHours(helper.getCurrentUsername(), dateSelected);
             }
         });
@@ -134,6 +133,8 @@ public class WorkingHoursEditFragment extends Fragment {
                 }
             }
         });
+
+
 
         editButton.setEnabled(true);
         editButton.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +184,21 @@ public class WorkingHoursEditFragment extends Fragment {
                 Set<String> hourSlots = selectionTimeSlots.get(date) == null ?  new HashSet<String>() : selectionTimeSlots.get(date);
                 ArrayList<String> hoursArray = new ArrayList<>(hourSlots);
                 serviceViewModel.setWorkingHours(helper.getCurrentUsername(), date, hoursArray);
+            }
+        });
+
+        serviceViewModel.setWorkingHoursData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if(null == result) return;
+                if(result instanceof Result.Success)
+                {
+                    Toast.makeText(getContext(), (Integer)((Result.Success) result).getData(), Toast.LENGTH_SHORT).show();
+                }
+                else if(result instanceof Result.Failure)
+                {
+                    Toast.makeText(getContext(), (Integer)((Result.Failure) result).getData(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
