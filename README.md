@@ -4,21 +4,19 @@
 > * Manlin Guo 6602848
 > * Tong Zhao 300037013
 > * Daniel Xu 300030558
-> * Wen Bin Pang 8882970
+> * Wen Bin Pang 8882970 (dropped)
 
 [Our Repository](https://github.com/SEG2105-uottawa/seg2x05-project-f19-10.git)  
 [Our Firebase](https://console.firebase.google.com/u/0/project/clinicservice-f449a/database/clinicservice-f449a/data)
 
+##### Employee Register Access Code
+> 1207049  
 ##### Predefined Administrator Login Information
 > username: admin  
 > password: 5T5ptQ   
-##### Predefined Employee Login Information
-> access code: 1207049  
+##### Predefined Employee Login Information 
 > username: imclinic  
 > password: test123  
-> first name: bigapple  
-> last name: bigtree  
-> email: test123@gmail.com  
 
 ## DELIVERABLE 1
 #### Features:
