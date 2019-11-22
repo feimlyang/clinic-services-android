@@ -21,18 +21,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner_searchWorkingHours"
-        style="@android:style/Widget.Spinner.DropDown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_searchServices"
-        app:layout_constraintStart_toEndOf="@+id/spinner_searchAddress"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
         android:id="@+id/spinner_searchServices"
         style="@android:style/Widget.Spinner.DropDown"
         android:layout_width="wrap_content"
@@ -48,12 +36,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Spinner
+        android:id="@+id/spinner_searchWorkingHours"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_searchServices"
+        app:layout_constraintStart_toEndOf="@+id/spinner_searchAddress"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="404dp"
         android:layout_height="400dp"
         android:layout_marginTop="92dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_BookAppointment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_searchWorkingHours">
@@ -61,50 +60,18 @@
     </ListView>
 
     <Button
-        android:id="@+id/btn_CheckWaitingTime"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="101dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="39dp"
-        android:text="Check Waiting Time"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Return"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView" />
-
-    <Button
-        android:id="@+id/btn_BookAppointment"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="110dp"
-        android:layout_marginBottom="100dp"
-        android:text="Book An  Appointment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView" />
-
-    <Button
         android:id="@+id/btn_Return"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="92dp"
+        android:layout_marginEnd="150dp"
         android:layout_marginBottom="39dp"
         android:text="Return"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_CheckWaitingTime"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listView"
         app:layout_constraintVertical_bias="0.454" />
 

@@ -1,54 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/patient_layout_home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_book_appointment"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="225dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="249dp"
-        android:layout_marginEnd="164dp"
-        android:text="BOOK AN APPOINTMENT"
-        app:layout_constraintBottom_toTopOf="@+id/btn_check_appointment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_check_appointment"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="225dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="161dp"
-        android:text="CHECK MY APPOINTMENT "
-        app:layout_constraintBottom_toTopOf="@+id/btn_rate_clinic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_book_appointment" />
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="150dp" />
 
-    <Button
-        android:id="@+id/btn_rate_clinic"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="225dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="274dp"
-        android:text="RATE CLINIC"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_check_appointment" />
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_BookAppointment"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="650dp"
+            android:text="Book An Appointment" />
+
+        <Button
+            android:id="@+id/btn_Return"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="650dp"
+            android:text="Return" />
+
+    </LinearLayout>
+</FrameLayout>
