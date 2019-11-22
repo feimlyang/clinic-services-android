@@ -92,6 +92,12 @@
     <string name="getwrokingHours_failed">"Fail to get workinghours!"</string>
     <string name="getserviceOffered_failed">"Fail to get services offered in the profile!"</string>
 
+    <!-- Appointment Operation-->
+    <string name="_alreayd_CheckedIn">"You already checked in!"</string>
+    <string name="isCheckedIn">"Ok, you are here!"</string>
+    <string name="fail_checkedIn">"Fail to check in!"</string>
+    <string name="rated_appointment">"Thanks for your rate!"</string>
+    <string name="fail_rated_appointment">"Fail to rate!"</string>
 
 
 
