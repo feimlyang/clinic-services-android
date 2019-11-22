@@ -17,8 +17,9 @@ class Account
   String password;
   String role;
   Boolean isLoggedin;
-    1 -- 1 User;
-}
+      1 -- 1 User;
+
+    }
 
 
 class Administrator{
@@ -68,9 +69,9 @@ class Clinic{
   void editProfile(Clinic clinic){}
   void addServiceOffered(Service service){}
   void deleteServiceOffered(Service service){}
-  void addWrokingHours(){}
-  void editWorkingHours(){}
-  void getRating(){}
+  void addWrokingHours(Date date, List list){}
+  void editWorkingHours(Date date, List list){}
+  Rating getRating(){}
 }
 
 class Rating{
@@ -80,10 +81,21 @@ class Rating{
 }
 
 class Appointment{
-  Null inDeveloping;
-  1 -- 1 Patient;
+  appointTime;
+  patientUsername;
+  appointAddress;
+  appointService;
+  Boolean isCheckedIn;
+  Time waitingTime;
+  
+  void rateClinic(Double score, String comment){}
+  void searchService(Service service){}
+  void bookAppointment(Service service){}
+  void checkIn(){}
+
+  * -- 1 Patient;
   * -- 1 Clinic;
-  1 -- 0..1 Rating;
+  1 -- * Rating;
 }
 
 
