@@ -7,7 +7,8 @@
 > * Wen Bin Pang 8882970 (dropped)
 
 [Our Repository](https://github.com/SEG2105-uottawa/seg2x05-project-f19-10.git)  
-[Our Firebase](https://console.firebase.google.com/u/0/project/clinicservice-f449a/database/clinicservice-f449a/data)
+[Our Firebase](https://console.firebase.google.com/u/0/project/clinicservice-f449a/database/clinicservice-f449a/data)  
+[Our Report](https://docs.google.com/document/d/1bB7Uej0rPMWGUeHd7TDuLa58uLVkGKgfUs-umDlaNGA/edit#heading=h.maef8e7hh3pg)
 
 ##### Employee Register Access Code
 > 1207049  
