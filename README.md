@@ -17,6 +17,10 @@
 ##### Predefined Employee Login Information 
 > username: imclinic  
 > password: test123  
+##### Predefined Patient Login Information
+> username: imsick  
+> password: test123  
+
 
 ## DELIVERABLE 1
 #### Features:
@@ -89,6 +93,27 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 
 
 ## DELIVERABLE 4
+#### Features:(for patient user)
+* Can search for a walk in clinic by address, working hours, type of services offered.
+* Can book an appointment.
+* Can view the booking appointed information and the waiting hours.
+* Can check in the appointment.
+* Can rate a clinic by a score from 1-5 and write commemt.
+* Build CircleCI button in the Github
+* Developed 10 unit tests that is **only relevant the D4**:
+
+|  #    | Unit Test 		| Constraints | 
+| :---: | :-------------:	| :------------------------------------| 
+| 1 |  |  |
+| 2 |  |  | 
+| 3 |  |  |
+| 4 |  |  | 
+| 5 |  |  |
+| 6 |  |  | 
+| 7 |  |  |
+| 8 |  |  | 
+| 9 |  |  |
+| 10|  |  | 
 
 ### CircleCI
 [![CircleCI](https://circleci.com/gh/SEG2105-uottawa/seg2x05-project-f19-10/tree/master.svg?style=svg&circle-token=dfc8cf14869d1c662016f9038e259c3505c4074a)](https://circleci.com/gh/SEG2105-uottawa/seg2x05-project-f19-10/tree/master)
