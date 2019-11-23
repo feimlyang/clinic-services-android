@@ -36,14 +36,81 @@ public class AppointmentRepository {
     }
 
 
-
     /*spinner value for existing address in all clinics*/
+    public LiveData<Result> getAddressSpinner() {
+        final DatabaseReference databaseClinics;
+        final MutableLiveData<Result> liveDataSpinnerValues = new MutableLiveData<>();
+        try {
+            databaseClinics = FirebaseDatabase.getInstance().getReference("clinics");
+            databaseClinics.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    ArrayList<String> addressSpinnerValues = new ArrayList<>();
+
+                    for(DataSnapshot eachClinic : dataSnapshot.getChildren()){
+                        if(eachClinic.hasChild("clinicAddress")
+                        && ! addressSpinnerValues.contains(eachClinic.child("clinicAddress").getValue())){
+                            addressSpinnerValues.add(eachClinic.child("clinicAddress").getValue(String.class));
+                        }
+                        else break;
+                    }
+                    if (null == addressSpinnerValues){
+                        liveDataSpinnerValues.setValue(new Result.Success(R.string.search_result_null));
+                    }
+                    else {
+                        liveDataSpinnerValues.setValue(new Result.Success<ArrayList<String>>(addressSpinnerValues));
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    liveDataSpinnerValues.setValue(new Result.Failure(R.string.failed));
+                }
+            });
+        } catch (Exception e) {
+            liveDataSpinnerValues.setValue(new Result.Failure(R.string.failed));
+        }
+        return liveDataSpinnerValues;
+    }
 
 
     /*spinner value for existing serviceOffered in all clinics*/
+    public LiveData<Result> getServiceSpinner() {
+        final DatabaseReference databaseClinics;
+        final MutableLiveData<Result> liveDataSpinnerValues = new MutableLiveData<>();
+        try {
+            databaseClinics = FirebaseDatabase.getInstance().getReference("clinics");
+            databaseClinics.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    ArrayList<String> serviceSpinnerValues = new ArrayList<>();
 
-
-
+                    for(DataSnapshot eachClinic : dataSnapshot.getChildren()){
+                        if(eachClinic.hasChild("servicesOffered")){
+                            for (DataSnapshot eachService : eachClinic.child("servicesOffered").getChildren()){
+                                if (!serviceSpinnerValues.contains(eachService.getKey())){
+                                    serviceSpinnerValues.add(eachService.getKey());
+                                }
+                                else break;
+                            }
+                        }else break;
+                    }
+                    if (null == serviceSpinnerValues){
+                        liveDataSpinnerValues.setValue(new Result.Success(R.string.search_result_null));
+                    }
+                    else {
+                        liveDataSpinnerValues.setValue(new Result.Success<ArrayList<String>>(serviceSpinnerValues));
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    liveDataSpinnerValues.setValue(new Result.Failure(R.string.failed));
+                }
+            });
+        } catch (Exception e) {
+            liveDataSpinnerValues.setValue(new Result.Failure(R.string.failed));
+        }
+        return liveDataSpinnerValues;
+    }
 
 
     /*search for a walk in clinic by address, working hours, type of services
@@ -70,87 +137,82 @@ public class AppointmentRepository {
                     for (String addressElem : selectedAddressList) {
                         for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
                             if (eachClinic.hasChild("clinicAddress")
-                                    && addressElem.equals(eachClinic.child("clinicAddress").getValue())) {
-                                if (!checkClinic.contains(eachClinic.getKey())) {
-                                    checkClinic.add(eachClinic.getKey());
-                                    HashMap<String, String> employeeName = new HashMap<>();
-                                    HashMap<String, String> clinicName = new HashMap<>();
-                                    HashMap<String, String> clinicAddress = new HashMap<>();
-                                    HashMap<String, String> clinicRate = new HashMap<>();
-                                    employeeName.put("employeeName", eachClinic.getKey());
-                                    clinicName.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
-                                    clinicAddress.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
-                                    clinicRate.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(String.class));
-                                    ArrayList<HashMap<String, String>> clinicInfo = new ArrayList<>();
-                                    clinicInfo.add(employeeName);
-                                    clinicInfo.add(clinicName);
-                                    clinicInfo.add(clinicAddress);
-                                    clinicInfo.add(clinicRate);
-                                    resultList.add(clinicInfo);
-                                } else break search1;
-                            }
+                                    && addressElem.equals(eachClinic.child("clinicAddress").getValue())
+                                    && !checkClinic.contains(eachClinic.getKey())) {
+                                checkClinic.add(eachClinic.getKey());
+                                HashMap<String, String> employeeName = new HashMap<>();
+                                HashMap<String, String> clinicName = new HashMap<>();
+                                HashMap<String, String> clinicAddress = new HashMap<>();
+                                HashMap<String, String> clinicRate = new HashMap<>();
+                                employeeName.put("employeeName", eachClinic.getKey());
+                                clinicName.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
+                                clinicAddress.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
+                                clinicRate.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(String.class));
+                                ArrayList<HashMap<String, String>> clinicInfo = new ArrayList<>();
+                                clinicInfo.add(employeeName);
+                                clinicInfo.add(clinicName);
+                                clinicInfo.add(clinicAddress);
+                                clinicInfo.add(clinicRate);
+                                resultList.add(clinicInfo);
+                            } else break search1;
                         }
                     }
+
                     search2:
                     for (String serviceElem : selectedServiceList) {
                         for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
                             if (eachClinic.hasChild("servicesOffered")
-                                    && eachClinic.child("servicesOffered").hasChild(serviceElem)) {
-                                if (!checkClinic.contains(eachClinic.getKey())) {
-                                    checkClinic.add(eachClinic.getKey());
-                                    HashMap<String, String> employeeName = new HashMap<>();
-                                    HashMap<String, String> clinicName = new HashMap<>();
-                                    HashMap<String, String> clinicAddress = new HashMap<>();
-                                    HashMap<String, String> clinicRate = new HashMap<>();
-                                    employeeName.put("employeeName", eachClinic.getKey());
-                                    clinicName.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
-                                    clinicAddress.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
-                                    clinicRate.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(String.class));
-                                    ArrayList<HashMap<String, String>> clinicInfo = new ArrayList<>();
-                                    clinicInfo.add(employeeName);
-                                    clinicInfo.add(clinicName);
-                                    clinicInfo.add(clinicAddress);
-                                    clinicInfo.add(clinicRate);
-                                    resultList.add(clinicInfo);
-                                }
-                                else break search2;
-                            }
+                                    && eachClinic.child("servicesOffered").hasChild(serviceElem)
+                                    && !checkClinic.contains(eachClinic.getKey())) {
+                                checkClinic.add(eachClinic.getKey());
+                                HashMap<String, String> employeeName = new HashMap<>();
+                                HashMap<String, String> clinicName = new HashMap<>();
+                                HashMap<String, String> clinicAddress = new HashMap<>();
+                                HashMap<String, String> clinicRate = new HashMap<>();
+                                employeeName.put("employeeName", eachClinic.getKey());
+                                clinicName.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
+                                clinicAddress.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
+                                clinicRate.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(String.class));
+                                ArrayList<HashMap<String, String>> clinicInfo = new ArrayList<>();
+                                clinicInfo.add(employeeName);
+                                clinicInfo.add(clinicName);
+                                clinicInfo.add(clinicAddress);
+                                clinicInfo.add(clinicRate);
+                                resultList.add(clinicInfo);
+                            } else break search2;
                         }
-
                     }
+
                     search3:
                     for (String timeSlotElem : selectedTimeSlotList) {
                         for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
                             if (eachClinic.hasChild("workingHours")) {
                                 for (DataSnapshot eachWorkingDate : eachClinic.child("workingHours").getChildren()) {
-                                    if (eachWorkingDate.hasChild(timeSlotElem)) {
-                                        if (!checkClinic.contains(eachClinic.getKey())) {
-                                            checkClinic.add(eachClinic.getKey());
-                                            HashMap<String, String> employeeName = new HashMap<>();
-                                            HashMap<String, String> clinicName = new HashMap<>();
-                                            HashMap<String, String> clinicAddress = new HashMap<>();
-                                            HashMap<String, String> clinicRate = new HashMap<>();
-                                            employeeName.put("employeeName", eachClinic.getKey());
-                                            clinicName.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
-                                            clinicAddress.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
-                                            clinicRate.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(String.class));
-                                            ArrayList<HashMap<String, String>> clinicInfo = new ArrayList<>();
-                                            clinicInfo.add(employeeName);
-                                            clinicInfo.add(clinicName);
-                                            clinicInfo.add(clinicAddress);
-                                            clinicInfo.add(clinicRate);
-                                            resultList.add(clinicInfo);
-                                        }
-                                        else break search3;
-                                    }
+                                    if (eachWorkingDate.hasChild(timeSlotElem) && !checkClinic.contains(eachClinic.getKey())) {
+                                        checkClinic.add(eachClinic.getKey());
+                                        HashMap<String, String> employeeName = new HashMap<>();
+                                        HashMap<String, String> clinicName = new HashMap<>();
+                                        HashMap<String, String> clinicAddress = new HashMap<>();
+                                        HashMap<String, String> clinicRate = new HashMap<>();
+                                        employeeName.put("employeeName", eachClinic.getKey());
+                                        clinicName.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
+                                        clinicAddress.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
+                                        clinicRate.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(String.class));
+                                        ArrayList<HashMap<String, String>> clinicInfo = new ArrayList<>();
+                                        clinicInfo.add(employeeName);
+                                        clinicInfo.add(clinicName);
+                                        clinicInfo.add(clinicAddress);
+                                        clinicInfo.add(clinicRate);
+                                        resultList.add(clinicInfo);
+                                    } else break search3;
                                 }
-                            }
+                            } else break search3;
                         }
                     }
-                    if (null == resultList){
+
+                    if (null == resultList) {
                         liveDataClinics.setValue(new Result.Success(R.string.search_result_null));
-                    }
-                    else{
+                    } else {
                         liveDataClinics.setValue(new Result.Success<ArrayList<ArrayList<HashMap<String, String>>>>(resultList));
                     }
                 }
@@ -160,7 +222,8 @@ public class AppointmentRepository {
                     liveDataClinics.setValue(new Result.Failure(R.string.failed));
                 }
             });
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             liveDataClinics.setValue(new Result.Failure(R.string.failed));
         }
         return liveDataClinics;
@@ -242,7 +305,7 @@ public class AppointmentRepository {
 
 
     /*checkin a appointment if it is booked*/
-    public LiveData<Result> isCheckedIn(final String patientUsername, final String dateTime, final Boolean checkedIn) {
+    public LiveData<Result> isCheckedIn(final String patientUsername, final String dateTime) {
         final DatabaseReference databaseAppointments;
         final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
         try {
@@ -321,14 +384,14 @@ public class AppointmentRepository {
                     } else {
                         DatabaseReference fromClinic = databaseClinics.child(employeeName);
                         if (!dataSnapshot.child(employeeName).hasChild("rate")) {
-                         //this clinic has never received a rate
+                            //this clinic has never received a rate
                             String commentNum = "comment" + String.valueOf(0);
                             fromClinic.child("rate").child("counter").setValue(0);
                             fromClinic.child("rate").child(commentNum).setValue(comment);
                             fromClinic.child("rate").child("score").setValue(score);
                             liveDataAppointments.setValue(new Result.Success(R.string.rated_appointment));
                         } else {
-                         //this clinic has a score already, need count up and take average score
+                            //this clinic has a score already, need count up and take average score
                             DatabaseReference fromRate = fromClinic.child("rate");
                             Integer counter = dataSnapshot.child(employeeName).child("rate").child("counter").getValue(Integer.class);
                             Float aveScore = dataSnapshot.child(employeeName).child("rate").child("score").getValue(Float.class);
