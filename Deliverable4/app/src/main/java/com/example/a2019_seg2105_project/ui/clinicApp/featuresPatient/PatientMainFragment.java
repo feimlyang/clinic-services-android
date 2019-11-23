@@ -4,8 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.content.Context;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.a2019_seg2105_project.R;
+import com.google.firebase.database.annotations.Nullable;
 
 public class PatientMainFragment extends Fragment {
 
@@ -45,6 +50,7 @@ public class PatientMainFragment extends Fragment {
         appointments = new ArrayList<String>();
         appointmentAttributes = new ArrayList<Map<String, String>>();
         listOfAppointments = (ListView) getActivity().findViewById(R.id.listView);
+        listOfAppointments.setAdapter(new MyAdapter(getContext(),R.layout.patient_listview_item_home,appointments));
         returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
         bookAppointmentButton = (Button) getActivity().findViewById(R.id.btn_BookAppointment);
 //        appointmentViewModel.getAvailableServicesData.observe(this, new Observer<Result>() {
@@ -134,69 +140,72 @@ public class PatientMainFragment extends Fragment {
         });
 //        serviceViewModel.listAvailableServices();
     }
-//    public class MyAdapter extends BaseAdapter {
-//
-//        private LayoutInflater mInflater;
-//
-//        public MyAdapter(Context context) {
-//            this.mInflater = LayoutInflater.from(context);
-//        }
-//
-////        @Override
-////        public int getCount() {
-////            // TODO Auto-generated method stub
-////            return mData.size();
-////        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            // TODO Auto-generated method stub
-//            return null;
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            // TODO Auto-generated method stub
-//            return 0;
-//        }
 
-        //****************************************final方法
-//注意原本getView方法中的int position变量是非final的，现在改为final
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            ViewHolder holder = null;
-//            if (convertView == null) {
-//
-//                holder = new ViewHolder();
-//
-//                //可以理解为从vlist获取view  之后把view返回给ListView
-//
-//                convertView = mInflater.inflate(R.layout.vlist, null);
-//                holder.title = (TextView) convertView.findViewById(R.id.title);
-//                holder.info = (TextView) convertView.findViewById(R.id.info);
-//                holder.viewBtn = (Button) convertView.findViewById(R.id.view_btn);
-//                convertView.setTag(holder);
-//            } else {
-//                holder = (ViewHolder) convertView.getTag();
+    private class MyAdapter extends ArrayAdapter<String>{
+
+        private int layout;
+        private MyAdapter(Context context, int resource, List<String>objects){
+            super(context,resource,objects);
+            layout = resource;
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+
+            if(convertView == null){
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                convertView = inflater.inflate(layout,parent,false);
+                ViewHolder viewHolder = new ViewHolder();
+                viewHolder.dateAndTime = (TextView) convertView.findViewById(R.id.textViewDateAndHours);
+                viewHolder.clinicName = (TextView) convertView.findViewById(R.id.textViewClinicNameInfo);
+                viewHolder.address = (TextView) convertView.findViewById(R.id.textViewAddressInfo);
+                viewHolder.serviceName = (TextView) convertView.findViewById(R.id.textViewServiceNameInfo);
+                viewHolder.waitingTime = (TextView) convertView.findViewById(R.id.textViewWaitingTimeInfo);
+                viewHolder.checkIn = (Button) convertView.findViewById(R.id.btn_CheckIn);
+                viewHolder.rate = (Button) convertView.findViewById(R.id.btn_Rate);
+
+                viewHolder.checkIn.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        Toast.makeText(getContext(),"You've checked in successfully",Toast.LENGTH_SHORT).show();
+                        //viewHolder.checkIn.setEnabled(false);
+                        //need some changes!!!
+                    }
+                });
+                viewHolder.rate.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.addToBackStack(null);
+                        transaction.replace(R.id.patient_layout_itemHome, new RateClinicFragment());
+                        transaction.commit();
+                        //viewHolder.rate.setEnabled(false);
+                        //need some changes!!!
+                    }
+                });
+
+                convertView.setTag(viewHolder);
+
+
+            }
+//            else{
+//                mainViewHolder = (ViewHolder) convertView.getTag();
+//                mainViewHolder.
 //            }
-//
-//            holder.title.setText((String) mData.get(position).get("title"));
-//            holder.info.setText((String) mData.get(position).get("info"));
-//            holder.viewBtn.setTag(position);
-//            //给Button添加单击事件  添加Button之后ListView将失去焦点  需要的直接把Button的焦点去掉
-//            holder.viewBtn.setOnClickListener(new View.OnClickListener() {
-//
-//                @Override
-//                public void onClick(View v) {
-//                    showInfo(position);
-//                }
-//            });
-//
-//            //holder.viewBtn.setOnClickListener(MyListener(position));
-//
-//            return convertView;
-//        }
+            return convertView;
+        }
 
-//    }
+    }
+
+    public class ViewHolder{
+        TextView dateAndTime;
+        TextView clinicName;
+        TextView address;
+        TextView serviceName;
+        TextView waitingTime;
+        Button checkIn;
+        Button rate;
+    }
+
 
 }
