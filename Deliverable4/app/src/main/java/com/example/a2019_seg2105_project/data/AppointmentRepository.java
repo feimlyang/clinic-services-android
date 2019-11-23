@@ -94,7 +94,7 @@ public class AppointmentRepository {
                     search2:
                     for (String serviceElem : selectedServiceList) {
                         for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
-                            if (eachClinic.hasChild("servicesOfferd")
+                            if (eachClinic.hasChild("servicesOffered")
                                     && eachClinic.child("servicesOffered").hasChild(serviceElem)) {
                                 if (!checkClinic.contains(eachClinic.getKey())) {
                                     checkClinic.add(eachClinic.getKey());
@@ -211,7 +211,7 @@ public class AppointmentRepository {
                     if (!dataSnapshot.hasChild(patientUsername)) {
                         liveDataAppointments.setValue(new Result.Error(new IOException("patient invalid")));
                     } else {
-                        ArrayList<Map<String, Map<String, String>>> appointmnetList = new ArrayList<>();
+                        ArrayList<Map<String, Map<String, String>>> appointmentList = new ArrayList<>();
                         for (DataSnapshot appointment : dataSnapshot.child(patientUsername).getChildren()) {
                             String dateTime = appointment.getKey();
                             Map<String, Map<String, String>> eachAppointment = new HashMap<>();
@@ -223,9 +223,9 @@ public class AppointmentRepository {
                                 elem.put(elemKey, elemValue);
                                 eachAppointment.put(dateTime, elem);
                             }
-                            appointmnetList.add(eachAppointment);
+                            appointmentList.add(eachAppointment);
                         }
-                        liveDataAppointments.setValue(new Result.Success<ArrayList<Map<String, Map<String, String>>>>(appointmnetList));
+                        liveDataAppointments.setValue(new Result.Success<ArrayList<Map<String, Map<String, String>>>>(appointmentList));
                     }
                 }
 
@@ -307,7 +307,7 @@ public class AppointmentRepository {
 
     /*rate a service after check in, each rating include a score and a comment*/
     public LiveData<Result> rateAppointment(final String employeeName,
-                                            final Float socre, final String comment) {
+                                            final Float score, final String comment) {
         final DatabaseReference databaseAppointments;
         final DatabaseReference databaseClinics;
         final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
@@ -321,19 +321,19 @@ public class AppointmentRepository {
                     } else {
                         DatabaseReference fromClinic = databaseClinics.child(employeeName);
                         if (!dataSnapshot.child(employeeName).hasChild("rate")) {
-//this clinic has never received a rate
+                         //this clinic has never received a rate
                             String commentNum = "comment" + String.valueOf(0);
                             fromClinic.child("rate").child("counter").setValue(0);
                             fromClinic.child("rate").child(commentNum).setValue(comment);
-                            fromClinic.child("rate").child("score").setValue(socre);
+                            fromClinic.child("rate").child("score").setValue(score);
                             liveDataAppointments.setValue(new Result.Success(R.string.rated_appointment));
                         } else {
-//this clinic has a score already, need count up and take average score
+                         //this clinic has a score already, need count up and take average score
                             DatabaseReference fromRate = fromClinic.child("rate");
                             Integer counter = dataSnapshot.child(employeeName).child("rate").child("counter").getValue(Integer.class);
                             Float aveScore = dataSnapshot.child(employeeName).child("rate").child("score").getValue(Float.class);
-                            aveScore = (aveScore * counter + socre) / (++counter);
-                            String commentNum = "comment" + String.valueOf(counter);
+                            aveScore = (aveScore * counter + score) / (++counter);
+                            String commentNum = "comment" + counter;
                             fromRate.child("counter").setValue(counter);
                             fromRate.child(commentNum).setValue(comment);
                             fromRate.child("score").setValue(aveScore);
@@ -352,6 +352,5 @@ public class AppointmentRepository {
         }
         return liveDataAppointments;
     }
-
 
 }
