@@ -93,11 +93,17 @@
     <string name="getserviceOffered_failed">"Fail to get services offered in the profile!"</string>
 
     <!-- Appointment Operation-->
-    <string name="_alreayd_CheckedIn">"You already checked in!"</string>
+    <string name="_already_CheckedIn">"You already checked in!"</string>
     <string name="isCheckedIn">"Ok, you are here!"</string>
     <string name="fail_checkedIn">"Fail to check in!"</string>
     <string name="rated_appointment">"Thanks for your rate!"</string>
     <string name="fail_rated_appointment">"Fail to rate!"</string>
+    <string name="already_booked">"You have already booked this appointment!"</string>
+    <string name="success_booked">"Appointment is booked!"</string>
+    <string name="failed">"Failed! Try again!"</string>
+
+    <string name="search_result_null">"Sorry! No matched result!"</string>
+
 
 
 
