@@ -1,43 +1,27 @@
 package com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.a2019_seg2105_project.R;
-import com.example.a2019_seg2105_project.data.Result;
-
-import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.AppointmentViewModel;
-import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.PatientMainViewModel;
-
-
-import com.example.a2019_seg2105_project.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class PatientMainFragment extends Fragment {
 
     private AppointmentViewModel appointmentViewModel;
-    private PatientMainViewModel patientMainViewModel;
     private ListView listOfAppointments;
     private List<Map<String, String>> appointmentAttributes;
     private List<String> appointments;
@@ -50,8 +34,8 @@ public class PatientMainFragment extends Fragment {
         container.removeAllViews();
         //Set View Model
         View root = inflater.inflate(R.layout.patient_fragment_home, container, false);
-        patientMainViewModel =
-                ViewModelProviders.of(this).get(PatientMainViewModel.class);
+        appointmentViewModel =
+                ViewModelProviders.of(this).get(AppointmentViewModel.class);
 
         return root;
     }//end of onCreateView()
@@ -150,7 +134,69 @@ public class PatientMainFragment extends Fragment {
         });
 //        serviceViewModel.listAvailableServices();
     }
+//    public class MyAdapter extends BaseAdapter {
+//
+//        private LayoutInflater mInflater;
+//
+//        public MyAdapter(Context context) {
+//            this.mInflater = LayoutInflater.from(context);
+//        }
+//
+////        @Override
+////        public int getCount() {
+////            // TODO Auto-generated method stub
+////            return mData.size();
+////        }
+//
+//        @Override
+//        public Object getItem(int position) {
+//            // TODO Auto-generated method stub
+//            return null;
+//        }
+//
+//        @Override
+//        public long getItemId(int position) {
+//            // TODO Auto-generated method stub
+//            return 0;
+//        }
 
+        //****************************************final方法
+//注意原本getView方法中的int position变量是非final的，现在改为final
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            ViewHolder holder = null;
+//            if (convertView == null) {
+//
+//                holder = new ViewHolder();
+//
+//                //可以理解为从vlist获取view  之后把view返回给ListView
+//
+//                convertView = mInflater.inflate(R.layout.vlist, null);
+//                holder.title = (TextView) convertView.findViewById(R.id.title);
+//                holder.info = (TextView) convertView.findViewById(R.id.info);
+//                holder.viewBtn = (Button) convertView.findViewById(R.id.view_btn);
+//                convertView.setTag(holder);
+//            } else {
+//                holder = (ViewHolder) convertView.getTag();
+//            }
+//
+//            holder.title.setText((String) mData.get(position).get("title"));
+//            holder.info.setText((String) mData.get(position).get("info"));
+//            holder.viewBtn.setTag(position);
+//            //给Button添加单击事件  添加Button之后ListView将失去焦点  需要的直接把Button的焦点去掉
+//            holder.viewBtn.setOnClickListener(new View.OnClickListener() {
+//
+//                @Override
+//                public void onClick(View v) {
+//                    showInfo(position);
+//                }
+//            });
+//
+//            //holder.viewBtn.setOnClickListener(MyListener(position));
+//
+//            return convertView;
+//        }
 
+//    }
 
 }
