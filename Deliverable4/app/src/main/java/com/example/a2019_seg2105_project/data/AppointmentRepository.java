@@ -164,17 +164,17 @@ public class AppointmentRepository {
                         if (isValidClinic) {
                             HashMap<String, String> thisClinic = new HashMap<>();
                             thisClinic.put("employeeName", eachClinic.getKey());
-                            if (dataSnapshot.hasChild("clinicName")) {
+                            if (eachClinic.hasChild("clinicName")) {
                                 thisClinic.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
                             } else {
                                 thisClinic.put("clinicName", "");
                             }
-                            if (dataSnapshot.hasChild("clinicAddress")) {
+                            if (eachClinic.hasChild("clinicAddress")) {
                                 thisClinic.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
                             } else {
                                 thisClinic.put("clinicAddress", "");
                             }
-                            if (dataSnapshot.hasChild("rate") && dataSnapshot.hasChild("aveScore")) {
+                            if (eachClinic.hasChild("rate") && eachClinic.hasChild("rate/aveScore")) {
                                 thisClinic.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(Double.class).toString());
                             } else {
                                 thisClinic.put("clinicRate", "");
