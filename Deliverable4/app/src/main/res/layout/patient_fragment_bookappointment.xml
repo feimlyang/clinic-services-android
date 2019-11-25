@@ -14,13 +14,22 @@
         android:layout_marginTop="28dp"
         android:layout_marginBottom="92dp"
         app:layout_constraintBottom_toTopOf="@+id/listViewSearch"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_searchWorkingHours"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/spinner_searchServices"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="127dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_searchAddress"
+        app:layout_constraintStart_toEndOf="@+id/spinner_searchWorkingHours"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_searchWorkingHours"
         style="@android:style/Widget.Spinner.DropDown"
         android:layout_width="123dp"
         android:layout_height="52dp"
@@ -29,19 +38,8 @@
         app:layout_constraintBottom_toTopOf="@+id/listViewSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.292"
-        app:layout_constraintStart_toEndOf="@+id/spinner_searchWorkingHours"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Spinner
-        android:id="@+id/spinner_searchWorkingHours"
-        style="@android:style/Widget.Spinner.DropDown"
-        android:layout_width="127dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_searchServices"
-        app:layout_constraintStart_toEndOf="@+id/spinner_searchAddress"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listViewSearch"
@@ -78,9 +76,9 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="67dp"
         android:layout_marginEnd="293dp"
-        android:text="Clinic Results:"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="15sp"
+        android:text="Matched Clinics:"
+        android:textColor="#FD030000"
+        android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/listViewSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

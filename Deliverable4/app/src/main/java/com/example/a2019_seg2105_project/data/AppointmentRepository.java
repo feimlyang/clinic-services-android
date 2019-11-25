@@ -51,7 +51,7 @@ public class AppointmentRepository {
                         if (eachClinic.hasChild("clinicAddress")
                                 && !addressSpinnerValues.contains(eachClinic.child("clinicAddress").getValue())) {
                             addressSpinnerValues.add(eachClinic.child("clinicAddress").getValue(String.class));
-                        } else break;
+                        }
                     }
                     if (null == addressSpinnerValues) {
                         liveDataSpinnerValues.setValue(new Result.Success(R.string.search_result_null));
@@ -88,9 +88,9 @@ public class AppointmentRepository {
                             for (DataSnapshot eachService : eachClinic.child("servicesOffered").getChildren()) {
                                 if (!serviceSpinnerValues.contains(eachService.getKey())) {
                                     serviceSpinnerValues.add(eachService.getKey());
-                                } else break;
+                                }
                             }
-                        } else break;
+                        }
                     }
                     if (null == serviceSpinnerValues) {
                         liveDataSpinnerValues.setValue(new Result.Success(R.string.search_result_null));
@@ -109,6 +109,7 @@ public class AppointmentRepository {
         }
         return liveDataSpinnerValues;
     }
+
 
 
     /*search for a walk in clinic by address, working hours, type of services

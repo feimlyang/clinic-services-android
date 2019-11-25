@@ -3,6 +3,7 @@ package com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient;
 import androidx.fragment.app.Fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +27,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.data.model.Clinic;
+import com.example.a2019_seg2105_project.data.model.TimeSlot;
 import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.AppointmentViewModel;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.PatientMainFragment;
@@ -38,9 +42,18 @@ public class BookAppointmentFragment extends Fragment {
 
     private AppointmentViewModel appointmentViewModel;
     private ListView listOfClinics;
-    private List<ClinicDataModel> clinicData;
+    private Spinner spinnerOfAddress, spinnerOfService, spinnerOfWorkingHours;
+    private ArrayList<ClinicDataModel> clinicData;
+    private ArrayList<SpinnerDataModel> spinnerAddressData, spinnerServiceData, spinnerWorkingHoursData;
     private Button returnButton;
-    //private ArrayList<HashMap<String, String>> searchResult;
+    private ArrayList<String> selectedAddress = new ArrayList<>();
+    private ArrayList<String> selectedService = new ArrayList<>();
+    private ArrayList<String> selectedWorkingHours = new ArrayList<>();
+    private ArrayList<String> addressList = new ArrayList<>();
+    private ArrayList<String> serviceList = new ArrayList<>();
+    private TimeSlot timeSlot = new TimeSlot(); //spinner time slot
+    private ArrayList<String> spinnerAddressList = new ArrayList<>();
+
     // GlobalObjectManager helper = GlobalObjectManager.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -55,6 +68,12 @@ public class BookAppointmentFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         listOfClinics = (ListView) getActivity().findViewById(R.id.listViewSearch);
         clinicData = new ArrayList<>();
+        spinnerOfAddress = (Spinner) getActivity().findViewById(R.id.spinner_searchAddress);
+        spinnerOfService = (Spinner) getActivity().findViewById(R.id.spinner_searchServices);
+        spinnerOfWorkingHours = (Spinner) getActivity().findViewById(R.id.spinner_searchWorkingHours);
+        spinnerAddressData = new ArrayList<>();
+        spinnerServiceData = new ArrayList<>();
+        spinnerWorkingHoursData = new ArrayList<>();
 
         appointmentViewModel.searchClinicData.observe(this, new Observer<Result>() {
             @Override
@@ -90,6 +109,67 @@ public class BookAppointmentFragment extends Fragment {
             }
         });
 
+        //Address spinner view
+        appointmentViewModel.getAddressSpinnerData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if (result == null) return;
+                selectedAddress.clear();
+                if (result instanceof Result.Failure || result instanceof Result.Error) {
+                    Toast.makeText(getContext(), "Failed to get spinner list.", Toast.LENGTH_SHORT).show();
+                } else {
+                    addressList = (ArrayList<String>) ((Result.Success) result).getData();
+                    if (addressList == null) selectedService = null;
+                    spinnerAddressData.add(new SpinnerDataModel("Not Selected", false));
+                    for (String eachItem : addressList) {
+                        SpinnerDataModel item = new SpinnerDataModel(eachItem, false);
+                        spinnerAddressData.add(item);
+                    }
+                }
+                AdapterFilterSpinner adapterAddressSpinner = new AdapterFilterSpinner(getContext(), spinnerAddressData);
+                spinnerOfAddress.setAdapter(adapterAddressSpinner);
+                adapterAddressSpinner.notifyDataSetChanged();
+            }
+        });
+
+       //Service spinner view
+        appointmentViewModel.getServiceSpinnerData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if (result == null) return;
+                selectedService.clear();
+                if (result instanceof Result.Failure || result instanceof Result.Error) {
+                    Toast.makeText(getContext(), "Failed to get spinner list.", Toast.LENGTH_SHORT).show();
+                } else {
+                    serviceList = (ArrayList<String>) ((Result.Success) result).getData();
+                    if (serviceList == null) selectedService = null;
+
+                    spinnerServiceData.add(new SpinnerDataModel("Not Selected", false));
+                    for (String eachItem : serviceList) {
+                            SpinnerDataModel item = new SpinnerDataModel(eachItem, false);
+                            spinnerServiceData.add(item);
+                        }
+                    }
+                AdapterFilterSpinner adapterServiceSpinner = new AdapterFilterSpinner(getContext(), spinnerServiceData);
+                spinnerOfService.setAdapter(adapterServiceSpinner);
+                adapterServiceSpinner.notifyDataSetChanged();
+            }
+        });
+
+/*
+        //Wroking Hours spinner view
+        spinnerServiceData.add(new SpinnerDataModel("Not Selected", false));
+        for (String eachItem : timeSlot.getTimeSlots()) {
+            SpinnerDataModel item = new SpinnerDataModel(eachItem, false);
+            spinnerWorkingHoursData.add(item);
+        }
+        AdapterFilterSpinner adapterWHSpinner = new AdapterFilterSpinner(getContext(), spinnerWorkingHoursData);
+        spinnerOfWorkingHours.setAdapter(adapterWHSpinner);
+        adapterWHSpinner.notifyDataSetChanged();
+
+*/
+
+
 
         Button returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +184,13 @@ public class BookAppointmentFragment extends Fragment {
         });
 
 
-        //function calls
-        //defualt search:list all clinc info
+        //init search list
         appointmentViewModel.searchClinic(null, null, null);
+        //int spinners
+        appointmentViewModel.getAddressSpinner();
+        appointmentViewModel.getServiceSpinner();
 
     }
+
+
 }

@@ -5,16 +5,17 @@
     android:layout_height="match_parent">
 
     <TextView
-    android:id="@+id/text"
+    android:id="@+id/spinnerItem"
     android:layout_width="354dp"
     android:layout_height="32dp"
     android:layout_marginLeft="20dp"
     android:textAlignment="gravity" />
 
     <CheckBox
-        android:id="@+id/checkbox"
+        android:id="@+id/spinnerCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true" />
+
 </RelativeLayout>

@@ -23,6 +23,7 @@ public class AppointmentViewModel extends ViewModel {
     public MutableLiveData<AppointmentFormState> clinicFormState = new MutableLiveData<AppointmentFormState>();
     public MediatorLiveData<Result> getAddressSpinnerData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getServiceSpinnerData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> getWHSpinnerData = new MediatorLiveData<>();
     public MediatorLiveData<Result> searchClinicData = new MediatorLiveData<>();
     public MediatorLiveData<Result> addAppointmentData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getAllAppointmentsData = new MediatorLiveData<>();
@@ -64,6 +65,7 @@ public class AppointmentViewModel extends ViewModel {
             }
         });
     }
+
 
     /*search for a walk in clinic by address, working hours, type of services
      * returns ArrayList of hashmap
