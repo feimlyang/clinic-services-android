@@ -100,6 +100,14 @@
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown" />
 
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="165dp"
+            android:layout_marginRight="165dp"
+            android:text="0000/00/00" />
+
         <CalendarView
             android:id="@+id/calendarView"
             style="@android:style/Widget.DeviceDefault.CalendarView"

@@ -66,6 +66,7 @@ public class WorkingHoursEditFragment extends Fragment {
     private boolean editMode = false;
     private Map<String, Set<String>> selectionTimeSlots = new HashMap<String, Set<String>>();
     private Map<String, CheckBox> checkBoxMap;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
     {

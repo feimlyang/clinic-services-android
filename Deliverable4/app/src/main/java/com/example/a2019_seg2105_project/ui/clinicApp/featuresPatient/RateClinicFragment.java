@@ -1,6 +1,8 @@
 package com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.a2019_seg2105_project.R;
+import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.AppointmentViewModel;
 
 public class RateClinicFragment extends Fragment {
@@ -26,6 +30,7 @@ public class RateClinicFragment extends Fragment {
     private EditText commentFilling;
     private RatingBar ratingBar;
     private TextView points;
+    GlobalObjectManager helper = GlobalObjectManager.getInstance();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -63,9 +68,23 @@ public class RateClinicFragment extends Fragment {
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
 
                 points.setText(String.valueOf(v));
+
             }
         });
 
+        commentFilling.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                appointmentViewModel.isCommentWithinRange(s.toString());
+            }
+        });
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +96,7 @@ public class RateClinicFragment extends Fragment {
                     commentFilling.setText("");
                     ratingBar.setRating(9);
                     Toast.makeText(getContext(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
-                    //need some changes!!!
+                    appointmentViewModel.rateAppointment(helper.getCurrentUsername(),Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
                 }
             }
         });
