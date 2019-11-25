@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,83 +38,60 @@ public class PatientMainFragment extends Fragment {
 
     private AppointmentViewModel appointmentViewModel;
     private ListView listOfAppointments;
-    private List<Map<String, String>> appointmentAttributes;
-    private List<PatientHomeModel> data;
-    private Button returnButton;
-    private Button bookAppointmentButton;
+    private List<AppointmentDataModel> appointmentsData;
+    private Button returnButton, bookAppointmentButton;
+
     GlobalObjectManager helper = GlobalObjectManager.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState)
-    {
+                             ViewGroup container, Bundle savedInstanceState) {
         container.removeAllViews();
-        //Set View Model
+        appointmentViewModel = ViewModelProviders.of(this, new AppointmentModelFactory()).get(AppointmentViewModel.class);
         View root = inflater.inflate(R.layout.patient_fragment_home, container, false);
-//        appointmentViewModel =
-//                ViewModelProviders.of(this).get(AppointmentViewModel.class);
-
         return root;
-    }//end of onCreateView()
+    }
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        data = new ArrayList<PatientHomeModel>();
-        appointmentAttributes = new ArrayList<Map<String, String>>();
-        listOfAppointments = (ListView) getActivity().findViewById(R.id.listView);
-        listOfAppointments.setAdapter(new AdapterPatientMain(getContext(),data));
+        appointmentsData = new ArrayList<>();
+
+
+        listOfAppointments = (ListView) getActivity().findViewById(R.id.appointListView);
         returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
         bookAppointmentButton = (Button) getActivity().findViewById(R.id.btn_BookAppointment);
+
         appointmentViewModel.getAllAppointmentsData.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
                 if(result == null) return;
-                data.clear();
-                appointmentAttributes.clear();
+                appointmentsData.clear();
                 if(result instanceof Result.Failure || result instanceof Result.Error)
                 {
-                    Toast.makeText(getContext(), "Failed to list all services.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Failed to get appointments.", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Result.Success<Map<String, Map<String, String>>> services_map;
-                    try{
-                        services_map  = (Result.Success<Map<String, Map<String, String>>>)(result);
 
-                    }catch (Exception e)
-                    {
-                        Map<String, Map<String, String>> emptyMap = new HashMap<>();
-                        services_map = new Result.Success<Map<String, Map<String, String>>>(emptyMap);
-                    }
-                    Map<String, Map<String, String>> resultMap = services_map.getData();
-                    for(String key : resultMap.keySet())
-                    {
-                        appointments.add(key);
-                        appointmentAttributes.add(resultMap.get(key));
+                    ArrayList<Map<String, Map<String, String>>> appointListResult =
+                            (ArrayList<Map<String, Map<String, String>>>)((Result.Success)result).getData();
+
+                    for(Map<String, Map<String, String>> eachAppointment : appointListResult){
+                        //AppointmentDataModel(String dateAndHours, String clinicName, String address, String serviceName,String waitingTime)
+                        for (String eachAppointTime : eachAppointment.keySet()){
+                            Map<String, String> appointInfo = eachAppointment.get(eachAppointTime);
+                            Boolean covertIsCheckedIn = Boolean.valueOf(appointInfo.get("isCheckedIn"));
+                            AppointmentDataModel appointAttributes = new AppointmentDataModel(eachAppointTime, appointInfo.get("clinicName"),
+                                appointInfo.get("clinicAddress"), appointInfo.get("bookedService"), appointInfo.get("waitingTime"),
+                                    covertIsCheckedIn);
+                            appointmentsData.add(appointAttributes);
+                        }
                     }
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>( getContext(), android.R.layout.simple_list_item_1, appointments);
-                listOfAppointments.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                AdapterPatientMain appointmentAdapter  = new AdapterPatientMain( getContext(), appointmentsData);
+                listOfAppointments.setAdapter(appointmentAdapter);
+                appointmentAdapter.notifyDataSetChanged();
             }
         });
-
-
-//        serviceViewModel.addServiceToProfileData.observe(this, new Observer<Result>() {
-//            @Override
-//            public void onChanged(Result result) {
-//                if(null == result) return;
-//                if(result instanceof Result.Success)
-//                {
-//                    Integer success = ((Result.Success<Integer>)result).getData();
-//                    Toast.makeText(getContext(), getString(success), Toast.LENGTH_SHORT).show();
-//                }
-//                else
-//                {
-//                    Integer failure = ((Result.Failure<Integer>)result).getData();
-//                    Toast.makeText(getContext(), getString(failure), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
 
 
         bookAppointmentButton.setOnClickListener(new View.OnClickListener() {
@@ -126,82 +104,9 @@ public class PatientMainFragment extends Fragment {
                 transaction.commit();
             }
         });
+
+        appointmentViewModel.getAllAppointments(helper.getCurrentUsername());
     }
-
-
-//    private class MyAdapter extends ArrayAdapter<PatientHomeModel>{
-//
-//        private MyAdapter(Context context, List<PatientHomeModel>data){
-//            super(context,R.layout.patient_listview_item_home,data);
-//        }
-//        @Override
-//        public View getView(final int position, View convertView, ViewGroup parent){
-//
-//            ViewHolder mainViewHolder = null;
-//            if(convertView == null){
-//                LayoutInflater inflater = LayoutInflater.from(getContext());
-//                convertView = inflater.inflate(R.layout.patient_listview_item_home,parent,false);
-//                final ViewHolder viewHolder = new ViewHolder();
-//                viewHolder.dateAndTime = (TextView) convertView.findViewById(R.id.textViewDateAndHours);
-//                viewHolder.dateAndTime.setText(data.get(position).getDateAndHours());
-//                viewHolder.clinicNameInfo = (TextView) convertView.findViewById(R.id.textViewClinicNameInfo);
-//                viewHolder.clinicNameInfo.setText(data.get(position).getClinicName());
-//                viewHolder.addressInfo = (TextView) convertView.findViewById(R.id.textViewAddressInfo);
-//                viewHolder.addressInfo.setText(data.get(position).getAddress());
-//                viewHolder.serviceNameInfo = (TextView) convertView.findViewById(R.id.textViewServiceNameInfo);
-//                viewHolder.serviceNameInfo.setText(data.get(position).getServiceName());
-//                viewHolder.waitingTimeInfo = (TextView) convertView.findViewById(R.id.textViewWaitingTimeInfo);
-//                viewHolder.waitingTimeInfo.setText(data.get(position).getWaitingTime());
-//                viewHolder.clinicName = (TextView) convertView.findViewById(R.id.textViewClinicName);
-//                viewHolder.address = (TextView) convertView.findViewById(R.id.textViewAddress);
-//                viewHolder.serviceName = (TextView) convertView.findViewById(R.id.textViewServiceName);
-//                viewHolder.waitingTime = (TextView) convertView.findViewById(R.id.textViewWaitingTime);
-//                viewHolder.checkIn = (Button) convertView.findViewById(R.id.btn_CheckIn);
-//                viewHolder.rate = (Button) convertView.findViewById(R.id.btn_Rate);
-//
-////                viewHolder.clinicName.setText(getItem(position));
-////                viewHolder.waitingTime.setText(getItem(position));
-//
-//
-//                viewHolder.rate.setOnClickListener(new View.OnClickListener(){
-//                    @Override
-//                    public void onClick(View v){
-//                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                        FragmentTransaction transaction = fragmentManager.beginTransaction();
-//                        transaction.addToBackStack(null);
-//                        transaction.replace(R.id.patient_layout_itemHome, new RateClinicFragment());
-//                        transaction.commit();
-//                        viewHolder.rate.setEnabled(false);
-//                        //need some changes!!!
-//                    }
-//                });
-//
-//                convertView.setTag(viewHolder);
-//
-//
-//            }
-//            else{
-//                mainViewHolder = (ViewHolder) convertView.getTag();
-////                mainViewHolder.dateAndTime.setText(getItem(position));
-//            }
-//            return convertView;
-//        }
-//
-//    }
-//
-//    public class ViewHolder{
-//        TextView dateAndTime;
-//        TextView clinicNameInfo;
-//        TextView clinicName;
-//        TextView addressInfo;
-//        TextView address;
-//        TextView serviceNameInfo;
-//        TextView serviceName;
-//        TextView waitingTimeInfo;
-//        TextView waitingTime;
-//        Button checkIn;
-//        Button rate;
-//    }
 
 
 }

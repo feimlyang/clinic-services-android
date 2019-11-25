@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/listView"
+            android:id="@+id/appointListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="180dp" />
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="85dp"
             android:layout_marginTop="570dp"
-            android:text="Book An New Appointment" />
+            android:text="Book New Appointment" />
 
     </LinearLayout>
 </FrameLayout>

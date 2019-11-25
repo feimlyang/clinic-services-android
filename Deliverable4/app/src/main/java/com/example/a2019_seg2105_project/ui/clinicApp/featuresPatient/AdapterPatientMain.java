@@ -1,6 +1,7 @@
 package com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,84 +20,67 @@ import com.example.a2019_seg2105_project.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterPatientMain extends ArrayAdapter<PatientHomeModel> {
+public class AdapterPatientMain extends ArrayAdapter<AppointmentDataModel> {
 
-    private List<PatientHomeModel> data;
+    private List<AppointmentDataModel> appointmentData;
+    Context context;
 
-    public AdapterPatientMain(Context context, List<PatientHomeModel> data){
-        super(context,R.layout.patient_fragment_home,data);
-        this.data = data;
+    public AdapterPatientMain(Context context, List<AppointmentDataModel> appointmentData) {
+        super(context, R.layout.patient_fragment_home, appointmentData);
+        this.appointmentData = appointmentData;
+        this.context = context;
 
     }
+
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final int entryPosition = position;
 
-
-        ViewHolder mainViewHolder = null;
-        if(convertView == null){
+        if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.patient_listview_item_home,parent,false);
-            final ViewHolder viewHolder = new ViewHolder();
-            viewHolder.dateAndTime = (TextView) convertView.findViewById(R.id.textViewDateAndHours);
-            viewHolder.dateAndTime.setText(data.get(position).getDateAndHours());
-            viewHolder.clinicNameInfo = (TextView) convertView.findViewById(R.id.textViewClinicNameInfo);
-            viewHolder.clinicNameInfo.setText(data.get(position).getClinicName());
-            viewHolder.addressInfo = (TextView) convertView.findViewById(R.id.textViewAddressInfo);
-            viewHolder.addressInfo.setText(data.get(position).getAddress());
-            viewHolder.serviceNameInfo = (TextView) convertView.findViewById(R.id.textViewServiceNameInfo);
-            viewHolder.serviceNameInfo.setText(data.get(position).getServiceName());
-            viewHolder.waitingTimeInfo = (TextView) convertView.findViewById(R.id.textViewWaitingTimeInfo);
-            viewHolder.waitingTimeInfo.setText(data.get(position).getWaitingTime());
-            viewHolder.clinicName = (TextView) convertView.findViewById(R.id.textViewClinicName);
-            viewHolder.address = (TextView) convertView.findViewById(R.id.textViewAddress);
-            viewHolder.serviceName = (TextView) convertView.findViewById(R.id.textViewServiceName);
-            viewHolder.waitingTime = (TextView) convertView.findViewById(R.id.textViewWaitingTime);
-            viewHolder.checkIn = (Button) convertView.findViewById(R.id.btn_CheckIn);
-            viewHolder.rate = (Button) convertView.findViewById(R.id.btn_Rate);
+            convertView = inflater.inflate(R.layout.patient_listview_item_home, parent, false);
 
-//                viewHolder.clinicName.setText(getItem(position));
-//                viewHolder.waitingTime.setText(getItem(position));
+            TextView dateAndTime = (TextView) convertView.findViewById(R.id.textViewDateAndHours);
+            dateAndTime.setText(appointmentData.get(position).getDateAndHours());
 
+            TextView clinicNameInfo = (TextView) convertView.findViewById(R.id.textViewClinicNameInfo);
+            clinicNameInfo.setText(appointmentData.get(position).getClinicName());
 
-//            viewHolder.rate.setOnClickListener(new View.OnClickListener(){
-//                @Override
-//                public void onClick(View v){
-//                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-//                    transaction.addToBackStack(null);
-//                    transaction.replace(R.id.patient_layout_itemHome, new RateClinicFragment());
-//                    transaction.commit();
-//                    viewHolder.rate.setEnabled(false);
-//                    //need some changes!!!
-//                }
-//            });
+            TextView addressInfo = (TextView) convertView.findViewById(R.id.textViewAddressInfo);
+            addressInfo.setText(appointmentData.get(position).getAddress());
 
-            convertView.setTag(viewHolder);
+            TextView serviceNameInfo = (TextView) convertView.findViewById(R.id.textViewServiceNameInfo);
+            serviceNameInfo.setText(appointmentData.get(position).getServiceName());
 
+            TextView waitingTimeInfo = (TextView) convertView.findViewById(R.id.textViewWaitingTimeInfo);
+            waitingTimeInfo.setText(appointmentData.get(position).getWaitingTime());
 
-        }
-        else{
-            mainViewHolder = (ViewHolder) convertView.getTag();
-//                mainViewHolder.dateAndTime.setText(getItem(position));
+            final Button checkIn = (Button) convertView.findViewById(R.id.btn_CheckIn);
+            if (appointmentData.get(entryPosition).getIsCheckedIn() == true){
+                checkIn.setEnabled(false);
+            }
+            else {
+                checkIn.setEnabled(true);
+            }
+            Button rate = (Button) convertView.findViewById(R.id.btn_Rate);
+            checkIn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    appointmentData.get(entryPosition).setIsCheckedIn(true);
+                    checkIn.setEnabled(false);
+                }
+            });
+
+            rate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.patient_layout_rateclinic,
+                            new RateClinicFragment()).addToBackStack(null).commit();
+                }
+            });
         }
         return convertView;
     }
-    public class ViewHolder{
-        TextView dateAndTime;
-        TextView clinicNameInfo;
-        TextView clinicName;
-        TextView addressInfo;
-        TextView address;
-        TextView serviceNameInfo;
-        TextView serviceName;
-        TextView waitingTimeInfo;
-        TextView waitingTime;
-        Button checkIn;
-        Button rate;
-    }
-
 }
-
-
-
 
