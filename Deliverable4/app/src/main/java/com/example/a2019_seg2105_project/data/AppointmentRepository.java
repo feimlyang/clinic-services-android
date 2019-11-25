@@ -167,7 +167,7 @@ public class AppointmentRepository {
                             if (eachClinic.hasChild("clinicName")) {
                                 thisClinic.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
                             } else {
-                                thisClinic.put("clinicName", "");
+                                thisClinic.put("clinicName", "null");
                             }
                             if (eachClinic.hasChild("clinicAddress")) {
                                 thisClinic.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
@@ -177,7 +177,7 @@ public class AppointmentRepository {
                             if (eachClinic.hasChild("rate") && eachClinic.hasChild("rate/aveScore")) {
                                 thisClinic.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(Double.class).toString());
                             } else {
-                                thisClinic.put("clinicRate", "");
+                                thisClinic.put("clinicRate", "null");
                             }
                             resultList.add(thisClinic);
                         }
