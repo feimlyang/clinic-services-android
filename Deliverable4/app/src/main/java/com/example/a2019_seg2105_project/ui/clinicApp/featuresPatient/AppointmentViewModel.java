@@ -91,9 +91,10 @@ public class AppointmentViewModel extends ViewModel {
 
     /*book an appointment, should provide all of the appointment info */
     public void addAppointment( String patientUsername, String dateTime,
-                                            String employeeUsername, String bookedService, int waitingTime){
+                                            String employeeUsername, String clinicName, String clinicAddress,
+                                String bookedService, int waitingTime){
         final LiveData<Result> resultLiveData = appointmentRepository.addAppointment(
-            patientUsername,dateTime, employeeUsername, bookedService, waitingTime);
+            patientUsername,dateTime, employeeUsername, clinicName, clinicAddress, bookedService, waitingTime);
         this.addAppointmentData.addSource(resultLiveData, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
