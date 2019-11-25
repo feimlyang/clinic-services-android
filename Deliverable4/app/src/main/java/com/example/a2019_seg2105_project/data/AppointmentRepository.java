@@ -47,20 +47,19 @@ public class AppointmentRepository {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     ArrayList<String> addressSpinnerValues = new ArrayList<>();
 
-                    for(DataSnapshot eachClinic : dataSnapshot.getChildren()){
-                        if(eachClinic.hasChild("clinicAddress")
-                        && ! addressSpinnerValues.contains(eachClinic.child("clinicAddress").getValue())){
+                    for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
+                        if (eachClinic.hasChild("clinicAddress")
+                                && !addressSpinnerValues.contains(eachClinic.child("clinicAddress").getValue())) {
                             addressSpinnerValues.add(eachClinic.child("clinicAddress").getValue(String.class));
-                        }
-                        else break;
+                        } else break;
                     }
-                    if (null == addressSpinnerValues){
+                    if (null == addressSpinnerValues) {
                         liveDataSpinnerValues.setValue(new Result.Success(R.string.search_result_null));
-                    }
-                    else {
+                    } else {
                         liveDataSpinnerValues.setValue(new Result.Success<ArrayList<String>>(addressSpinnerValues));
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     liveDataSpinnerValues.setValue(new Result.Failure(R.string.failed));
@@ -84,23 +83,22 @@ public class AppointmentRepository {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     ArrayList<String> serviceSpinnerValues = new ArrayList<>();
 
-                    for(DataSnapshot eachClinic : dataSnapshot.getChildren()){
-                        if(eachClinic.hasChild("servicesOffered")){
-                            for (DataSnapshot eachService : eachClinic.child("servicesOffered").getChildren()){
-                                if (!serviceSpinnerValues.contains(eachService.getKey())){
+                    for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
+                        if (eachClinic.hasChild("servicesOffered")) {
+                            for (DataSnapshot eachService : eachClinic.child("servicesOffered").getChildren()) {
+                                if (!serviceSpinnerValues.contains(eachService.getKey())) {
                                     serviceSpinnerValues.add(eachService.getKey());
-                                }
-                                else break;
+                                } else break;
                             }
-                        }else break;
+                        } else break;
                     }
-                    if (null == serviceSpinnerValues){
+                    if (null == serviceSpinnerValues) {
                         liveDataSpinnerValues.setValue(new Result.Success(R.string.search_result_null));
-                    }
-                    else {
+                    } else {
                         liveDataSpinnerValues.setValue(new Result.Success<ArrayList<String>>(serviceSpinnerValues));
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     liveDataSpinnerValues.setValue(new Result.Failure(R.string.failed));
@@ -130,91 +128,61 @@ public class AppointmentRepository {
             databaseClinics.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    ArrayList<ArrayList<HashMap<String, String>>> resultList = new ArrayList<>();
-                    ArrayList<String> checkClinic = new ArrayList<>();
+                    ArrayList<HashMap<String, String>> resultList = new ArrayList<>();
 
-                    search1:
-                    for (String addressElem : selectedAddressList) {
-                        for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
-                            if (eachClinic.hasChild("clinicAddress")
-                                    && addressElem.equals(eachClinic.child("clinicAddress").getValue())
-                                    && !checkClinic.contains(eachClinic.getKey())) {
-                                checkClinic.add(eachClinic.getKey());
-                                HashMap<String, String> employeeName = new HashMap<>();
-                                HashMap<String, String> clinicName = new HashMap<>();
-                                HashMap<String, String> clinicAddress = new HashMap<>();
-                                HashMap<String, String> clinicRate = new HashMap<>();
-                                employeeName.put("employeeName", eachClinic.getKey());
-                                clinicName.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
-                                clinicAddress.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
-                                clinicRate.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(String.class));
-                                ArrayList<HashMap<String, String>> clinicInfo = new ArrayList<>();
-                                clinicInfo.add(employeeName);
-                                clinicInfo.add(clinicName);
-                                clinicInfo.add(clinicAddress);
-                                clinicInfo.add(clinicRate);
-                                resultList.add(clinicInfo);
-                            } else break search1;
+                    for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
+
+                        String address = eachClinic.child("clinicAddress").getValue(String.class);
+                        boolean isValidClinic = false;
+                        // condition 1: address matches
+                        if ((null == selectedAddressList) || selectedAddressList.contains(address)) {
+                            isValidClinic = true;
                         }
-                    }
+                        // condition 2: services offered match
+                        if (isValidClinic && eachClinic.hasChild("servicesOffered")) {
+                            isValidClinic = false;
+                            for (DataSnapshot eachService : eachClinic.child("servicesOffered").getChildren()) {
 
-                    search2:
-                    for (String serviceElem : selectedServiceList) {
-                        for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
-                            if (eachClinic.hasChild("servicesOffered")
-                                    && eachClinic.child("servicesOffered").hasChild(serviceElem)
-                                    && !checkClinic.contains(eachClinic.getKey())) {
-                                checkClinic.add(eachClinic.getKey());
-                                HashMap<String, String> employeeName = new HashMap<>();
-                                HashMap<String, String> clinicName = new HashMap<>();
-                                HashMap<String, String> clinicAddress = new HashMap<>();
-                                HashMap<String, String> clinicRate = new HashMap<>();
-                                employeeName.put("employeeName", eachClinic.getKey());
-                                clinicName.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
-                                clinicAddress.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
-                                clinicRate.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(String.class));
-                                ArrayList<HashMap<String, String>> clinicInfo = new ArrayList<>();
-                                clinicInfo.add(employeeName);
-                                clinicInfo.add(clinicName);
-                                clinicInfo.add(clinicAddress);
-                                clinicInfo.add(clinicRate);
-                                resultList.add(clinicInfo);
-                            } else break search2;
-                        }
-                    }
-
-                    search3:
-                    for (String timeSlotElem : selectedTimeSlotList) {
-                        for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
-                            if (eachClinic.hasChild("workingHours")) {
-                                for (DataSnapshot eachWorkingDate : eachClinic.child("workingHours").getChildren()) {
-                                    if (eachWorkingDate.hasChild(timeSlotElem) && !checkClinic.contains(eachClinic.getKey())) {
-                                        checkClinic.add(eachClinic.getKey());
-                                        HashMap<String, String> employeeName = new HashMap<>();
-                                        HashMap<String, String> clinicName = new HashMap<>();
-                                        HashMap<String, String> clinicAddress = new HashMap<>();
-                                        HashMap<String, String> clinicRate = new HashMap<>();
-                                        employeeName.put("employeeName", eachClinic.getKey());
-                                        clinicName.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
-                                        clinicAddress.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
-                                        clinicRate.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(String.class));
-                                        ArrayList<HashMap<String, String>> clinicInfo = new ArrayList<>();
-                                        clinicInfo.add(employeeName);
-                                        clinicInfo.add(clinicName);
-                                        clinicInfo.add(clinicAddress);
-                                        clinicInfo.add(clinicRate);
-                                        resultList.add(clinicInfo);
-                                    } else break search3;
+                                if (null == selectedServiceList || selectedServiceList.contains(eachService)) {
+                                    isValidClinic = true;
+                                    break;
                                 }
-                            } else break search3;
+                            }
+                        }
+                        // condition 3 : workinghours match
+                        if (isValidClinic && eachClinic.hasChild("workingHours")) {
+                            isValidClinic = false;
+                            for (DataSnapshot eachDay : eachClinic.child("workingHours").getChildren()) {
+                                for (DataSnapshot eachHour : eachDay.getChildren()) {
+                                    if (null == selectedTimeSlotList || selectedTimeSlotList.contains(eachHour.getKey())) {
+                                        isValidClinic = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (isValidClinic) {
+                            HashMap<String, String> thisClinic = new HashMap<>();
+                            thisClinic.put("employeeName", eachClinic.getKey());
+                            if (dataSnapshot.hasChild("clinicName")) {
+                                thisClinic.put("clinicName", eachClinic.child("clinicName").getValue(String.class));
+                            } else {
+                                thisClinic.put("clinicName", "");
+                            }
+                            if (dataSnapshot.hasChild("clinicAddress")) {
+                                thisClinic.put("clinicAddress", eachClinic.child("clinicAddress").getValue(String.class));
+                            } else {
+                                thisClinic.put("clinicAddress", "");
+                            }
+                            if (dataSnapshot.hasChild("rate") && dataSnapshot.hasChild("aveScore")) {
+                                thisClinic.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(Double.class).toString());
+                            } else {
+                                thisClinic.put("clinicRate", "");
+                            }
+                            resultList.add(thisClinic);
                         }
                     }
-
-                    if (null == resultList) {
-                        liveDataClinics.setValue(new Result.Success(R.string.search_result_null));
-                    } else {
-                        liveDataClinics.setValue(new Result.Success<ArrayList<ArrayList<HashMap<String, String>>>>(resultList));
-                    }
+                    liveDataClinics.setValue(new Result.Success<ArrayList<HashMap<String, String>>>(resultList));
                 }
 
                 @Override
