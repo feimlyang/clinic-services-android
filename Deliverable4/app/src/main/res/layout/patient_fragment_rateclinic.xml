@@ -122,7 +122,7 @@
         android:layout_marginEnd="93dp"
         android:layout_marginBottom="43dp"
         android:text="Thank you for visiting our clinic!"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/textViewRating"
         app:layout_constraintEnd_toEndOf="parent"

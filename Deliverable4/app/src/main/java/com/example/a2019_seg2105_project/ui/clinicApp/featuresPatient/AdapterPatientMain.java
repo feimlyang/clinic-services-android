@@ -72,7 +72,7 @@ public class AdapterPatientMain extends ArrayAdapter<AppointmentDataModel> {
                 @Override
                 public void onClick(View v) {
                     AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.patient_layout_rateclinic,
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.patient_layout_home,
                             new RateClinicFragment()).addToBackStack(null).commit();
                 }
             });

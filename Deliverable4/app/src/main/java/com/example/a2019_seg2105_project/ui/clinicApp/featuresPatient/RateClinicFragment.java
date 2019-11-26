@@ -96,10 +96,10 @@ public class RateClinicFragment extends Fragment {
                     Toast.makeText(getContext(), "Please write some comments", Toast.LENGTH_LONG).show();
                 } else {
                     commentFilling.setText("");
-                    ratingBar.setRating(9);
+                    ratingBar.setRating(5);
                     Toast.makeText(getContext(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
-                    String employeeName = getActivity().getIntent().getExtras().getString("employeeName");
-                    appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
+
+//                    appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
                 }
             }
         });
