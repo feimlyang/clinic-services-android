@@ -25,6 +25,8 @@ import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.AppointmentViewModel;
 
+import java.util.Map;
+
 public class RateClinicFragment extends Fragment {
     private AppointmentViewModel appointmentViewModel;
     private Button returnButton;
@@ -32,6 +34,8 @@ public class RateClinicFragment extends Fragment {
     private EditText commentFilling;
     private RatingBar ratingBar;
     private TextView points;
+    private Map<String, String> attributes;
+
     GlobalObjectManager helper = GlobalObjectManager.getInstance();
 
 
@@ -42,6 +46,10 @@ public class RateClinicFragment extends Fragment {
         appointmentViewModel = ViewModelProviders.of(this, new AppointmentModelFactory()).get(AppointmentViewModel.class);
         View root = inflater.inflate(R.layout.patient_fragment_rateclinic, container, false);
         return root;
+    }
+
+    public RateClinicFragment(Map<String, String> myAttributesMap){
+        attributes = myAttributesMap;
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -99,7 +107,8 @@ public class RateClinicFragment extends Fragment {
                     ratingBar.setRating(5);
                     Toast.makeText(getContext(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
 
-//                    appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
+                    final String employeeName = attributes.get("employeeName");
+                    appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
                 }
             }
         });

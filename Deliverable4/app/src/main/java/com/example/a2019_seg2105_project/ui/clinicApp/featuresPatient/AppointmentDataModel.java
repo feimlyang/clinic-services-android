@@ -7,8 +7,20 @@ public class AppointmentDataModel {
     String serviceName;
     String waitingTime;
     Boolean isCheckedIn;
+    String employeeName;
 
 
+    public AppointmentDataModel(String employeeName,String dateAndHours, String clinicName, String address, String serviceName,String waitingTime,
+                                Boolean isCheckedIn){
+        this.employeeName = employeeName;
+        this.dateAndHours = dateAndHours;
+        this.clinicName = clinicName;
+        this.address = address;
+        this.serviceName = serviceName;
+        this.waitingTime = waitingTime;
+        this.isCheckedIn = isCheckedIn;
+
+    }
     public AppointmentDataModel(String dateAndHours, String clinicName, String address, String serviceName,String waitingTime,
                                 Boolean isCheckedIn){
         this.dateAndHours = dateAndHours;
@@ -18,6 +30,10 @@ public class AppointmentDataModel {
         this.waitingTime = waitingTime;
         this.isCheckedIn = isCheckedIn;
 
+    }
+
+    public String getEmployeeName(){
+        return employeeName;
     }
 
     public String getDateAndHours(){

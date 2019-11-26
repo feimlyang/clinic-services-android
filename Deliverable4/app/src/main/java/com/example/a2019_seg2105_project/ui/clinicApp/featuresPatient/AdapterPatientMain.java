@@ -16,9 +16,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.a2019_seg2105_project.R;
+import com.example.a2019_seg2105_project.data.AppointmentRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdapterPatientMain extends ArrayAdapter<AppointmentDataModel> {
 
@@ -65,15 +68,20 @@ public class AdapterPatientMain extends ArrayAdapter<AppointmentDataModel> {
                 public void onClick(View v) {
                     appointmentData.get(entryPosition).setIsCheckedIn(true);
                     checkIn.setEnabled(false);
+
                 }
             });
 
             rate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    AppointmentDataModel appointmentModel = appointmentData.get(entryPosition);
+                    Map<String, String> attributes = new HashMap<>();
+                    attributes.put("employeeName", appointmentModel.getEmployeeName());
+
                     AppCompatActivity activity = (AppCompatActivity) v.getContext();
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.patient_layout_home,
-                            new RateClinicFragment()).addToBackStack(null).commit();
+                            new RateClinicFragment(attributes)).addToBackStack(null).commit();
                 }
             });
         }
