@@ -28,7 +28,7 @@
             android:layout_marginTop="20dp"
             android:text="TextView"
             android:textColor="@color/colorAccent"
-            android:textSize="21sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -55,8 +55,7 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
 
 
     </LinearLayout>
@@ -81,8 +80,7 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btn_bookAppointment"
@@ -91,6 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="180dp"
             android:text="Select"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="10sp" />
 
     </LinearLayout>

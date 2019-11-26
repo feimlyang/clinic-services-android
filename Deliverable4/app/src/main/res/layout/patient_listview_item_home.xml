@@ -25,7 +25,7 @@
                 android:layout_height="match_parent"
                 android:hint="Date and Working Hours"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -40,14 +40,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Clinic Name:"
-                android:textColor="#FC030000"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewClinicNameInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -61,14 +62,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Address:"
-                android:textColor="#FA020000"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewAddressInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,14 +83,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Service Name:"
-                android:textColor="#FD020000"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewServiceNameInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -101,14 +104,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Waiting Time:"
-                android:textColor="#FC030000"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewWaitingTimeInfo"
                 android:layout_width="298dp"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -127,7 +131,9 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="40dp"
             android:text="Check In"
-            android:textColor="#000" />
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimaryDark"
+        />
 
         <Button
             android:id="@+id/btn_Rate"
@@ -135,7 +141,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rate"
-            android:textColor="#000" />
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimaryDark" />
     </LinearLayout>
 
 </LinearLayout>
