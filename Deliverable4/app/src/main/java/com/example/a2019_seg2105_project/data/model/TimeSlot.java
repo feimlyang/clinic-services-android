@@ -3,13 +3,9 @@ package com.example.a2019_seg2105_project.data.model;
 import java.util.ArrayList;
 
 public class TimeSlot {
-    ArrayList<String> workingHours;
 
-    public TimeSlot(){
-        workingHours = null;
-    }
-
-    public ArrayList<String> getTimeSlots(){
+    public final static ArrayList<String> getTimeSlots(){
+        ArrayList<String> workingHours = new ArrayList<>();
         workingHours.add("08:00-09:00");
         workingHours.add("09:00-10:00");
         workingHours.add("10:00-11:00");
@@ -21,5 +17,4 @@ public class TimeSlot {
         workingHours.add("16:00-17:00");
         return workingHours;
     }
-
 }

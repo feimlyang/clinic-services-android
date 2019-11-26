@@ -72,13 +72,11 @@ public class PatientMainFragment extends Fragment {
                 else
                 {
 
-                    ArrayList<Map<String, Map<String, String>>> appointListResult =
-                            (ArrayList<Map<String, Map<String, String>>>)((Result.Success)result).getData();
-
-                    for(Map<String, Map<String, String>> eachAppointment : appointListResult){
+                    Map<String, Map<String, String>> appointListResult =
+                            (Map<String, Map<String, String>>)((Result.Success)result).getData();
                         //AppointmentDataModel(String dateAndHours, String clinicName, String address, String serviceName,String waitingTime)
-                        for (String eachAppointTime : eachAppointment.keySet()){
-                            Map<String, String> appointInfo = eachAppointment.get(eachAppointTime);
+                        for (String eachAppointTime : appointListResult.keySet()){
+                            Map<String, String> appointInfo = appointListResult.get(eachAppointTime);
                             Boolean covertIsCheckedIn = Boolean.valueOf(appointInfo.get("isCheckedIn"));
                             AppointmentDataModel appointAttributes = new AppointmentDataModel(eachAppointTime, appointInfo.get("clinicName"),
                                 appointInfo.get("clinicAddress"), appointInfo.get("bookedService"), appointInfo.get("waitingTime"),
@@ -86,7 +84,7 @@ public class PatientMainFragment extends Fragment {
                             appointmentsData.add(appointAttributes);
                         }
                     }
-                }
+
                 AdapterPatientMain appointmentAdapter  = new AdapterPatientMain( getContext(), appointmentsData);
                 listOfAppointments.setAdapter(appointmentAdapter);
                 appointmentAdapter.notifyDataSetChanged();

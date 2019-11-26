@@ -245,169 +245,165 @@ public class AppointmentRepository {
                     if (!dataSnapshot.hasChild(patientUsername)) {
                         liveDataAppointments.setValue(new Result.Error(new IOException("patient invalid")));
                     } else {
-                        ArrayList<Map<String, Map<String, String>>> appointmentList = new ArrayList<>();
-                        for (DataSnapshot appointment : dataSnapshot.child(patientUsername).getChildren()) {
-                            String dateTime = appointment.getKey();
-                            Map<String, Map<String, String>> eachAppointment = new HashMap<>();
+                        Map<String, Map<String, String>> appointmentMap = new HashMap<>();
+                        for (DataSnapshot eachAppointment : dataSnapshot.child(patientUsername).getChildren()) {
+                            String dateTime = eachAppointment.getKey();
                             Map<String, String> elem = new HashMap<>();
-                            for (DataSnapshot appointmentElem : dataSnapshot.child(patientUsername).child(dateTime).getChildren()) {
-                                //clinicName, clinicAddress, bookedService, waitingTime, isCheckedIn
-                                if (appointmentElem.hasChild("clinicName")) {
-                                    elem.put("clinicName", appointmentElem.child("clinicName").getValue(String.class));
-                                } else {
-                                    elem.put("clinicName", "");
-                                }
-                                if (appointmentElem.hasChild("clinicAddress")) {
-                                    elem.put("clinicAddress", appointmentElem.child("clinicAddress").getValue(String.class));
-                                } else {
-                                    elem.put("clinicAddress", "");
-                                }
-                                if (appointmentElem.hasChild("bookedService")) {
-                                    elem.put("bookedService", appointmentElem.child("bookedService").getValue(String.class));
-                                } else {
-                                    elem.put("bookedService", "");
-                                }
-                                if (appointmentElem.hasChild("waitingTime")) {
-                                    elem.put("waitingTime", appointmentElem.child("waitingTime").getValue(String.class));
-                                } else {
-                                    elem.put("waitingTime", "");
-                                }
-                                if (appointmentElem.hasChild("isCheckedIn")) {
-                                    elem.put("isCheckedIn", appointmentElem.child("isCheckedIn").getValue(String.class));
-                                } else {
-                                    elem.put("isCheckedIn", "false");
-                                }
-                            }
-                            eachAppointment.put(dateTime, elem);
-                            appointmentList.add(eachAppointment);
-                            }
-                            liveDataAppointments.setValue(new Result.Success<ArrayList<Map<String, Map<String, String>>>>(appointmentList));
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled (@NonNull DatabaseError databaseError){
-                        liveDataAppointments.setValue(new Result.Failure(R.string.failed));
-                    }
-                });
-            } catch(Exception e){
-                liveDataAppointments.setValue(new Result.Failure(R.string.failed));
-            }
-            return liveDataAppointments;
-        }
-
-
-        /*checkin a appointment if it is booked*/
-        public LiveData<Result> isCheckedIn ( final String patientUsername, final String dateTime){
-            final DatabaseReference databaseAppointments;
-            final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
-            try {
-                databaseAppointments = FirebaseDatabase.getInstance().getReference("appointments");
-                databaseAppointments.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (!dataSnapshot.hasChild(patientUsername) || !dataSnapshot.child(patientUsername).hasChild(dateTime)) {
-                            liveDataAppointments.setValue(new Result.Error(new IOException("invalid input")));
-                        } else {
-                            if (dataSnapshot.child(patientUsername).child(dateTime).hasChild("isCheckedIn")
-                                    && dataSnapshot.child(patientUsername).child(dateTime).child("isCheckedIn").getValue().equals(true)) {
-                                liveDataAppointments.setValue(new Result.Failure(R.string._already_CheckedIn));
+                            //clinicName, clinicAddress, bookedService, waitingTime, isCheckedIn
+                            if (eachAppointment.hasChild("clinicName")) {
+                                elem.put("clinicName", eachAppointment.child("clinicName").getValue(String.class));
                             } else {
-                                databaseAppointments.child(patientUsername).child(dateTime).child("isCheckedIn").setValue(true);
-                                liveDataAppointments.setValue(new Result.Success(R.string.isCheckedIn));
+                                elem.put("clinicName", "");
                             }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        liveDataAppointments.setValue(new Result.Failure(R.string.fail_checkedIn));
-                    }
-                });
-            } catch (Exception e) {
-                liveDataAppointments.setValue(new Result.Failure(R.string.fail_checkedIn));
-            }
-            return liveDataAppointments;
-        }
-
-
-        /*calculate the waiting hours on a certain clinic and a certain datetime
-         * 15mins for each person in line*/
-        public LiveData<Result> calculateWaitingTime ( final String patientUsername,
-        final String dateTime, final String employeeUsername){
-            final DatabaseReference databaseAppointments;
-            final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
-            try {
-                databaseAppointments = FirebaseDatabase.getInstance().getReference("appointments");
-                databaseAppointments.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        int counter = 0;
-                        for (DataSnapshot eachPatient : dataSnapshot.getChildren()) {
-                            if (eachPatient.hasChild(dateTime) && patientUsername.equals(eachPatient.child(dateTime).child("employeeName").getValue()))
-                                counter++;
-                        }
-                        Integer waitingTimeInMins = new Integer(15 * counter);
-                        liveDataAppointments.setValue(new Result.Success<Integer>(waitingTimeInMins));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        liveDataAppointments.setValue(new Result.Failure(R.string.failed));
-                    }
-                });
-            } catch (Exception e) {
-                liveDataAppointments.setValue(new Result.Failure(R.string.failed));
-            }
-            return liveDataAppointments;
-        }
-
-        /*rate a service after check in, each rating include a score and a comment*/
-        public LiveData<Result> rateAppointment ( final String employeeName,
-        final Float score, final String comment){
-            final DatabaseReference databaseAppointments;
-            final DatabaseReference databaseClinics;
-            final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
-            try {
-                databaseClinics = FirebaseDatabase.getInstance().getReference("clinics");
-                databaseClinics.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (!dataSnapshot.hasChild(employeeName)) {
-                            liveDataAppointments.setValue(new Result.Error(new IOException("invalid input")));
-                        } else {
-                            DatabaseReference fromClinic = databaseClinics.child(employeeName);
-                            if (!dataSnapshot.child(employeeName).hasChild("rate")) {
-                                //this clinic has never received a rate
-                                String commentNum = "comment" + String.valueOf(0);
-                                fromClinic.child("rate").child("counter").setValue(0);
-                                fromClinic.child("rate").child(commentNum).setValue(comment);
-                                fromClinic.child("rate").child("score").setValue(score);
-                                liveDataAppointments.setValue(new Result.Success(R.string.rated_appointment));
+                            if (eachAppointment.hasChild("clinicAddress")) {
+                                elem.put("clinicAddress", eachAppointment.child("clinicAddress").getValue(String.class));
                             } else {
-                                //this clinic has a score already, need count up and take average score
-                                DatabaseReference fromRate = fromClinic.child("rate");
-                                Integer counter = dataSnapshot.child(employeeName).child("rate").child("counter").getValue(Integer.class);
-                                Float aveScore = dataSnapshot.child(employeeName).child("rate").child("score").getValue(Float.class);
-                                aveScore = (aveScore * counter + score) / (++counter);
-                                String commentNum = "comment" + counter;
-                                fromRate.child("counter").setValue(counter);
-                                fromRate.child(commentNum).setValue(comment);
-                                fromRate.child("score").setValue(aveScore);
-                                liveDataAppointments.setValue(new Result.Success(R.string.rated_appointment));
+                                elem.put("clinicAddress", "");
                             }
+                            if (eachAppointment.hasChild("bookedService")) {
+                                elem.put("bookedService", eachAppointment.child("bookedService").getValue(String.class));
+                            } else {
+                                elem.put("bookedService", "");
+                            }
+                            if (eachAppointment.hasChild("waitingTime")) {
+                                elem.put("waitingTime", eachAppointment.child("waitingTime").getValue(Long.class).toString());
+                            } else {
+                                elem.put("waitingTime", "");
+                            }
+                            if (eachAppointment.hasChild("isCheckedIn")) {
+                                elem.put("isCheckedIn", eachAppointment.child("isCheckedIn").getValue(Boolean.class).toString());
+                            } else {
+                                elem.put("isCheckedIn", "false");
+                            }
+                            appointmentMap.put(dateTime, elem);
                         }
+                        liveDataAppointments.setValue(new Result.Success<Map<String, Map<String, String>>>(appointmentMap));
                     }
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        liveDataAppointments.setValue(new Result.Failure(R.string.fail_rated_appointment));
-                    }
-                });
-            } catch (Exception e) {
-                liveDataAppointments.setValue(new Result.Failure(R.string.fail_rated_appointment));
-            }
-            return liveDataAppointments;
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    liveDataAppointments.setValue(new Result.Failure(R.string.failed));
+                }
+            });
+        } catch (Exception e) {
+            liveDataAppointments.setValue(new Result.Failure(R.string.failed));
         }
-
+        return liveDataAppointments;
     }
+
+
+    /*checkin a appointment if it is booked*/
+    public LiveData<Result> isCheckedIn(final String patientUsername, final String dateTime) {
+        final DatabaseReference databaseAppointments;
+        final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
+        try {
+            databaseAppointments = FirebaseDatabase.getInstance().getReference("appointments");
+            databaseAppointments.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.hasChild(patientUsername) || !dataSnapshot.child(patientUsername).hasChild(dateTime)) {
+                        liveDataAppointments.setValue(new Result.Error(new IOException("invalid input")));
+                    } else {
+                        if (dataSnapshot.child(patientUsername).child(dateTime).hasChild("isCheckedIn")
+                                && dataSnapshot.child(patientUsername).child(dateTime).child("isCheckedIn").getValue().equals(true)) {
+                            liveDataAppointments.setValue(new Result.Failure(R.string._already_CheckedIn));
+                        } else {
+                            databaseAppointments.child(patientUsername).child(dateTime).child("isCheckedIn").setValue(true);
+                            liveDataAppointments.setValue(new Result.Success(R.string.isCheckedIn));
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    liveDataAppointments.setValue(new Result.Failure(R.string.fail_checkedIn));
+                }
+            });
+        } catch (Exception e) {
+            liveDataAppointments.setValue(new Result.Failure(R.string.fail_checkedIn));
+        }
+        return liveDataAppointments;
+    }
+
+
+    /*calculate the waiting hours on a certain clinic and a certain datetime
+     * 15mins for each person in line*/
+    public LiveData<Result> calculateWaitingTime(final String patientUsername,
+                                                 final String dateTime, final String employeeUsername) {
+        final DatabaseReference databaseAppointments;
+        final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
+        try {
+            databaseAppointments = FirebaseDatabase.getInstance().getReference("appointments");
+            databaseAppointments.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    int counter = 0;
+                    for (DataSnapshot eachPatient : dataSnapshot.getChildren()) {
+                        if (eachPatient.hasChild(dateTime) && patientUsername.equals(eachPatient.child(dateTime).child("employeeName").getValue()))
+                            counter++;
+                    }
+                    Integer waitingTimeInMins = new Integer(15 * counter);
+                    liveDataAppointments.setValue(new Result.Success<Integer>(waitingTimeInMins));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    liveDataAppointments.setValue(new Result.Failure(R.string.failed));
+                }
+            });
+        } catch (Exception e) {
+            liveDataAppointments.setValue(new Result.Failure(R.string.failed));
+        }
+        return liveDataAppointments;
+    }
+
+    /*rate a service after check in, each rating include a score and a comment*/
+    public LiveData<Result> rateAppointment(final String employeeName,
+                                            final Float score, final String comment) {
+        final DatabaseReference databaseAppointments;
+        final DatabaseReference databaseClinics;
+        final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
+        try {
+            databaseClinics = FirebaseDatabase.getInstance().getReference("clinics");
+            databaseClinics.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.hasChild(employeeName)) {
+                        liveDataAppointments.setValue(new Result.Error(new IOException("invalid input")));
+                    } else {
+                        DatabaseReference fromClinic = databaseClinics.child(employeeName);
+                        if (!dataSnapshot.child(employeeName).hasChild("rate")) {
+                            //this clinic has never received a rate
+                            String commentNum = "comment" + String.valueOf(0);
+                            fromClinic.child("rate").child("counter").setValue(0);
+                            fromClinic.child("rate").child(commentNum).setValue(comment);
+                            fromClinic.child("rate").child("score").setValue(score);
+                            liveDataAppointments.setValue(new Result.Success(R.string.rated_appointment));
+                        } else {
+                            //this clinic has a score already, need count up and take average score
+                            DatabaseReference fromRate = fromClinic.child("rate");
+                            Integer counter = dataSnapshot.child(employeeName).child("rate").child("counter").getValue(Integer.class);
+                            Float aveScore = dataSnapshot.child(employeeName).child("rate").child("score").getValue(Float.class);
+                            aveScore = (aveScore * counter + score) / (++counter);
+                            String commentNum = "comment" + counter;
+                            fromRate.child("counter").setValue(counter);
+                            fromRate.child(commentNum).setValue(comment);
+                            fromRate.child("score").setValue(aveScore);
+                            liveDataAppointments.setValue(new Result.Success(R.string.rated_appointment));
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    liveDataAppointments.setValue(new Result.Failure(R.string.fail_rated_appointment));
+                }
+            });
+        } catch (Exception e) {
+            liveDataAppointments.setValue(new Result.Failure(R.string.fail_rated_appointment));
+        }
+        return liveDataAppointments;
+    }
+
+}

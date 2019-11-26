@@ -51,7 +51,7 @@ public class BookAppointmentFragment extends Fragment {
     private ArrayList<String> selectedWorkingHours = new ArrayList<>();
     private ArrayList<String> addressList = new ArrayList<>();
     private ArrayList<String> serviceList = new ArrayList<>();
-    private TimeSlot timeSlot = new TimeSlot(); //spinner time slot
+    private TimeSlot timeSlot; //spinner time slot
     private ArrayList<String> spinnerAddressList = new ArrayList<>();
 
     // GlobalObjectManager helper = GlobalObjectManager.getInstance();
@@ -156,9 +156,9 @@ public class BookAppointmentFragment extends Fragment {
             }
         });
 
-/*
+
         //Wroking Hours spinner view
-        spinnerServiceData.add(new SpinnerDataModel("Not Selected", false));
+        spinnerWorkingHoursData.add(new SpinnerDataModel("Not Selected", false));
         for (String eachItem : timeSlot.getTimeSlots()) {
             SpinnerDataModel item = new SpinnerDataModel(eachItem, false);
             spinnerWorkingHoursData.add(item);
@@ -167,7 +167,7 @@ public class BookAppointmentFragment extends Fragment {
         spinnerOfWorkingHours.setAdapter(adapterWHSpinner);
         adapterWHSpinner.notifyDataSetChanged();
 
-*/
+
 
 
 
