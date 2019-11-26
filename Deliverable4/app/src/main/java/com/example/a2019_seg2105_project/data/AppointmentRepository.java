@@ -132,35 +132,45 @@ public class AppointmentRepository {
 
                     for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
 
+                        ArrayList<String> filterServiceList = selectedServiceList;
+                        ArrayList<String> filterTimeSlotList = selectedTimeSlotList;
+
                         String address = eachClinic.child("clinicAddress").getValue(String.class);
                         boolean isValidClinic = false;
                         // condition 1: address matches
                         if ((null == selectedAddressList) || selectedAddressList.contains(address)) {
                             isValidClinic = true;
                         }
+
                         // condition 2: services offered match
                         if (isValidClinic && eachClinic.hasChild("servicesOffered")) {
-                            isValidClinic = false;
                             for (DataSnapshot eachService : eachClinic.child("servicesOffered").getChildren()) {
-
-                                if (null == selectedServiceList || selectedServiceList.contains(eachService)) {
-                                    isValidClinic = true;
+                                if (null == selectedServiceList){
                                     break;
                                 }
+                                filterServiceList.remove(eachService.getKey());
                             }
                         }
+
+                        if(null != selectedServiceList && filterServiceList.size() > 0) {
+                            isValidClinic = false;
+                        }
+
                         // condition 3 : workinghours match
                         if (isValidClinic && eachClinic.hasChild("workingHours")) {
-                            isValidClinic = false;
                             for (DataSnapshot eachDay : eachClinic.child("workingHours").getChildren()) {
                                 for (DataSnapshot eachHour : eachDay.getChildren()) {
-                                    if (null == selectedTimeSlotList || selectedTimeSlotList.contains(eachHour.getKey())) {
-                                        isValidClinic = true;
+                                    if (null == selectedTimeSlotList) {
                                         break;
                                     }
+                                    filterTimeSlotList.remove(eachHour.getKey());
                                 }
                             }
                         }
+                        if(null != selectedTimeSlotList && filterTimeSlotList.size() > 0) {
+                            isValidClinic = false;
+                        }
+
                         if (isValidClinic) {
                             HashMap<String, String> thisClinic = new HashMap<>();
                             thisClinic.put("employeeName", eachClinic.getKey());

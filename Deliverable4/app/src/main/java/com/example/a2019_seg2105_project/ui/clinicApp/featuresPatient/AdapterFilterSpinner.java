@@ -24,11 +24,13 @@ public class AdapterFilterSpinner extends ArrayAdapter<SpinnerDataModel> {
 
     private List<SpinnerDataModel> spinnerList;
     private  Context context;
+    private BookAppointmentFragment fragment;
 
-    public AdapterFilterSpinner(Context context, List<SpinnerDataModel> spinnerList){
+    public AdapterFilterSpinner(Context context, List<SpinnerDataModel> spinnerList, BookAppointmentFragment fragment){
         super(context, R.layout.patient_fragment_bookappointment, spinnerList);
         this.context = context;
         this.spinnerList = spinnerList;
+        this.fragment = fragment;
     }
 
 
@@ -69,6 +71,7 @@ public class AdapterFilterSpinner extends ArrayAdapter<SpinnerDataModel> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int getPosition = (Integer) buttonView.getTag();
                 spinnerList.get(position).setSelected(isChecked);
+                fragment.showFilteredResults();
             }
         });
         return convertView;

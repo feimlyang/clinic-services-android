@@ -126,7 +126,7 @@ public class BookAppointmentFragment extends Fragment {
                         spinnerAddressData.add(item);
                     }
                 }
-                AdapterFilterSpinner adapterAddressSpinner = new AdapterFilterSpinner(getContext(), spinnerAddressData);
+                AdapterFilterSpinner adapterAddressSpinner = new AdapterFilterSpinner(getContext(), spinnerAddressData, BookAppointmentFragment.this);
                 spinnerOfAddress.setAdapter(adapterAddressSpinner);
                 adapterAddressSpinner.notifyDataSetChanged();
             }
@@ -150,7 +150,7 @@ public class BookAppointmentFragment extends Fragment {
                             spinnerServiceData.add(item);
                         }
                     }
-                AdapterFilterSpinner adapterServiceSpinner = new AdapterFilterSpinner(getContext(), spinnerServiceData);
+                AdapterFilterSpinner adapterServiceSpinner = new AdapterFilterSpinner(getContext(), spinnerServiceData, BookAppointmentFragment.this);
                 spinnerOfService.setAdapter(adapterServiceSpinner);
                 adapterServiceSpinner.notifyDataSetChanged();
             }
@@ -163,12 +163,9 @@ public class BookAppointmentFragment extends Fragment {
             SpinnerDataModel item = new SpinnerDataModel(eachItem, false);
             spinnerWorkingHoursData.add(item);
         }
-        AdapterFilterSpinner adapterWHSpinner = new AdapterFilterSpinner(getContext(), spinnerWorkingHoursData);
+        AdapterFilterSpinner adapterWHSpinner = new AdapterFilterSpinner(getContext(), spinnerWorkingHoursData, BookAppointmentFragment.this);
         spinnerOfWorkingHours.setAdapter(adapterWHSpinner);
         adapterWHSpinner.notifyDataSetChanged();
-
-
-
 
 
         Button returnButton = (Button) getActivity().findViewById(R.id.btn_Return);
@@ -191,6 +188,28 @@ public class BookAppointmentFragment extends Fragment {
         appointmentViewModel.getServiceSpinner();
 
     }
-
-
+    public void showFilteredResults()
+    {
+        ArrayList<String> checkedAddress = new ArrayList<>();
+        for(SpinnerDataModel addressModel : spinnerAddressData)
+        {
+            if(addressModel.isSelected())
+                checkedAddress.add(addressModel.getItem());
+        }
+        ArrayList<String> checkedServices = new ArrayList<>();
+        for(SpinnerDataModel serviceModel : spinnerServiceData)
+        {
+            if(serviceModel.isSelected())
+                checkedServices.add(serviceModel.getItem());
+        }
+        ArrayList<String> checkedWorkingHours = new ArrayList<>();
+        for(SpinnerDataModel workingHourModel : spinnerWorkingHoursData)
+        {
+            if(workingHourModel.isSelected())
+                checkedWorkingHours.add(workingHourModel.getItem());
+        }
+        appointmentViewModel.searchClinic(checkedAddress.size() == 0? null : checkedAddress,
+                checkedServices.size() == 0? null : checkedServices,
+                checkedWorkingHours.size() == 0? null : checkedWorkingHours);
+    }
 }
