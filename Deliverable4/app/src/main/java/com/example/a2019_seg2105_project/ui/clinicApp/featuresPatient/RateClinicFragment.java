@@ -17,9 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.a2019_seg2105_project.R;
+import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.AppointmentViewModel;
 
@@ -96,8 +98,26 @@ public class RateClinicFragment extends Fragment {
                     commentFilling.setText("");
                     ratingBar.setRating(9);
                     Toast.makeText(getContext(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
-                    appointmentViewModel.rateAppointment(helper.getCurrentUsername(),Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
+                    String employeeName = getActivity().getIntent().getExtras().getString("employeeName");
+                    appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
                 }
+            }
+        });
+        appointmentViewModel.rateAppointmentData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if(null == result) return;
+                if(result instanceof Result.Failure || result instanceof Result.Error)
+                {
+                    Toast.makeText(getContext(), (Integer)((Result.Failure) result).getData(), Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Rate is submitted successfully",  Toast.LENGTH_SHORT).show();
+
+
+                }
+
             }
         });
 

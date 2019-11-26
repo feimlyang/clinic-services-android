@@ -14,6 +14,7 @@ import com.example.a2019_seg2105_project.ui.clinicApp.featuresAdmin.AdminService
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.EmployeeMainFragment;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.PatientMainFragment;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.RateClinicFragment;
+import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.SelectServiceAndTimeFragment;
 import com.example.a2019_seg2105_project.ui.clinicApp.navigation.AdminMainFragment;
 import com.example.a2019_seg2105_project.ui.clinicApp.navigation.AdminMainViewModel;
 
@@ -77,6 +78,16 @@ public class MainActivity extends AppCompatActivity {
 //        else
 //        {
 //            RateClinicFragment patientHome = new RateClinicFragment();
+//            patientHome.setArguments(getIntent().getExtras());
+//            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.replace(R.id.main_fragment, patientHome);
+//            fragmentTransaction.commit();
+//
+//        }
+
+//        else
+//        {
+//            SelectServiceAndTimeFragment patientHome = new SelectServiceAndTimeFragment();
 //            patientHome.setArguments(getIntent().getExtras());
 //            fragmentTransaction.addToBackStack(null);
 //            fragmentTransaction.replace(R.id.main_fragment, patientHome);

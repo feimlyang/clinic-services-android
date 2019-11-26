@@ -1,5 +1,6 @@
 package com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -23,6 +26,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
+import com.example.a2019_seg2105_project.data.model.Clinic;
 import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresEmployee.ClinicViewModel;
 
@@ -41,6 +45,7 @@ import java.util.Set;
 public class SelectServiceAndTimeFragment extends Fragment {
     private AppointmentViewModel appointmentViewModel;
     private ClinicViewModel clinicViewModel;
+    private ArrayList<String> serviceSelection = new ArrayList<>();
     private Spinner spinnerService;
     private Button confirmButton;
     private Button viewAppointment;
@@ -93,6 +98,11 @@ public class SelectServiceAndTimeFragment extends Fragment {
         myDate = (TextView) getActivity().findViewById(R.id.textViewDate);
         spinnerService = (Spinner) getActivity().findViewById(R.id.spinnerService);
 
+
+        String employeeName = getActivity().getIntent().getExtras().getString("employeeName");
+        Intent i=new Intent(getContext(),RateClinicFragment.class);
+        i.putExtra("employeeName", employeeName);
+
         checkBoxMap = new HashMap<>();
 
         time1 = (CheckBox) getActivity().findViewById(R.id.time1);
@@ -116,6 +126,12 @@ public class SelectServiceAndTimeFragment extends Fragment {
         calendarView.setMinDate(calendarView.getDate());
         myDate.setText(new SimpleDateFormat("yyyyMMdd").format(new Date(calendarView.getDate())));
 
+        String clinicName = getActivity().getIntent().getExtras().getString("clinicName");
+        String clinicAddress = getActivity().getIntent().getExtras().getString("clinicAddress");
+        viewClinicName.setText(clinicName);
+        viewAddress.setText(clinicAddress);
+
+
 
         // Set onclick listeners
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -127,10 +143,44 @@ public class SelectServiceAndTimeFragment extends Fragment {
 
 
 
-                clinicViewModel.getWorkingHours(helper.getCurrentUsername(), dateSelected);
             }
         });
-        clinicViewModel.getWorkingHoursData.observe(this, new Observer<Result>() {
+
+        for(String hours: checkBoxMap.keySet())
+        {
+            final CheckBox checkBox = checkBoxMap.get(hours);
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    String currentDate = String.valueOf(myDate.getText());
+                    if(isChecked) {
+                        if (selectionTimeSlots.containsKey(currentDate)) {
+                            selectionTimeSlots.get(currentDate).add(String.valueOf(checkBox.getText()));
+                        }
+                        else
+                        {
+                            Set<String> hourSet = new HashSet<>();
+                            hourSet.add(String.valueOf(checkBox.getText()));
+                            selectionTimeSlots.put(currentDate, hourSet);
+                        }
+                    }
+                    else
+                    {
+                        if (selectionTimeSlots.containsKey(currentDate)) {
+                            selectionTimeSlots.get(currentDate).remove(String.valueOf(checkBox.getText()));
+                            if (selectionTimeSlots.get(currentDate).isEmpty())
+                                selectionTimeSlots.remove(currentDate);
+                        }
+                    }
+                }
+            });
+            confirmButton.setEnabled(true);
+        }
+
+
+
+
+        appointmentViewModel.getWHSpinnerData.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
                 if (null == result) return;
@@ -142,21 +192,63 @@ public class SelectServiceAndTimeFragment extends Fragment {
                     selectionTimeSlots.put(date, hourSet);
                     populateHoursToCheckBoxes(date);
                     String dateTime = myDate.getText().toString() + date;
+                    String employeeName = getActivity().getIntent().getExtras().getString("employeeName");
+                    appointmentViewModel.calculateWaitingTime(helper.getCurrentUsername(),dateTime,employeeName);
+                }
+            }
+        });
+
+        appointmentViewModel.calculateWaitingTimeData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if (null == result) return;
+                if (result instanceof Result.Success) {
+
                 }
             }
         });
 
 
-//        confirmButton.setEnabled(false);
-//        confirmButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String date = String.valueOf(myDate.getText());
-//                Set<String> hourSlots = selectionTimeSlots.get(date) == null ?  new HashSet<String>() : selectionTimeSlots.get(date);
-//                ArrayList<String> hoursArray = new ArrayList<>(hourSlots);
-//                appointmentViewModel.addAppointment(helper.getCurrentUsername(),dateTime,)
-//            }
-//        });
+        confirmButton.setEnabled(false);
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String date = String.valueOf(myDate.getText());
+                Set<String> hourSlots = selectionTimeSlots.get(date) == null ?  new HashSet<String>() : selectionTimeSlots.get(date);
+                List<String> hourList = new ArrayList<>(hourSlots);
+                String hour = hourList.get(0);
+                String dateTime = myDate.getText().toString() + hour;
+                String employeeName = getActivity().getIntent().getExtras().getString("employeeName");
+                String clinicName = getActivity().getIntent().getExtras().getString("clinicName");
+                String clinicAddress = getActivity().getIntent().getExtras().getString("clinicAddress");
+                appointmentViewModel.addAppointment(helper.getCurrentUsername(),
+                                                    Integer.parseInt(dateTime),
+                                                    employeeName,
+                                                    clinicName,
+                                                    clinicAddress,
+                                                    String.valueOf(spinnerService.getSelectedItem()),
+                                                    waitingTime);
+            }
+        });
+
+
+        appointmentViewModel.addAppointmentData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if(null == result) return;
+                if(result instanceof Result.Failure)
+                {
+                    Toast.makeText(getContext(), (Integer)((Result.Failure) result).getData(), Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Appointment is booked successfully",  Toast.LENGTH_SHORT).show();
+                    spinnerService.setSelection(0);
+
+                }
+
+            }
+        });
         viewAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,25 +259,29 @@ public class SelectServiceAndTimeFragment extends Fragment {
                 transaction.commit();
             }
         });
-//        spinnerService.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String subCategory_name = "subCategory_" + spinnerService.getItemAtPosition(position).toString();
-//                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
-//                int service = getResId(subCategory_name, R.array.class);
-//                if(service != -1) {
-//                    List<String> Lines = Arrays.asList(getResources().getStringArray(appointmentViewModel.getServiceSpinner()));
-//                    arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, Lines);
-//                }
-//                spinnerService.setAdapter(arrayAdapter);
-//                arrayAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+
+        spinnerService.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String subCategory_name = "subCategory_" + spinnerService.getItemAtPosition(position).toString();
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
+                int service = getResId(subCategory_name, R.array.class);
+                if(service != -1) {
+                    List<String> Lines = Arrays.asList(getResources().getStringArray(appointmentViewModel.getServiceSpinner()));
+                    arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, Lines);
+                }
+                spinnerService.setAdapter(arrayAdapter);
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
     }
     private void cleanCheckBoxes()
     {
