@@ -20,9 +20,9 @@ public class AppointmentViewModel extends ViewModel {
     private ServiceRepository serviceRepository;
     private AppointmentRepository appointmentRepository;
 
-    public MutableLiveData<AppointmentFormState> clinicFormState = new MutableLiveData<AppointmentFormState>();
     public MediatorLiveData<Result> getAddressSpinnerData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getServiceSpinnerData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> getServicesListLiveData = new MediatorLiveData<>();
     public MediatorLiveData<Result> searchClinicData = new MediatorLiveData<>();
     public MediatorLiveData<Result> addAppointmentData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getAllAppointmentsData = new MediatorLiveData<>();
@@ -65,6 +65,22 @@ public class AppointmentViewModel extends ViewModel {
         });
     }
 
+    public void getServicesOfClinic(String employeename) {
+        final LiveData<Result> servicesLiveData = this.clinicRepository.getServicesOfferedList(employeename);
+        this.getServicesListLiveData.addSource(servicesLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                getServicesListLiveData.removeSource(servicesLiveData);
+                getServicesListLiveData.setValue(result);
+                getServicesListLiveData.setValue(null);
+            }
+        });
+
+
+
+
+    }
+
 
     /*search for a walk in clinic by address, working hours, type of services
      * returns ArrayList of hashmap
@@ -75,6 +91,7 @@ public class AppointmentViewModel extends ViewModel {
     public void searchClinic( ArrayList<String> selectedAddressList,
                                           ArrayList<String> selectedServiceList,
                                           ArrayList<String> selectedTimeSlotList){
+
         final LiveData<Result> resultLiveData = appointmentRepository.searchClinic(
                 selectedAddressList, selectedServiceList, selectedTimeSlotList);
         this.searchClinicData.addSource(resultLiveData, new Observer<Result>() {
@@ -91,7 +108,7 @@ public class AppointmentViewModel extends ViewModel {
     /*book an appointment, should provide all of the appointment info */
     public void addAppointment( String patientUsername, String dateTime,
                                             String employeeUsername, String clinicName, String clinicAddress,
-                                String bookedService, int waitingTime){
+                                String bookedService){
         final LiveData<Result> resultLiveData = appointmentRepository.addAppointment(
             patientUsername,dateTime, employeeUsername, clinicName, clinicAddress, bookedService);
         this.addAppointmentData.addSource(resultLiveData, new Observer<Result>() {
@@ -134,8 +151,8 @@ public class AppointmentViewModel extends ViewModel {
 
     /*calculate the waiting hours on a certain clinic and a certain datetime
      * 15mins for each person in line*/
-    public void calculateWaitingTime(String patientUsername, String dateTime, String employeeUsername){
-        final LiveData<Result> resultLiveData = appointmentRepository.calculateWaitingTime(patientUsername, dateTime, employeeUsername);
+    public void calculateWaitingTime(String employeeUsername, String dateTime){
+        final LiveData<Result> resultLiveData = appointmentRepository.calculateWaitingTime(employeeUsername, dateTime);
         this.calculateWaitingTimeData.addSource(resultLiveData, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {

@@ -52,9 +52,6 @@ public class AdapterPatientMain extends ArrayAdapter<AppointmentDataModel> {
             TextView serviceNameInfo = (TextView) convertView.findViewById(R.id.textViewServiceNameInfo);
             serviceNameInfo.setText(appointmentData.get(position).getServiceName());
 
-            TextView waitingTimeInfo = (TextView) convertView.findViewById(R.id.textViewWaitingTimeInfo);
-            waitingTimeInfo.setText(appointmentData.get(position).getWaitingTime());
-
             final Button checkIn = (Button) convertView.findViewById(R.id.btn_CheckIn);
             if (appointmentData.get(entryPosition).getIsCheckedIn() == true){
                 checkIn.setEnabled(false);

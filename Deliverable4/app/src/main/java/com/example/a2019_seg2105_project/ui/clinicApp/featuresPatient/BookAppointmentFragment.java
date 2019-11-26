@@ -208,6 +208,7 @@ public class BookAppointmentFragment extends Fragment {
             if(workingHourModel.isSelected())
                 checkedWorkingHours.add(workingHourModel.getItem());
         }
+
         appointmentViewModel.searchClinic(checkedAddress.size() == 0? null : checkedAddress,
                 checkedServices.size() == 0? null : checkedServices,
                 checkedWorkingHours.size() == 0? null : checkedWorkingHours);

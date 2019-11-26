@@ -129,11 +129,10 @@ public class AppointmentRepository {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     ArrayList<HashMap<String, String>> resultList = new ArrayList<>();
-
                     for (DataSnapshot eachClinic : dataSnapshot.getChildren()) {
 
-                        ArrayList<String> filterServiceList = selectedServiceList;
-                        ArrayList<String> filterTimeSlotList = selectedTimeSlotList;
+                        ArrayList<String> filterServiceList = selectedServiceList == null ? new ArrayList<String>() : new ArrayList<String>(selectedServiceList);
+                        ArrayList<String> filterTimeSlotList = selectedTimeSlotList == null ? new ArrayList<String>() : new ArrayList<String>(selectedTimeSlotList);
 
                         String address = eachClinic.child("clinicAddress").getValue(String.class);
                         boolean isValidClinic = false;
@@ -338,8 +337,7 @@ public class AppointmentRepository {
 
     /*calculate the waiting hours on a certain clinic and a certain datetime
      * 15mins for each person in line*/
-    public LiveData<Result> calculateWaitingTime(final String patientUsername,
-                                                 final String dateTime, final String employeeUsername) {
+    public LiveData<Result> calculateWaitingTime(final String employeeUsername, final String dateTime) {
         final DatabaseReference databaseAppointments;
         final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
         try {
@@ -349,10 +347,10 @@ public class AppointmentRepository {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     int counter = 0;
                     for (DataSnapshot eachPatient : dataSnapshot.getChildren()) {
-                        if (eachPatient.hasChild(dateTime) && patientUsername.equals(eachPatient.child(dateTime).child("employeeName").getValue()))
+                        if (eachPatient.hasChild(dateTime) && employeeUsername.equals(eachPatient.child(dateTime).child("employeeName").getValue(String.class)))
                             counter++;
                     }
-                    Integer waitingTimeInMins = new Integer(15 * counter);
+                    Integer waitingTimeInMins = 15 * counter;
                     liveDataAppointments.setValue(new Result.Success<Integer>(waitingTimeInMins));
                 }
 

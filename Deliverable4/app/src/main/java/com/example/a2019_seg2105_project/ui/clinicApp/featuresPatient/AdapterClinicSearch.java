@@ -25,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdapterClinicSearch extends ArrayAdapter<ClinicDataModel> {
 
@@ -59,15 +60,14 @@ public class AdapterClinicSearch extends ArrayAdapter<ClinicDataModel> {
             @Override
             public void onClick(View v) {
                 ClinicDataModel clinicModel = clinicData.get(entryPosition);
-                Intent intent = new Intent(context, SelectServiceAndTimeFragment.class );
-                intent.putExtra("employeeName", clinicModel.getEmployeeName());
-                intent.putExtra("clinicName", clinicModel.getClinicName());
-                intent.putExtra("clinicAddress", clinicModel.getClinicAddress());
-                intent.putExtra("clinicRate", clinicModel.getRating());
-
+                Map<String, String> attributes = new HashMap<>();
+                attributes.put("employeeName", clinicModel.getEmployeeName());
+                attributes.put("clinicName", clinicModel.getClinicName());
+                attributes.put("clinicAddress", clinicModel.getClinicAddress());
+                attributes.put("clinicRate", clinicModel.getRating());
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.patient_layout_bookAppointment,
-                        new SelectServiceAndTimeFragment()).addToBackStack(null).commit();
+                        new SelectServiceAndTimeFragment(attributes)).addToBackStack(null).commit();
             }
         });
         return convertView;
