@@ -211,7 +211,7 @@ public class AppointmentRepository {
     /*book an appointment, should provide all of the appointment info */
     public LiveData<Result> addAppointment(final String patientUsername, final String dateTime, final String employeeUsername,
                                            final String clinicName, final String clinicAddress,
-                                           final String bookedService, final int waitingTime) {
+                                           final String bookedService) {
         final DatabaseReference databaseAppointments;
         final MutableLiveData<Result> liveDataAppointments = new MutableLiveData<>();
         try {
@@ -224,7 +224,6 @@ public class AppointmentRepository {
                     } else {
                         databaseAppointments.child(patientUsername).child(dateTime).child("bookedService").setValue(bookedService);
                         databaseAppointments.child(patientUsername).child(dateTime).child("isCheckedIn").setValue(false);
-                        databaseAppointments.child(patientUsername).child(dateTime).child("waitingTime").setValue(waitingTime);
                         databaseAppointments.child(patientUsername).child(dateTime).child("employeeName").setValue(employeeUsername);
                         databaseAppointments.child(patientUsername).child(dateTime).child("clinicName").setValue(clinicName);
                         databaseAppointments.child(patientUsername).child(dateTime).child("clinicAddress").setValue(clinicAddress);

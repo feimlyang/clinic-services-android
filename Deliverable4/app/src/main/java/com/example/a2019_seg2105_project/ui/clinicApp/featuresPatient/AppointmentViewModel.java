@@ -23,7 +23,6 @@ public class AppointmentViewModel extends ViewModel {
     public MutableLiveData<AppointmentFormState> clinicFormState = new MutableLiveData<AppointmentFormState>();
     public MediatorLiveData<Result> getAddressSpinnerData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getServiceSpinnerData = new MediatorLiveData<>();
-    public MediatorLiveData<Result> getWHSpinnerData = new MediatorLiveData<>();
     public MediatorLiveData<Result> searchClinicData = new MediatorLiveData<>();
     public MediatorLiveData<Result> addAppointmentData = new MediatorLiveData<>();
     public MediatorLiveData<Result> getAllAppointmentsData = new MediatorLiveData<>();
@@ -94,7 +93,7 @@ public class AppointmentViewModel extends ViewModel {
                                             String employeeUsername, String clinicName, String clinicAddress,
                                 String bookedService, int waitingTime){
         final LiveData<Result> resultLiveData = appointmentRepository.addAppointment(
-            patientUsername,dateTime, employeeUsername, clinicName, clinicAddress, bookedService, waitingTime);
+            patientUsername,dateTime, employeeUsername, clinicName, clinicAddress, bookedService);
         this.addAppointmentData.addSource(resultLiveData, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {

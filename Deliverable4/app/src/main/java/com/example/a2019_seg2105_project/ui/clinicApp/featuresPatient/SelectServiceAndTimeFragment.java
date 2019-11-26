@@ -68,10 +68,8 @@ public class SelectServiceAndTimeFragment extends Fragment {
     private CheckBox time9;
 
     private GlobalObjectManager helper = GlobalObjectManager.getInstance();
-    private boolean editMode = false;
-    private Map<String, Set<String>> selectionTimeSlots = new HashMap<String, Set<String>>();
+    private Map<String, String> selectionTimeSlots = new HashMap<String, String>();
     private Map<String, CheckBox> checkBoxMap;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -98,13 +96,17 @@ public class SelectServiceAndTimeFragment extends Fragment {
         myDate = (TextView) getActivity().findViewById(R.id.textViewDate);
         spinnerService = (Spinner) getActivity().findViewById(R.id.spinnerService);
 
+        //get info from Intent for selected clinic
+        final String employeeName = getActivity().getIntent().getExtras().getString("employeeName");
+        final String clinicName = getActivity().getIntent().getExtras().getString("clinicName");
+        final String clinicAddress = getActivity().getIntent().getExtras().getString("clinicAddress");
+        final String clinicRate = getActivity().getIntent().getExtras().getString(("clinicRate"));
 
-        String employeeName = getActivity().getIntent().getExtras().getString("employeeName");
-        Intent i=new Intent(getContext(),RateClinicFragment.class);
-        i.putExtra("employeeName", employeeName);
+        viewClinicName.setText(clinicName);
+        viewAddress.setText(clinicAddress);
+        viewRating.setText(clinicRate);
 
         checkBoxMap = new HashMap<>();
-
         time1 = (CheckBox) getActivity().findViewById(R.id.time1);
         checkBoxMap.put("08:00-09:00", time1);
         time2 = (CheckBox) getActivity().findViewById(R.id.time2);
@@ -126,84 +128,49 @@ public class SelectServiceAndTimeFragment extends Fragment {
         calendarView.setMinDate(calendarView.getDate());
         myDate.setText(new SimpleDateFormat("yyyyMMdd").format(new Date(calendarView.getDate())));
 
-        String clinicName = getActivity().getIntent().getExtras().getString("clinicName");
-        String clinicAddress = getActivity().getIntent().getExtras().getString("clinicAddress");
-        viewClinicName.setText(clinicName);
-        viewAddress.setText(clinicAddress);
-
-
-
         // Set onclick listeners
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int day) {
+                selectionTimeSlots.clear();
                 String dateSelected = String.format("%04d%02d%02d", year, month + 1, day);
                 myDate.setText(dateSelected);
                 cleanCheckBoxes();
-
-
-
             }
         });
 
-        for(String hours: checkBoxMap.keySet())
-        {
+        for (final String hours : checkBoxMap.keySet()) {
             final CheckBox checkBox = checkBoxMap.get(hours);
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     String currentDate = String.valueOf(myDate.getText());
-                    if(isChecked) {
-                        if (selectionTimeSlots.containsKey(currentDate)) {
-                            selectionTimeSlots.get(currentDate).add(String.valueOf(checkBox.getText()));
+                    if (isChecked) {
+                        for (String time : checkBoxMap.keySet()) {
+                            if (!hours.equals(time)) {
+                                checkBoxMap.get(time).setChecked(false);
+                            } else {
+                                checkBoxMap.get(time).setChecked(true);
+                                selectionTimeSlots.put(currentDate, hours);
+                            }
                         }
-                        else
-                        {
-                            Set<String> hourSet = new HashSet<>();
-                            hourSet.add(String.valueOf(checkBox.getText()));
-                            selectionTimeSlots.put(currentDate, hourSet);
-                        }
-                    }
-                    else
-                    {
-                        if (selectionTimeSlots.containsKey(currentDate)) {
-                            selectionTimeSlots.get(currentDate).remove(String.valueOf(checkBox.getText()));
-                            if (selectionTimeSlots.get(currentDate).isEmpty())
-                                selectionTimeSlots.remove(currentDate);
-                        }
+                    } else {
+                        selectionTimeSlots.clear();
                     }
                 }
             });
-            confirmButton.setEnabled(true);
         }
-
-
-
-
-        appointmentViewModel.getWHSpinnerData.observe(this, new Observer<Result>() {
-            @Override
-            public void onChanged(Result result) {
-                if (null == result) return;
-                if (result instanceof Result.Success) {
-                    ArrayList<String> workingHours = ((Result.Success<ArrayList<String>>) result).getData();
-                    String date = workingHours.get(0);
-                    workingHours.remove(0);
-                    Set<String> hourSet = new HashSet<>(workingHours);
-                    selectionTimeSlots.put(date, hourSet);
-                    populateHoursToCheckBoxes(date);
-                    String dateTime = myDate.getText().toString() + date;
-                    String employeeName = getActivity().getIntent().getExtras().getString("employeeName");
-                    appointmentViewModel.calculateWaitingTime(helper.getCurrentUsername(),dateTime,employeeName);
-                }
-            }
-        });
 
         appointmentViewModel.calculateWaitingTimeData.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
                 if (null == result) return;
-                if (result instanceof Result.Success) {
-
+                if (result instanceof Result.Failure || result instanceof Result.Error) {
+                    Toast.makeText(getContext(), "Failed to calculate waiting time", Toast.LENGTH_SHORT).show();
+                } else {
+                    Result.Success<Integer> waitingTimeResult = (Result.Success<Integer>) (result);
+                    Integer waitingTime = waitingTimeResult.getData();
+                    viewWaitingTime.setText(waitingTime.toString());
                 }
             }
         });
@@ -213,21 +180,14 @@ public class SelectServiceAndTimeFragment extends Fragment {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //addAppointment( String patientUsername, String dateTime,
+                //                                            String employeeUsername, String clinicName, String clinicAddress,
+                //                                String bookedService, int waitingTime
                 String date = String.valueOf(myDate.getText());
-                Set<String> hourSlots = selectionTimeSlots.get(date) == null ?  new HashSet<String>() : selectionTimeSlots.get(date);
-                List<String> hourList = new ArrayList<>(hourSlots);
-                String hour = hourList.get(0);
-                String dateTime = myDate.getText().toString() + hour;
-                String employeeName = getActivity().getIntent().getExtras().getString("employeeName");
-                String clinicName = getActivity().getIntent().getExtras().getString("clinicName");
-                String clinicAddress = getActivity().getIntent().getExtras().getString("clinicAddress");
-                appointmentViewModel.addAppointment(helper.getCurrentUsername(),
-                                                    Integer.parseInt(dateTime),
-                                                    employeeName,
-                                                    clinicName,
-                                                    clinicAddress,
-                                                    String.valueOf(spinnerService.getSelectedItem()),
-                                                    waitingTime);
+
+                String dateTime = date + selectionTimeSlots.get(myDate);
+                appointmentViewModel.addAppointment(helper.getCurrentUsername(), dateTime, employeeName,
+                        clinicName, clinicAddress, String.valueOf(spinnerService.getSelectedItem()) );
             }
         });
 
@@ -235,20 +195,19 @@ public class SelectServiceAndTimeFragment extends Fragment {
         appointmentViewModel.addAppointmentData.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
-                if(null == result) return;
-                if(result instanceof Result.Failure)
-                {
-                    Toast.makeText(getContext(), (Integer)((Result.Failure) result).getData(), Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(getContext(), "Appointment is booked successfully",  Toast.LENGTH_SHORT).show();
+                if (null == result) return;
+                if (result instanceof Result.Failure) {
+                    Toast.makeText(getContext(), (Integer) ((Result.Failure) result).getData(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Appointment is booked successfully", Toast.LENGTH_SHORT).show();
                     spinnerService.setSelection(0);
 
                 }
 
             }
         });
+
+
         viewAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -266,7 +225,7 @@ public class SelectServiceAndTimeFragment extends Fragment {
                 String subCategory_name = "subCategory_" + spinnerService.getItemAtPosition(position).toString();
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
                 int service = getResId(subCategory_name, R.array.class);
-                if(service != -1) {
+                if (service != -1) {
                     List<String> Lines = Arrays.asList(getResources().getStringArray(appointmentViewModel.getServiceSpinner()));
                     arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, Lines);
                 }
@@ -280,28 +239,26 @@ public class SelectServiceAndTimeFragment extends Fragment {
             }
         });
 
-
+//need to select a time slot
+        appointmentViewModel.calculateWaitingTime(helper.getCurrentUsername(), String.valueOf(myDate.getText())+selectionTimeSlots.get(), employeeName);
 
     }
-    private void cleanCheckBoxes()
-    {
-        for(String timeslot : checkBoxMap.keySet())
-        {
+
+
+    private void cleanCheckBoxes() {
+        for (String timeslot : checkBoxMap.keySet()) {
             checkBoxMap.get(timeslot).setChecked(false);
         }
     }
 
-    private void populateHoursToCheckBoxes(String date)
-    {
-        if(!selectionTimeSlots.containsKey(date)) return;
-        for(String hour : selectionTimeSlots.get(date))
-        {
-            if(checkBoxMap.containsKey(hour))
-            {
+    private void populateHoursToCheckBoxes(String date) {
+        if (!selectionTimeSlots.containsKey(date)) return;
+        for (String hour : selectionTimeSlots.get(date)) {
+            if (checkBoxMap.containsKey(hour)) {
                 checkBoxMap.get(hour).setChecked(false);
-            }else{
+            } else {
                 checkBoxMap.get(hour).setEnabled(false);
-        }
+            }
         }
     }
 
