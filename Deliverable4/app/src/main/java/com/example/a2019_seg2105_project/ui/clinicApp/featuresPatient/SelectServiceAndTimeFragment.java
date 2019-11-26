@@ -67,6 +67,7 @@ public class SelectServiceAndTimeFragment extends Fragment {
 
     private GlobalObjectManager helper = GlobalObjectManager.getInstance();
     private Map<String, String> selectionTimeSlots = new HashMap<String, String>();
+    private Map<String, Set<String>> avaliableTimeSlots = new HashMap<String, Set<String>>();
 
     private Map<String, CheckBox> checkBoxMap;
     private Map<String, String> attributes;
@@ -82,7 +83,7 @@ public class SelectServiceAndTimeFragment extends Fragment {
         return root;
     }//end of onCreateView()
 
-    public SelectServiceAndTimeFragment(Map<String, String> myAttributesMap){
+    public SelectServiceAndTimeFragment(Map<String, String> myAttributesMap) {
         attributes = myAttributesMap;
     }
 
@@ -137,8 +138,28 @@ public class SelectServiceAndTimeFragment extends Fragment {
                 String dateSelected = String.format("%04d%02d%02d", year, month + 1, day);
                 myDate.setText(dateSelected);
                 cleanCheckBoxes();
+                appointmentViewModel.getWorkingHours(employeeName, dateSelected);
             }
         });
+
+        appointmentViewModel.getWorkingHoursData.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                if (null == result) return;
+                if (result instanceof Result.Success) {
+                    ArrayList<String> workingHours = ((Result.Success<ArrayList<String>>) result).getData();
+                    String date = workingHours.get(0);
+                    workingHours.remove(0);
+                    Set<String> hourSet = new HashSet<>(workingHours);
+                    avaliableTimeSlots.put(date, hourSet);
+                    for (String hour : checkBoxMap.keySet()) {
+                        checkBoxMap.get(hour).setEnabled(false);
+                    }
+                    disableUnavaliableHours(date);
+                }
+            }
+        });
+
 
         for (final String hours : checkBoxMap.keySet()) {
             final CheckBox checkBox = checkBoxMap.get(hours);
@@ -217,25 +238,21 @@ public class SelectServiceAndTimeFragment extends Fragment {
         appointmentViewModel.getServicesListLiveData.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(Result result) {
-                if(result == null) return;
+                if (result == null) return;
                 ArrayList<String> availableServices = new ArrayList<String>();
-                if(result instanceof Result.Failure || result instanceof Result.Error)
-                {
+                if (result instanceof Result.Failure || result instanceof Result.Error) {
                     Toast.makeText(getContext(), "Failed to list all services.", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else {
                     Result.Success<ArrayList<String>> services;
-                    try{
-                        services  = (Result.Success<ArrayList<String>>)(result);
+                    try {
+                        services = (Result.Success<ArrayList<String>>) (result);
 
-                    }catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         services = new Result.Success<ArrayList<String>>(availableServices);
                     }
                     availableServices = services.getData();
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<>( getContext(), android.R.layout.simple_spinner_item, availableServices);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, availableServices);
                 spinnerService.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
@@ -246,6 +263,15 @@ public class SelectServiceAndTimeFragment extends Fragment {
     private void cleanCheckBoxes() {
         for (String timeslot : checkBoxMap.keySet()) {
             checkBoxMap.get(timeslot).setChecked(false);
+        }
+    }
+
+    private void disableUnavaliableHours(String date) {
+        if (!avaliableTimeSlots.containsKey(date)) return;
+        for (String hour : avaliableTimeSlots.get(date)) {
+            if (checkBoxMap.containsKey(hour)) {
+                checkBoxMap.get(hour).setEnabled(true);
+            }
         }
     }
 }

@@ -29,6 +29,7 @@ public class AppointmentViewModel extends ViewModel {
     public MediatorLiveData<Result> isCheckedInData = new MediatorLiveData<>();
     public MediatorLiveData<Result> calculateWaitingTimeData = new MediatorLiveData<>();
     public MediatorLiveData<Result> rateAppointmentData = new MediatorLiveData<>();
+    public MediatorLiveData<Result> getWorkingHoursData = new MediatorLiveData<>();
 
 
 
@@ -175,6 +176,21 @@ public class AppointmentViewModel extends ViewModel {
             }
         });
     }
+
+    public void getWorkingHours(String employeeUsername, String date){
+        final LiveData<Result> resultLiveData = clinicRepository.getWorkingHours(employeeUsername.toLowerCase(), date);
+        this.getWorkingHoursData.addSource(resultLiveData, new Observer<Result>() {
+            @Override
+            public void onChanged(Result result) {
+                getWorkingHoursData.removeSource(resultLiveData);
+                getWorkingHoursData.setValue(result);
+                getWorkingHoursData.setValue(null);
+            }
+        });
+
+    }
+
+
 
     /*====== Validators =====*/
     //length cannot exceed 100 char
