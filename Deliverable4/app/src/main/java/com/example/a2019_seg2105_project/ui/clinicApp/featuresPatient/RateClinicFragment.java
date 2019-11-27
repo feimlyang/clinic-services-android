@@ -24,6 +24,8 @@ import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
 import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.AppointmentViewModel;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
 
@@ -107,7 +109,7 @@ public class RateClinicFragment extends Fragment {
                     ratingBar.setRating(5);
                     Toast.makeText(getContext(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
 
-                    final String employeeName = attributes.get("employeeName");
+                    String employeeName = attributes.get("employeeName");
                     appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
                 }
             }
