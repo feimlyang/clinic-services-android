@@ -47,7 +47,9 @@ public class AdapterPatientMain extends ArrayAdapter<AppointmentDataModel> {
             convertView = inflater.inflate(R.layout.patient_listview_item_home, parent, false);
 
             TextView dateAndTime = (TextView) convertView.findViewById(R.id.textViewDateAndHours);
-            dateAndTime.setText(appointmentData.get(position).getDateAndHours());
+            String dateTimeToText = "Date: " + appointmentData.get(position).getDateAndHours().substring(0, 7)
+                    + "           Time: " + appointmentData.get(position).getDateAndHours().substring(8);
+            dateAndTime.setText(dateTimeToText);
 
             TextView clinicNameInfo = (TextView) convertView.findViewById(R.id.textViewClinicNameInfo);
             clinicNameInfo.setText(appointmentData.get(position).getClinicName());
