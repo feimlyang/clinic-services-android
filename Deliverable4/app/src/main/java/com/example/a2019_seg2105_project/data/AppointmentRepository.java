@@ -183,8 +183,8 @@ public class AppointmentRepository {
                             } else {
                                 thisClinic.put("clinicAddress", "");
                             }
-                            if (eachClinic.hasChild("rate") && eachClinic.hasChild("rate/aveScore")) {
-                                thisClinic.put("clinicRate", eachClinic.child("rate").child("aveScore").getValue(Double.class).toString());
+                            if (eachClinic.hasChild("rate") && eachClinic.hasChild("rate/score")) {
+                                thisClinic.put("clinicRate", eachClinic.child("rate").child("score").getValue(Float.class).toString());
                             } else {
                                 thisClinic.put("clinicRate", "null");
                             }
