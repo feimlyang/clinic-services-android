@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.a2019_seg2105_project.R;
 import com.example.a2019_seg2105_project.data.Result;
+import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.AppointmentDataModel;
 import com.example.a2019_seg2105_project.helpers.GlobalObjectManager;
 import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.AppointmentViewModel;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +33,6 @@ import java.util.Map;
 
 public class RateClinicFragment extends Fragment {
     private AppointmentViewModel appointmentViewModel;
-    List<AppointmentDataModel> appointmentsData;
     private Button returnButton;
     private Button submitButton;
     private EditText commentFilling;
@@ -63,6 +63,8 @@ public class RateClinicFragment extends Fragment {
         commentFilling = (EditText)getActivity().findViewById(R.id.editTextComment);
         ratingBar = (RatingBar) getActivity().findViewById(R.id.ratingBar);
         points = (TextView) getActivity().findViewById(R.id.textViewRatingPoint);
+
+        final String employeeName = attributes.get("employeeName");
 
 
 
@@ -111,9 +113,7 @@ public class RateClinicFragment extends Fragment {
                     ratingBar.setRating(5);
                     Toast.makeText(getContext(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
 
-//                    appointmentsData.get()
-                    String employeeName = attributes.get("employeeName");
-                    appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
+//                    appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(points.getText().toString()),commentFilling.getText().toString());
                 }
             }
         });
@@ -128,7 +128,6 @@ public class RateClinicFragment extends Fragment {
                 else
                 {
                     Toast.makeText(getContext(), "Rate is submitted successfully",  Toast.LENGTH_SHORT).show();
-
 
                 }
 

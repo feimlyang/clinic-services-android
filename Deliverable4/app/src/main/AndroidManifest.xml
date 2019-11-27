@@ -25,6 +25,7 @@
         <activity android:name=".ui.clinicApp.MainActivity" > </activity>
         <activity android:name=".ui.clinicApp.featuresEmployee.EmployeeMainFragment"></activity>
         <activity android:name=".ui.clinicApp.featuresPatient.PatientMainFragment"></activity>
+
     </application>
 
 </manifest>
