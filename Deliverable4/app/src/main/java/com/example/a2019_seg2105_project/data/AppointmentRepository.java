@@ -257,7 +257,12 @@ public class AppointmentRepository {
                         for (DataSnapshot eachAppointment : dataSnapshot.child(patientUsername).getChildren()) {
                             String dateTime = eachAppointment.getKey();
                             Map<String, String> elem = new HashMap<>();
-                            //clinicName, clinicAddress, bookedService, waitingTime, isCheckedIn
+                            //employeeName, clinicName, clinicAddress, bookedService, waitingTime, isCheckedIn
+                            if (eachAppointment.hasChild("employeeName")) {
+                                elem.put("employeeName", eachAppointment.child("employeeName").getValue(String.class));
+                            } else {
+                                liveDataAppointments.setValue(new Result.Error(new IOException("clinic invalid")));
+                            }
                             if (eachAppointment.hasChild("clinicName")) {
                                 elem.put("clinicName", eachAppointment.child("clinicName").getValue(String.class));
                             } else {
@@ -383,7 +388,7 @@ public class AppointmentRepository {
                         if (!dataSnapshot.child(employeeName).hasChild("rate")) {
                             //this clinic has never received a rate
                             String commentNum = "comment" + String.valueOf(0);
-                            fromClinic.child("rate").child("counter").setValue(0);
+                            fromClinic.child("rate").child("counter").setValue(1);
                             fromClinic.child("rate").child(commentNum).setValue(comment);
                             fromClinic.child("rate").child("score").setValue(score);
                             liveDataAppointments.setValue(new Result.Success(R.string.rated_appointment));
@@ -392,7 +397,7 @@ public class AppointmentRepository {
                             DatabaseReference fromRate = fromClinic.child("rate");
                             Integer counter = dataSnapshot.child(employeeName).child("rate").child("counter").getValue(Integer.class);
                             Float aveScore = dataSnapshot.child(employeeName).child("rate").child("score").getValue(Float.class);
-                            aveScore = (aveScore * counter + score) / (++counter);
+                            aveScore = (Float) (aveScore * counter + score) / (++counter);
                             String commentNum = "comment" + counter;
                             fromRate.child("counter").setValue(counter);
                             fromRate.child(commentNum).setValue(comment);

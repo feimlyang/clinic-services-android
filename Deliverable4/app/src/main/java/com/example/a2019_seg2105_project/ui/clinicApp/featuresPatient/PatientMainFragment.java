@@ -78,7 +78,7 @@ public class PatientMainFragment extends Fragment {
                         for (String eachAppointTime : appointListResult.keySet()){
                             Map<String, String> appointInfo = appointListResult.get(eachAppointTime);
                             Boolean covertIsCheckedIn = Boolean.valueOf(appointInfo.get("isCheckedIn"));
-                            AppointmentDataModel appointAttributes = new AppointmentDataModel(appointInfo.get("employeeName"),eachAppointTime, appointInfo.get("clinicName"),
+                            AppointmentDataModel appointAttributes = new AppointmentDataModel(appointInfo.get("employeeName"), eachAppointTime, appointInfo.get("clinicName"),
                                 appointInfo.get("clinicAddress"), appointInfo.get("bookedService"), appointInfo.get("waitingTime"),
                                     covertIsCheckedIn);
                             appointmentsData.add(appointAttributes);

@@ -10,7 +10,7 @@ public class AppointmentDataModel {
     String employeeName;
 
 
-    public AppointmentDataModel(String employeeName,String dateAndHours, String clinicName, String address, String serviceName,String waitingTime,
+    public AppointmentDataModel(String employeeName ,String dateAndHours, String clinicName, String address, String serviceName,String waitingTime,
                                 Boolean isCheckedIn){
         this.employeeName = employeeName;
         this.dateAndHours = dateAndHours;
