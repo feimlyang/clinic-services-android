@@ -85,7 +85,7 @@ public class PatientMainFragment extends Fragment {
                         }
                     }
 
-                AdapterPatientMain appointmentAdapter  = new AdapterPatientMain( getContext(), appointmentsData);
+                AdapterPatientMain appointmentAdapter  = new AdapterPatientMain( getContext(), appointmentsData, PatientMainFragment.this);
                 listOfAppointments.setAdapter(appointmentAdapter);
                 appointmentAdapter.notifyDataSetChanged();
             }

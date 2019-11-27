@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -27,11 +28,13 @@ public class AdapterPatientMain extends ArrayAdapter<AppointmentDataModel> {
 
     private List<AppointmentDataModel> appointmentData;
     Context context;
+    PatientMainFragment fragment;
 
-    public AdapterPatientMain(Context context, List<AppointmentDataModel> appointmentData) {
+    public AdapterPatientMain(Context context, List<AppointmentDataModel> appointmentData, PatientMainFragment fragment) {
         super(context, R.layout.patient_fragment_home, appointmentData);
         this.appointmentData = appointmentData;
         this.context = context;
+        this.fragment = fragment;
 
     }
 
@@ -64,11 +67,13 @@ public class AdapterPatientMain extends ArrayAdapter<AppointmentDataModel> {
             }
             Button rate = (Button) convertView.findViewById(R.id.btn_Rate);
             rate.setEnabled(false);
+
             checkIn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     appointmentData.get(entryPosition).setIsCheckedIn(true);
                     checkIn.setEnabled(false);
+                    fragment.setCheckedIn(appointmentData.get(entryPosition).getDateAndHours());
 
                 }
             });
