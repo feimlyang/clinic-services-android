@@ -27,10 +27,12 @@ import com.example.a2019_seg2105_project.ui.clinicApp.featuresPatient.Appointmen
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
 import java.util.Map;
 
 public class RateClinicFragment extends Fragment {
     private AppointmentViewModel appointmentViewModel;
+    List<AppointmentDataModel> appointmentsData;
     private Button returnButton;
     private Button submitButton;
     private EditText commentFilling;
@@ -109,6 +111,7 @@ public class RateClinicFragment extends Fragment {
                     ratingBar.setRating(5);
                     Toast.makeText(getContext(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
 
+//                    appointmentsData.get()
                     String employeeName = attributes.get("employeeName");
                     appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(String.valueOf(points.getText())),commentFilling.getText().toString());
                 }
