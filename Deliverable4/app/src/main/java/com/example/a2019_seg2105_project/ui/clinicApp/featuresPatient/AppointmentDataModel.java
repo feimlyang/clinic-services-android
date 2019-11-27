@@ -21,16 +21,16 @@ public class AppointmentDataModel {
         this.isCheckedIn = isCheckedIn;
 
     }
-    public AppointmentDataModel(String dateAndHours, String clinicName, String address, String serviceName,String waitingTime,
-                                Boolean isCheckedIn){
-        this.dateAndHours = dateAndHours;
-        this.clinicName = clinicName;
-        this.address = address;
-        this.serviceName = serviceName;
-        this.waitingTime = waitingTime;
-        this.isCheckedIn = isCheckedIn;
-
-    }
+//    public AppointmentDataModel(String dateAndHours, String clinicName, String address, String serviceName,String waitingTime,
+//                                Boolean isCheckedIn){
+//        this.dateAndHours = dateAndHours;
+//        this.clinicName = clinicName;
+//        this.address = address;
+//        this.serviceName = serviceName;
+//        this.waitingTime = waitingTime;
+//        this.isCheckedIn = isCheckedIn;
+//
+//    }
 
     public String getEmployeeName(){
         return employeeName;

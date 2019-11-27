@@ -68,7 +68,6 @@ public class AdapterPatientMain extends ArrayAdapter<AppointmentDataModel> {
                 checkIn.setEnabled(true);
             }
             Button rate = (Button) convertView.findViewById(R.id.btn_Rate);
-            rate.setEnabled(false);
 
             checkIn.setOnClickListener(new View.OnClickListener() {
                 @Override
