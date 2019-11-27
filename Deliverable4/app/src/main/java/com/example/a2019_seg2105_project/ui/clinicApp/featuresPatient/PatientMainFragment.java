@@ -106,5 +106,9 @@ public class PatientMainFragment extends Fragment {
         appointmentViewModel.getAllAppointments(helper.getCurrentUsername());
     }
 
+    public void setCheckedIn (String dateAndHours){
+        appointmentViewModel.isCheckedIn(helper.getCurrentUsername(), dateAndHours);
+    }
+
 
 }
