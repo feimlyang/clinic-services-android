@@ -95,13 +95,12 @@ public class RateClinicFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count > 100){
-                    Toast.makeText(getContext(), "You write too much, sorry", Toast.LENGTH_SHORT).show();
-                }
             }
             @Override
             public void afterTextChanged(Editable s) {
-                appointmentViewModel.isCommentWithinRange(s.toString());
+                if(appointmentViewModel.isCommentWithinRange(s.toString()) == false){
+                    commentFilling.setError("Please do not write comments over 100 words");
+                }
             }
         });
 
@@ -110,16 +109,17 @@ public class RateClinicFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (commentFilling.getText().toString().isEmpty()) {
-                    Toast.makeText(getContext(), "Please write some comments", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
+                    appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(points.getText().toString()),"");
                 } else {
-                    commentFilling.setText("");
-                    ratingBar.setRating(5);
                     Toast.makeText(getContext(), "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
 
                     System.out.println("test score value " + Float.parseFloat(points.getText().toString()));
                     System.out.println("test comment value: " + commentFilling.getText().toString());
 
                    appointmentViewModel.rateAppointment(employeeName,Float.parseFloat(points.getText().toString()),commentFilling.getText().toString());
+                    commentFilling.getText().clear();
+                    ratingBar.setRating(5);
                 }
             }
         });
