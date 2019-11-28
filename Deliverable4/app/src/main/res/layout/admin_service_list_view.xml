@@ -11,19 +11,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <ListView
         android:id="@+id/listViewServices"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewAddress">
-    </ListView>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/serviceListReturnButton"
-        android:layout_gravity="center"
-        android:text="Return">
-    </Button>
+        android:layout_below="@+id/textViewAddress"
+        android:layout_marginBottom="170dp"></ListView>
+
 </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="550dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/serviceListReturnButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="107dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="145dp"
+            android:text="Return"></Button>
+    </LinearLayout>
 
 </FrameLayout>

@@ -75,24 +75,6 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
 
         }
-//        else
-//        {
-//            RateClinicFragment patientHome = new RateClinicFragment();
-//            patientHome.setArguments(getIntent().getExtras());
-//            fragmentTransaction.addToBackStack(null);
-//            fragmentTransaction.replace(R.id.main_fragment, patientHome);
-//            fragmentTransaction.commit();
-//
-//        }
 
-//        else
-//        {
-//            SelectServiceAndTimeFragment patientHome = new SelectServiceAndTimeFragment();
-//            patientHome.setArguments(getIntent().getExtras());
-//            fragmentTransaction.addToBackStack(null);
-//            fragmentTransaction.replace(R.id.main_fragment, patientHome);
-//            fragmentTransaction.commit();
-//
-//        }
     }// end of onCreate()
 }
