@@ -42,13 +42,13 @@ For *security* reasons, we requires user to enter an access code if he/she attem
 
 Our criteria of 'valid informaiton' are the following:
 
-| Informaiton 		| Constraints | 
-| :-------------:	| :------------------------------------| 
-| Username  		|  Should be <= 10 characters. Should not contain symbols. Case insensitive. |
+| Informaiton   | Constraints | 
+| :-------------: | :------------------------------------| 
+| Username    |  Should be <= 10 characters. Should not contain symbols. Case insensitive. |
 | Names(first and last) |  Should be letters only. |  
-| Password      	|  Should be between 5~16 characters. | 
+| Password       |  Should be between 5~16 characters. | 
 | Password Verification |  Should match password initially entered. |
-| Email			|  Should match standard email format. |
+| Email   |  Should match standard email format. |
 
 Apart from these, duplicated username will **not** be able to be registered in database. An error message will be displayed.
 * **Welcome Message**
@@ -69,8 +69,8 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 * Integrated with CircleCI.
 * Developed 5 unit tests:
 
-| Unit Test 		| Constraints | 
-| :-------------:	| :------------------------------------| 
+| Unit Test   | Constraints | 
+| :-------------: | :------------------------------------| 
 | PasswordLengthTest |  The length of password should not be bigger than 16 and smaller than 5. |
 | UsernameLengthTest |  The length of username should not be bigger than 10. Username should not be null and should not have space. |  
 | EmailValidatorTest |  Email should not be null, and it should not ignore "@" and ".com". | 
@@ -87,8 +87,8 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 * Can see the working hours by select a date. Click EDIT then CONFIRM to update the working hours. 
 * Developed 2 unit tests: 
 
-| Unit Test 		| Constraints | 
-| :-------------:	| :------------------------------------| 
+| Unit Test   | Constraints | 
+| :-------------: | :------------------------------------| 
 | RegisteredNameLengthTest |  The length of username should not be bigger than 10 when register. Username should not be null and should not have space when register. The length of username can be exactly 10 when register. |
 | PasswordWithinRangeTest |  The length of password should not be bigger than 16 and smaller than 5. The length of password can be exactly 5 or 16. |  
 
@@ -103,18 +103,18 @@ The UI is **NOT**(yet) resizeable. Do *not* run it on small screen device, or so
 * Build CircleCI button in the Github
 * Developed 10 unit tests that is **only relevant the D4**:
 
-|  #    | Unit Test 		| Constraints | 
-| :---: | :-------------:	| :------------------------------------| 
-| 1 |  |  |
-| 2 |  |  | 
-| 3 |  |  |
-| 4 |  |  | 
-| 5 |  |  |
-| 6 |  |  | 
-| 7 |  |  |
-| 8 |  |  | 
-| 9 |  |  |
-| 10|  |  | 
+|  #    | Unit Test   | Constraints | 
+| :---: | :-------------: | :------------------------------------| 
+| 1 | CheckIsCheckedInTest | The test should get the same result as expected. |
+| 2 | CommentLengthTest | The length of comment should not be bigger than 100 and can be exactly 100. | 
+| 3 | GetAddressTest | The test should get the same address as expected. |
+| 4 | GetClinicAddressTest | The test should get the same clinic address as expected. | 
+| 5 | GetClinicNameTest | The test should get the same clinic name as expected. |
+| 6 | GetDateAndHoursTest |The test should get the same date and hours as expected. | 
+| 7 | GetEmployeeNameTest | The test should get the same employee name as expected. |
+| 8 | GetRatingTest | The test should get the same rating as expected. | 
+| 9 | GetServiceNameTest | The test should get the same service name as expected.  |
+| 10| RateValidatorTest | The rate should not be character. The rate should be digital, but the value of rate should not be over 5. The value of rate should be between 0 and 5. | 
 
 ### CircleCI
 [![CircleCI](https://circleci.com/gh/SEG2105-uottawa/seg2x05-project-f19-10/tree/master.svg?style=svg&circle-token=dfc8cf14869d1c662016f9038e259c3505c4074a)](https://circleci.com/gh/SEG2105-uottawa/seg2x05-project-f19-10/tree/master)
